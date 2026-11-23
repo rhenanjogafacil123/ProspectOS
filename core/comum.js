@@ -1,103 +1,81 @@
-// ProspectOS — Utilitários Comuns
+// Funções usadas por todos os scripts da skill. Sem dependência externa: só Node 18+.
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 
-const UA = {
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
-  'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7'
-};
-
-function args() {
-  const argv = process.argv.slice(2);
-  const opt = { _: [] };
+// Lê "--chave valor" e "--chave=valor". O resto vai em ._ (funciona igual no PowerShell e no bash).
+function args(argv = process.argv.slice(2)) {
+  const o = { _: [] };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
-    if (a.startsWith('--')) {
-      const chave = a.slice(2);
-      const proximo = argv[i + 1];
-      if (proximo && !proximo.startsWith('--')) {
-        opt[chave] = proximo;
-        i++;
-      } else {
-        opt[chave] = true;
-      }
-    } else {
-      opt._.push(a);
-    }
+    if (!a.startsWith('--')) { o._.push(a); continue; }
+    const igual = a.indexOf('=');
+    if (igual > 0) { o[a.slice(2, igual)] = a.slice(igual + 1); continue; }
+    const prox = argv[i + 1];
+    if (prox === undefined || prox.startsWith('--')) o[a.slice(2)] = true;
+    else { o[a.slice(2)] = prox; i++; }
   }
-  return opt;
+  return o;
 }
 
-function lerJSON(caminho) {
-  try {
-    return JSON.parse(fs.readFileSync(caminho, 'utf-8'));
-  } catch (e) {
-    return null;
-  }
-}
-
-function gravarJSON(caminho, dados) {
-  fs.mkdirSync(path.dirname(path.resolve(caminho)), { recursive: true });
-  fs.writeFileSync(caminho, JSON.stringify(dados, null, 2), 'utf-8');
-}
-
+const lerJSON = p => JSON.parse(fs.readFileSync(p, 'utf8').replace(/^﻿/, ''));
+const gravarJSON = (p, v) => {
+  fs.mkdirSync(path.dirname(path.resolve(p)), { recursive: true });
+  fs.writeFileSync(p, JSON.stringify(v, null, 2));
+};
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const digits = s => String(s || '').replace(/\D/g, '');
-const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const slug = s => norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const UA = { 'User-Agent': 'Mozilla/5.0 (mazyos-prospecta-maps)' };
 
-function telBR(s) {
-  let d = digits(s);
-  if (d.startsWith('55') && (d.length === 12 || d.length === 13)) d = d.slice(2);
-  if (d.length === 10 || d.length === 11) return d;
-  return '';
+// Celular BR: DDD + 9 + 8 dígitos. Fixo não recebe WhatsApp.
+function telBR(fone) {
+  let d = digits(fone);
+  if (d.length >= 12 && d.startsWith('55')) d = d.slice(2);
+  return d;
+}
+const ehCelular = fone => { const d = telBR(fone); return d.length === 11 && d[2] === '9'; };
+
+// Chrome ou Edge em qualquer sistema. Retorna null se não houver nenhum.
+function acharChrome() {
+  const env = process.env;
+  const lista = process.platform === 'win32'
+    ? [env.PROGRAMFILES, env['PROGRAMFILES(X86)'], env.LOCALAPPDATA].filter(Boolean).flatMap(b => [
+        path.join(b, 'Google', 'Chrome', 'Application', 'chrome.exe'),
+        path.join(b, 'Microsoft', 'Edge', 'Application', 'msedge.exe')
+      ])
+    : process.platform === 'darwin'
+    ? ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge', '/Applications/Chromium.app/Contents/MacOS/Chromium']
+    : ['/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium', '/usr/bin/chromium-browser', '/snap/bin/chromium', '/usr/bin/microsoft-edge'];
+  return lista.find(p => fs.existsSync(p)) || null;
 }
 
-function ehCelular(tel) {
-  const limpo = telBR(tel);
-  return limpo.length === 11 && limpo[2] === '9';
+// Tira um print de uma URL ou arquivo. Pasta de perfil temporária pra não mexer no navegador da pessoa.
+function printChrome(chrome, url, saida, { largura, altura, escala = 1, espera = 4000 }) {
+  const { spawnSync } = require('child_process');
+  const perfil = fs.mkdtempSync(path.join(os.tmpdir(), 'prospecta-'));
+  const r = spawnSync(chrome, [
+    '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--no-default-browser-check',
+    `--user-data-dir=${perfil}`, `--force-device-scale-factor=${escala}`, `--virtual-time-budget=${espera}`,
+    `--window-size=${largura},${altura}`, `--screenshot=${path.resolve(saida)}`, url
+  ], { timeout: 120000, stdio: 'ignore' });
+  try { fs.rmSync(perfil, { recursive: true, force: true }); } catch {}
+  return r.status === 0 && fs.existsSync(saida);
 }
 
-function formataTel(s) {
-  const d = telBR(s);
-  if (d.length === 11) return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
-  if (d.length === 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
-  return s || '';
+// Gera o PDF de uma página. Mesmo cuidado do print: perfil temporário, sem tocar no navegador da pessoa.
+function pdfChrome(chrome, url, saida) {
+  const { spawnSync } = require('child_process');
+  const perfil = fs.mkdtempSync(path.join(os.tmpdir(), 'prospecta-'));
+  try { fs.rmSync(saida, { force: true }); } catch {}
+  spawnSync(chrome, [
+    '--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check', '--no-pdf-header-footer',
+    `--user-data-dir=${perfil}`, '--virtual-time-budget=4000', `--print-to-pdf=${path.resolve(saida)}`, url
+  ], { timeout: 120000, stdio: 'ignore' });
+  try { fs.rmSync(perfil, { recursive: true, force: true }); } catch {}
+  return fs.existsSync(saida) && fs.statSync(saida).size > 0;
 }
 
-function formataCNPJ(s) {
-  const d = digits(s);
-  if (d.length === 14) {
-    return `${d.slice(0, 2)}.${d.slice(2, 5)}.${d.slice(5, 8)}/${d.slice(8, 12)}-${d.slice(12)}`;
-  }
-  return s || '';
-}
-
-function formataMoeda(val) {
-  const n = Number(val) || 0;
-  return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-function esc(s) {
-  return String(s || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-module.exports = {
-  UA,
-  args,
-  lerJSON,
-  gravarJSON,
-  sleep,
-  digits,
-  norm,
-  telBR,
-  ehCelular,
-  formataTel,
-  formataCNPJ,
-  formataMoeda,
-  esc
-};
+module.exports = { args, lerJSON, gravarJSON, sleep, digits, norm, slug, esc, UA, telBR, ehCelular, acharChrome, printChrome, pdfChrome };

@@ -1,7 +1,7 @@
-// ProspectOS — Gerador Avançado de Roadmaps de Implantação (Dores & Curas + Comparativo com a Concorrência)
+// ProspectOS — Gerador de Roadmaps de Dores & Curas (100% DNA MazyOS Minimalista Preto/Monocromático)
 const fs = require('fs');
 const path = require('path');
-const { args, lerJSON, gravarJSON, esc, telBR, formataTel, formataCNPJ, formataMoeda } = require('./comum');
+const { args, lerJSON, esc, telBR } = require('./comum');
 
 const opt = args();
 const [rodadaJSON, pastaRodada] = opt._;
@@ -17,10 +17,14 @@ if (!cfg) {
   process.exit(1);
 }
 
-const leads = cfg.leads || [];
-const nicho = cfg.nicho || 'Comércio Local';
-const cidade = cfg.cidade || 'Brasil';
-const remetente = cfg.remetente || 'Assessoria de Crescimento';
+// Suporte para leads como Objeto (padrão MazyOS) ou Array
+const entradasLeads = Array.isArray(cfg.leads) 
+  ? cfg.leads.map((l, i) => [l.slug || `lead-${i+1}`, l])
+  : Object.entries(cfg.leads || {});
+
+const nicho = cfg.nicho || 'Oficinas Mecânicas';
+const cidade = cfg.cidade || 'Campinas';
+const remetente = cfg.remetente || 'Rhenan';
 const precoAVista = cfg.preco || 'R$ 2.000';
 const valorAncorado = cfg.valor_ancorado || 'R$ 6.800';
 const parcelamento = cfg.parcelamento || '4x de R$ 560';
@@ -35,554 +39,515 @@ function calcularValidade() {
   return `${diaSemana}, ${diaFmt}/${mesFmt} às 23h59`;
 }
 
-// Analisador Clínico: Identifica as dores específicas e define a cura exata
 function diagnosticarDoresECuras(L) {
-  const dores = [];
-
-  // 1. Eixo Site & Velocidade
-  if (!L.website) {
-    dores.push({
-      pilar: 'Site & Presença Web',
-      status: 'critico',
-      icone: '🌐',
-      dor: 'Empresa não possui site próprio',
-      hemorragia: 'Quem pesquisa por você pelo celular cai em diretórios genéricos ou não encontra botão rápido de WhatsApp.',
-      cura: 'Desenvolvimento e publicação de Site / Biosite de Alta Conversão, otimizado para celulares, com botão WhatsApp 1-clique.'
-    });
-  } else {
-    dores.push({
-      pilar: 'Site & Performance',
-      status: 'alerta',
-      icone: '⚡',
-      dor: 'Site lento ou desatualizado para celulares',
-      hemorragia: 'Mais de 60% dos visitantes abandonam a página se ela demorar mais de 3 segundos para abrir.',
-      cura: 'Reestruturação completa com carregamento ultrarrápido (< 1.2s), arquitetura moderna e rastreamento de conversão.'
-    });
-  }
-
-  // 2. Eixo Google Meu Negócio & Avaliações
-  const semRespostas = L.reviews_count > 30;
-  dores.push({
-    pilar: 'Google Maps & Reputação',
-    status: 'alerta',
-    icone: '📍',
-    dor: 'Ficha sem integração total e avaliações abandonadas',
-    hemorragia: 'Clientes que elogiam ou reclamam ficam no vácuo, derrubando o ranqueamento orgânico do perfil no algoritmo do Google.',
-    cura: 'Otimização 360º de categorias, integração de WhatsApp e Instagram no perfil + Automação Inteligente de Resposta a Reviews.'
-  });
-
-  // 3. Eixo Ativação de Balcão (Plaquinha NFC)
-  dores.push({
-    pilar: 'Conversão Física no Balcão',
-    status: 'oportunidade',
-    icone: '📲',
-    dor: 'Clientes satisfeitos vão embora sem avaliar a loja',
-    hemorragia: 'Menos de 2% dos clientes lembram de entrar no Google depois para dar 5 estrelas.',
-    cura: 'Implantação da Plaquinha Física de Balcão com chip NFC e QR Code: o cliente encosta o celular na saída e avalia em 5 segundos.'
-  });
-
-  // 4. Eixo Tráfego Pago (Google Ads & Meta Ads)
-  dores.push({
-    pilar: 'Aquisição Ativa de Clientes',
-    status: 'critico',
-    icone: '🎯',
-    dor: 'Zero anúncios rodando no Google Ads e Meta Ads',
-    hemorragia: 'Dependência 100% passiva de indicação física. Concorrentes do bairro estão pagando para aparecer no topo das buscas.',
-    cura: 'Campanhas patrocinadas de Google Ads (fundo de funil com alta intenção) + Anúncios no Meta Ads no raio de 3 a 5 km da loja.'
-  });
-
-  // 5. Eixo Instagram & Redes Sociais
-  dores.push({
-    pilar: 'Redes Sociais & Retenção',
-    status: 'alerta',
-    icone: '📸',
-    dor: 'Instagram sem presença ativa e sem link de conversão na bio',
-    hemorragia: 'Visitantes chegam ao perfil e encontram conteúdo estagnado, passando a impressão de negócio parado.',
-    cura: 'Bio profissional estruturada + link único interativo de atendimento + ativação de autoridade visual.'
-  });
-
-  return dores;
+  return [
+    {
+      pilar: 'Site & Performance Mobile',
+      tipo: 'Crítico',
+      dor: 'Ausência de site próprio ou site desatualizado para celulares',
+      hemorragia: 'Quem pesquisa no Google pelo celular não encontra página rápida com endereço e botão direto de WhatsApp. Mais de 60% dos motoristas desistem se a página demorar mais de 3 segundos.',
+      cura: 'Publicação de Site de Alta Conversão, carregamento ultrarrápido (< 1.2s), cardápio de serviços e chamada direta pro WhatsApp.'
+    },
+    {
+      pilar: 'Google Meu Negócio & Avaliações',
+      tipo: 'Alerta',
+      dor: 'Ficha sem integração ativa e avaliações sem resposta rápida',
+      hemorragia: 'Clientes que elogiam ou perguntam ficam sem resposta na ficha, prejudicando o algoritmo de posicionamento do Google Maps na região.',
+      cura: 'Otimização completa das categorias do GMB, integração do WhatsApp na ficha e régua de resposta padronizada para 100% dos reviews.'
+    },
+    {
+      pilar: 'Ativação de Balcão (Plaquinha NFC)',
+      tipo: 'Oportunidade',
+      dor: 'Clientes satisfeitos vão embora do balcão sem avaliar no Google',
+      hemorragia: 'Menos de 2% dos clientes lembram de entrar no Google por conta própria para dar 5 estrelas após o conserto do carro.',
+      cura: 'Implantação da Plaquinha Física de Balcão com chip NFC e QR Code: o motorista encosta o celular ao pagar e avalia em 5 segundos.'
+    },
+    {
+      pilar: 'Tráfego Pago (Google Ads & Meta)',
+      tipo: 'Crítico',
+      dor: 'Zero campanhas ativas no topo do Google',
+      hemorragia: 'Concorrentes patrocinados pagam para aparecer antes de você na busca por socorro ou revisão, captando motoristas prontos para fechar.',
+      cura: 'Campanha de Google Ads focada em intenção de compra imediata na cidade + raio de 5 km ao redor da oficina.'
+    },
+    {
+      pilar: 'Redes Sociais & Prova Social',
+      tipo: 'Alerta',
+      dor: 'Instagram parado sem demonstração de serviço técnico',
+      hemorragia: 'Visitantes que chegam pelo boca a boca pesquisam o perfil no Instagram e encontram fotos antigas, gerando dúvida sobre o padrão atual.',
+      cura: 'Bio profissional estruturada com link centralizador e orientações para vídeos simples de motor aberto e antes/depois no Stories/Reels.'
+    }
+  ];
 }
 
-function gerarHTMLRoadmap(L, idx) {
-  const tel = telBR(L.phone);
-  const socio = L.socio_principal || (L.socios && L.socios[0] ? L.socios[0].nome : 'Responsável');
+const CSS_ROADMAP = `
+  :root {
+    --bg: #000000;
+    --card: #0d0d0d;
+    --card-hover: #141414;
+    --linha: rgba(255, 255, 255, 0.1);
+    --linha-forte: rgba(255, 255, 255, 0.25);
+    --texto: #ffffff;
+    --suave: #a0a0a0;
+    --fraco: #666666;
+    --mono: ui-monospace, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--texto);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.5;
+    padding: 48px 20px 80px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  
+  header {
+    border-bottom: 1px solid var(--linha);
+    padding-bottom: 36px;
+    margin-bottom: 40px;
+  }
+  .rotulo-topo {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--suave);
+    border: 1px solid var(--linha);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(30px, 4.5vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  p.sub {
+    font-size: 16px;
+    color: var(--suave);
+    max-width: 68ch;
+  }
+
+  .bloco-dados {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--linha);
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 44px;
+  }
+  .bloco-dados div {
+    background: var(--card);
+    padding: 16px 20px;
+  }
+  .bloco-dados span {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--suave);
+    margin-bottom: 4px;
+  }
+  .bloco-dados b {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  section {
+    border-bottom: 1px solid var(--linha);
+    padding-bottom: 48px;
+    margin-bottom: 48px;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .secao-desc {
+    color: var(--suave);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  /* Comparativo contra Concorrente */
+  table.comparativo {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  table.comparativo th, table.comparativo td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--linha);
+    vertical-align: top;
+  }
+  table.comparativo th {
+    background: #080808;
+    color: var(--suave);
+    font-weight: 500;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+  table.comparativo td.empresa { color: #fff; font-weight: 500; width: 35%; }
+  table.comparativo td.concorrente { color: #bbb; width: 35%; }
+  table.comparativo td.acao { color: #fff; width: 30%; font-family: var(--mono); font-size: 12px; }
+
+  /* Dores e Curas */
+  .dores-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .dor-item {
+    background: var(--card);
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 20px 24px;
+  }
+  .dor-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .dor-topo b {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .badge-dor {
+    font-family: var(--mono);
+    font-size: 11px;
+    border: 1px solid var(--linha);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--suave);
+  }
+  .dor-detalhes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--linha);
+  }
+  .dor-col p { font-size: 13px; line-height: 1.5; color: var(--suave); }
+  .dor-col strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; color: #fff; }
+  .dor-col.cura strong { color: #fff; }
+  .dor-col.cura p { color: #eee; }
+
+  /* Fases de Implantação */
+  .fases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .fase-card {
+    background: var(--card);
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 22px;
+  }
+  .fase-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--suave);
+    margin-bottom: 8px;
+  }
+  .fase-card h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .fase-card ul {
+    list-style: none;
+    font-size: 13px;
+    color: var(--suave);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .fase-card li::before {
+    content: '— ';
+    color: var(--fraco);
+  }
+
+  /* Bloco de Investimento e Fechamento */
+  .fechamento {
+    background: var(--card);
+    border: 1px solid var(--linha-forte);
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+  }
+  .fechamento h3 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .fechamento p {
+    font-size: 14px;
+    color: var(--suave);
+    max-width: 58ch;
+    margin: 0 auto 24px;
+  }
+  .precos {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .preco-antigo {
+    text-decoration: line-through;
+    color: var(--fraco);
+    font-family: var(--mono);
+    font-size: 18px;
+  }
+  .preco-novo {
+    font-family: var(--mono);
+    font-size: 38px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .condicao {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--suave);
+    margin-bottom: 24px;
+  }
+  .btn-acao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #ffffff;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .btn-acao:hover { opacity: .9; }
+  .aviso-validade {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--fraco);
+    font-family: var(--mono);
+  }
+
+  @media (max-width: 650px) {
+    .dor-detalhes { grid-template-columns: 1fr; }
+  }
+`;
+
+function gerarHTMLRoadmap(pasta, L, idx) {
+  const nomeEmpresa = L.empresa || L.title || 'Oficina Mecânica';
+  const tel = telBR(L.whatsapp || L.telefone || L.phone);
+  const socio = L.socio || L.socio_principal || (L.socios && L.socios[0] ? L.socios[0].nome : 'Responsável');
   const validade = calcularValidade();
-  const slug = L.slug || `lead_${idx}`;
-  const dataFundacao = L.data_fundacao || '14/05/2016';
-  const tempoAtivo = L.tempo_ativo_extenso || (L.tempo_mercado_anos ? `${L.tempo_mercado_anos} anos ativa` : 'Ativa há anos');
+  const slug = L.slug || pasta;
+  const dataFundacao = L.data_fundacao || '14/05/2014';
+  const tempoAtivo = L.tempo_ativo_extenso || (L.tempo_mercado_anos ? `${L.tempo_mercado_anos} anos ativa` : 'Mais de 8 anos ativa');
+  const cnpjFmt = L.cnpj || '19.349.002/0001-44';
+  const avaliacoes = (L.dados && L.dados[0]) ? `${L.dados[0][0]} (${L.dados[0][1]})` : `${L.rating || '4.8'} (${L.reviews_count || '150'} avaliações)`;
 
   const dores = diagnosticarDoresECuras(L);
 
-  const msgAceite = `Oi ${remetente}, vi o Roadmap de Dores & Curas da ${L.title} e quero dar início à Fase 1 de implantação!`;
-  const linkZapAceite = `https://wa.me/55${cfg.telefone_remetente || '5521999999999'}?text=${encodeURIComponent(msgAceite)}`;
+  const msgAceite = `Oi ${remetente}, vi o Roadmap de Dores & Curas da ${nomeEmpresa} e quero aprovar o início do plano!`;
+  const linkZapAceite = `https://wa.me/55${cfg.telefone_remetente || '19999999999'}?text=${encodeURIComponent(msgAceite)}`;
 
-  // Tabela Comparativa contra Concorrente Líder
-  const avaliacoesConcorrente = Math.max(L.reviews_count * 2, 480);
-  const concorrenteNome = `Líder do Setor em ${cidade}`;
-
-  const itensDoresHTML = dores.map(d => `
-    <div class="dor-card ${d.status}">
-      <div class="dor-header">
-        <span class="dor-pilar">${d.icone} ${d.pilar}</span>
-        <span class="status-tag ${d.status}">${d.status === 'critico' ? 'Gargalo Crítico' : (d.status === 'alerta' ? 'Ponto Cego' : 'Oportunidade')}</span>
-      </div>
-      <div class="dor-corpo">
-        <div class="bloco-dor">
-          <label>🚨 A Dor / Sintoma:</label>
-          <p><b>${esc(d.dor)}</b></p>
-          <small class="hemorragia">${esc(d.hemorragia)}</small>
-        </div>
-        <div class="bloco-cura">
-          <label>💊 A Cura (O que vamos implantar):</label>
-          <p>${esc(d.cura)}</p>
-        </div>
-      </div>
-    </div>
-  `).join('\n');
-
-  return `<!DOCTYPE html>
+  return `<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Roadmap de Dores & Curas · ${esc(L.title)}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #09090b;
-      --card: #121217;
-      --card-alt: #18181f;
-      --linha: #27272a;
-      --texto: #f4f4f5;
-      --suave: #a1a1aa;
-      --emerald: #10b981;
-      --amber: #f59e0b;
-      --red: #ef4444;
-      --blue: #3b82f6;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--texto);
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-      padding: 40px 20px;
-      line-height: 1.6;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: #0d0d12;
-      border: 1px solid var(--linha);
-      border-radius: 16px;
-      padding: 48px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-    }
-    .header-dual {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--linha);
-    }
-    .brand-title {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-    .brand-title span { color: var(--emerald); }
-    .badge-exclusivo {
-      background: rgba(16, 185, 129, 0.12);
-      color: var(--emerald);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 4px 14px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-
-    .hero {
-      margin-top: 36px;
-      margin-bottom: 32px;
-    }
-    .hero h1 {
-      font-size: 30px;
-      font-weight: 800;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .hero p {
-      font-size: 15px;
-      color: var(--suave);
-      line-height: 1.6;
-    }
-
-    /* Bloco da História e Tradição */
-    .historia-box {
-      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-      border: 1px solid var(--linha);
-      border-left: 4px solid var(--emerald);
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin-bottom: 36px;
-    }
-    .historia-box h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-    .historia-box p { font-size: 13px; color: #d4d4d8; }
-
-    .secao-titulo {
-      font-size: 13px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: var(--emerald);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .secao-titulo::before {
-      content: '';
-      width: 16px;
-      height: 2px;
-      background: var(--emerald);
-    }
-
-    /* Tabela Comparativa contra o Concorrente */
-    .comparativo-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 40px;
-      border: 1px solid var(--linha);
-      border-radius: 12px;
-      overflow: hidden;
-      background: var(--card);
-    }
-    .comparativo-table th, .comparativo-table td {
-      padding: 14px 18px;
-      font-size: 13px;
-      text-align: left;
-      border-bottom: 1px solid var(--linha);
-    }
-    .comparativo-table th {
-      background: rgba(255,255,255,0.03);
-      color: var(--suave);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-    .col-voce { color: #fff; font-weight: 700; width: 35%; }
-    .col-concorrente { color: var(--amber); font-weight: 700; width: 35%; }
-    .col-acao { color: var(--emerald); width: 30%; }
-
-    /* Cards de Dores e Curas */
-    .dores-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 44px;
-    }
-    .dor-card {
-      background: var(--card);
-      border: 1px solid var(--linha);
-      border-radius: 12px;
-      padding: 20px 24px;
-      transition: border-color .2s;
-    }
-    .dor-card.critico { border-left: 4px solid var(--red); }
-    .dor-card.alerta { border-left: 4px solid var(--amber); }
-    .dor-card.oportunidade { border-left: 4px solid var(--emerald); }
-    
-    .dor-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-    .dor-pilar { font-size: 14px; font-weight: 700; color: #fff; }
-    .status-tag {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 999px;
-    }
-    .status-tag.critico { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-    .status-tag.alerta { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .status-tag.oportunidade { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-
-    .dor-corpo {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .bloco-dor label, .bloco-cura label {
-      display: block;
-      font-size: 11px;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .bloco-dor label { color: #f87171; }
-    .bloco-cura label { color: var(--emerald); }
-    .bloco-dor p { font-size: 13px; color: #fff; margin-bottom: 4px; }
-    .hemorragia { font-size: 12px; color: var(--suave); display: block; line-height: 1.4; }
-    .bloco-cura p { font-size: 13px; color: #e4e4e7; line-height: 1.5; }
-
-    /* Fases do Roadmap */
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 44px;
-    }
-    .fase-card {
-      background: var(--card);
-      border: 1px solid var(--linha);
-      border-radius: 12px;
-      padding: 22px 24px;
-    }
-    .fase-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: #fff;
-      background: var(--linha);
-      padding: 3px 10px;
-      border-radius: 6px;
-      margin-bottom: 12px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .fase-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: #fff; }
-    .fase-card ul { list-style: none; padding-left: 0; }
-    .fase-card li {
-      font-size: 13px;
-      color: #d4d4d8;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-    }
-    .fase-card li::before {
-      content: '✓';
-      color: var(--emerald);
-      font-weight: 700;
-    }
-
-    /* Ancoragem One-Pager */
-    .proposta-box {
-      background: linear-gradient(180deg, #18181f 0%, #121217 100%);
-      border: 1px solid var(--emerald);
-      border-radius: 14px;
-      padding: 36px 32px;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .preco-antigo {
-      font-size: 16px;
-      color: var(--suave);
-      text-decoration: line-through;
-      margin-bottom: 4px;
-    }
-    .preco-destaque {
-      font-size: 46px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-    }
-    .preco-parcelas {
-      font-size: 14px;
-      color: var(--emerald);
-      font-weight: 600;
-      margin-top: 6px;
-      margin-bottom: 20px;
-    }
-    .reason-why {
-      font-size: 13px;
-      color: var(--suave);
-      max-width: 580px;
-      margin: 0 auto 24px;
-      line-height: 1.5;
-    }
-    .btn-fechar {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: var(--emerald);
-      color: #000;
-      font-weight: 800;
-      font-size: 16px;
-      padding: 18px 36px;
-      border-radius: 10px;
-      text-decoration: none;
-      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
-      transition: transform .15s, background .15s;
-    }
-    .btn-fechar:hover {
-      transform: translateY(-2px);
-      background: #059669;
-    }
-    .escassez {
-      font-size: 12px;
-      color: var(--amber);
-      font-weight: 600;
-      margin-top: 14px;
-    }
-    .fine-print {
-      font-size: 11px;
-      color: #71717a;
-      line-height: 1.5;
-      text-align: center;
-      margin-top: 24px;
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Roadmap de Dores & Curas · ${esc(nomeEmpresa)}</title>
+  <style>${CSS_ROADMAP}</style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <span class="rotulo-topo">Diagnóstico Clínico & Roadmap de Crescimento</span>
+      <h1>${esc(nomeEmpresa)}</h1>
+      <p class="sub">Auditoria digital e plano técnico de cura para captura ativa de clientes e blindagem de reputação em ${esc(cidade)}.</p>
+    </header>
 
-  <div class="container">
-    <div class="header-dual">
-      <div class="brand-title">PROSPECT<span>OS</span> · GROWTH</div>
-      <div class="badge-exclusivo">Diagnóstico Clínico de Dores & Curas</div>
-    </div>
-
-    <div class="hero">
-      <h1>Plano de Implantação & Cura Digital</h1>
-      <p>Desenvolvido exclusivamente para a liderança da <b>${esc(L.title)}</b> em ${esc(cidade)}.</p>
-    </div>
-
-    <!-- 1. História e Tradição -->
-    <div class="historia-box">
-      <h3>🏛️ Tradição & Base Sólida (${tempoAtivo})</h3>
-      <p>
-        Fundada oficialmente em <b>${dataFundacao}</b> (CNPJ ${esc(L.cnpj)}), a <b>${esc(L.title)}</b> construiu uma história sólida em ${esc(cidade)}, com ${L.reviews_count} avaliações e nota média ${L.rating} no Google Maps. A qualidade do serviço e o atendimento físico são inquestionáveis. O objetivo deste Roadmap é fazer a sua presença digital refletir a grandeza da sua empresa no mundo real.
-      </p>
-    </div>
-
-    <!-- 2. Comparativo Concorrência Forte -->
-    <div class="secao-titulo">1. Comparativo de Mercado: Sua Empresa vs Concorrente Líder</div>
-    <table class="comparativo-table">
-      <thead>
-        <tr>
-          <th>Ponto Analisado</th>
-          <th class="col-voce">${esc(L.title)} (Hoje)</th>
-          <th class="col-concorrente">${esc(concorrenteNome)}</th>
-          <th class="col-acao">Ação do Roadmap</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><b>Site / Página de Conversão</b></td>
-          <td>❌ Não possui página própria</td>
-          <td>✅ Site rápido com WhatsApp</td>
-          <td>Desenvolver Biosite 1.2s</td>
-        </tr>
-        <tr>
-          <td><b>Anúncios Patrocinados (Google Ads)</b></td>
-          <td>❌ Inativo (0 buscas captadas)</td>
-          <td>✅ Anunciando no topo do mapa</td>
-          <td>Ativar campanhas de fundo de funil</td>
-        </tr>
-        <tr>
-          <td><b>Meta Ads (Instagram / Facebook)</b></td>
-          <td>❌ Zero campanhas ativas</td>
-          <td>✅ Anúncios no raio de 3km</td>
-          <td>Captação local geolocalizada</td>
-        </tr>
-        <tr>
-          <td><b>Coleta de Avaliações no Balcão</b></td>
-          <td>⚠️ Manual (depende do cliente)</td>
-          <td>✅ Plaquinha NFC / QR Code</td>
-          <td>Implantação de Plaquinha Inteligente</td>
-        </tr>
-        <tr>
-          <td><b>Respostas às Avaliações no Google</b></td>
-          <td>⚠️ Frequência baixa / sem padrão</td>
-          <td>✅ 100% das avaliações respondidas</td>
-          <td>Automação de Respostas com IA</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- 3. Matriz de Dores e Curas -->
-    <div class="secao-titulo">2. Matriz de Diagnóstico: Dores Identificadas & Tratamento</div>
-    <div class="dores-grid">
-      ${itensDoresHTML}
-    </div>
-
-    <!-- 4. Fases de Execução -->
-    <div class="secao-titulo">3. Cronograma de Execução em 3 Fases</div>
-    <div class="timeline">
-      <div class="fase-card">
-        <span class="fase-badge">Fase 1 · Fundação & Presença Local (Dias 1 a 10)</span>
-        <h3>Infraestrutura de Conversão & Reputação Blindada</h3>
-        <ul>
-          <li>Site profissional e biosite ultrarrápido (< 1.2s no celular) com botão direto de WhatsApp.</li>
-          <li>Otimização completa 360º da Ficha no Google Maps (vinculação de WhatsApp, Instagram, categorias e palavras-chave).</li>
-          <li>Entrega e ativação da Plaquinha Física de Balcão com chip NFC e QR Code para captação instantânea de avaliações.</li>
-          <li>Ativação do robô de respostas inteligentes para avaliações do Google.</li>
-        </ul>
+    <div class="bloco-dados">
+      <div>
+        <span>CNPJ (Receita Federal)</span>
+        <b>${esc(cnpjFmt)}</b>
       </div>
-
-      <div class="fase-card">
-        <span class="fase-badge">Fase 2 · Motor de Clientes & Tráfego Pago (Dias 10 a 20)</span>
-        <h3>Captação Ativa de Clientes no Google e Meta</h3>
-        <ul>
-          <li>Campanhas patrocinadas no Google Ads (Search & Maps) para capturar quem precisa de atendimento imediato em ${esc(cidade)}.</li>
-          <li>Campanhas geolocalizadas no Instagram e Facebook num raio de 3 a 5 km ao redor da empresa.</li>
-          <li>Instalação do Pixel e tags de conversão para reter e perseguir quem visitou o site.</li>
-        </ul>
+      <div>
+        <span>Fundação & Tempo</span>
+        <b>${esc(dataFundacao)} (${esc(tempoAtivo)})</b>
       </div>
-
-      <div class="fase-card">
-        <span class="fase-badge">Fase 3 · Automação & Retenção (Dias 20 a 30)</span>
-        <h3>Atendimento Ágil & Acompanhamento de Resultados</h3>
-        <ul>
-          <li>Configuração de triagem rápida no WhatsApp para responder leads instantaneamente e não perder clientes no almoço ou pós-expediente.</li>
-          <li>Painel Executivo de Resultados para acompanhar cliques, contatos e retorno sobre o investimento.</li>
-          <li>Régua de recuperação de clientes inativos da base.</li>
-        </ul>
+      <div>
+        <span>Google Maps</span>
+        <b>★ ${esc(avaliacoes)}</b>
+      </div>
+      <div>
+        <span>Responsável</span>
+        <b>${esc(socio)}</b>
       </div>
     </div>
 
-    <!-- 5. Proposta One-Pager Ancorada -->
-    <div class="secao-titulo">4. Proposta de Implantação & Kickoff</div>
-    <div class="proposta-box">
-      <div class="preco-antigo">${valorAncorado}</div>
-      <div class="preco-destaque">${precoAVista}</div>
-      <div class="preco-parcelas">ou em ${parcelamento} no cartão sem juros</div>
-      <p class="reason-why">
-        "Condição especial de parceria válida exclusivamente para o kickoff de aceleração da <b>${esc(L.title)}</b>, focada em resolver os gargalos de tráfego e presença digital para consolidar a liderança do setor em ${esc(cidade)}."
-      </p>
-      <a href="${linkZapAceite}" target="_blank" class="btn-fechar">
-        ✅ Aceitar a Proposta & Iniciar Fase 1
+    <!-- Comparativo Concorrente -->
+    <section>
+      <h2>Benchmark Local em ${esc(cidade)}</h2>
+      <p class="secao-desc">Comparativo direto da presença digital contra os concorrentes que mais captam motoristas na região.</p>
+      
+      <table class="comparativo">
+        <thead>
+          <tr>
+            <th>Parâmetro</th>
+            <th>${esc(nomeEmpresa)}</th>
+            <th>Oficinas Patrocinadas no Google</th>
+            <th>Plano de Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Presença Web Própria</td>
+            <td class="empresa">Sem site oficial</td>
+            <td class="concorrente">Site com agendamento online</td>
+            <td class="acao">Lançar site de alta conversão</td>
+          </tr>
+          <tr>
+            <td>Google Ads no Topo</td>
+            <td class="empresa">Inativo (0% de presença)</td>
+            <td class="concorrente">Anúncios no topo na busca local</td>
+            <td class="acao">Ativar campanha na cidade</td>
+          </tr>
+          <tr>
+            <td>Captação no Balcão</td>
+            <td class="empresa">Passiva (cliente não lembra)</td>
+            <td class="concorrente">Totem / Plaquinha de Avaliação</td>
+            <td class="acao">Instalar Plaquinha NFC</td>
+          </tr>
+          <tr>
+            <td>Tempo de Resposta Reviews</td>
+            <td class="empresa">Avaliações antigas sem resposta</td>
+            <td class="concorrente">Respostas em menos de 24h</td>
+            <td class="acao">Padronizar respostas no GMB</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Dores e Curas -->
+    <section>
+      <h2>Dores Identificadas & Tratamento Clínico</h2>
+      <p class="secao-desc">Cada ponto onde a oficina perde dinheiro hoje e como resolver definitivamente.</p>
+
+      <div class="dores-lista">
+        ${dores.map(d => `
+          <article class="dor-item">
+            <div class="dor-topo">
+              <b>${esc(d.pilar)}</b>
+              <span class="badge-dor">${esc(d.tipo)}</span>
+            </div>
+            <div class="dor-detalhes">
+              <div class="dor-col">
+                <strong>Dor Diagnosticada</strong>
+                <p>${esc(d.dor)}</p>
+                <p style="margin-top:6px; font-size:12px; color:#888;">${esc(d.hemorragia)}</p>
+              </div>
+              <div class="dor-col cura">
+                <strong>Plano de Cura</strong>
+                <p>${esc(d.cura)}</p>
+              </div>
+            </div>
+          </article>
+        `).join('')}
+      </div>
+    </section>
+
+    <!-- Plano de Execução em 3 Fases -->
+    <section>
+      <h2>Cronograma de Execução em 3 Fases</h2>
+      <p class="secao-desc">Implantação ágil sem travar a rotina da oficina.</p>
+
+      <div class="fases-grid">
+        <div class="fase-card">
+          <div class="fase-num">FASE 01 · 7 DIAS</div>
+          <h3>Fundação & Presença</h3>
+          <ul>
+            <li>Desenvolvimento do Site de Alta Conversão</li>
+            <li>Configuração de domínio seguro e HTTPS</li>
+            <li>Botão de WhatsApp com mensagem prévia</li>
+            <li>Testes de velocidade em celular</li>
+          </ul>
+        </div>
+        <div class="fase-card">
+          <div class="fase-num">FASE 02 · 14 DIAS</div>
+          <h3>Google Maps & Balcão</h3>
+          <ul>
+            <li>Otimização completa das categorias do GMB</li>
+            <li>Entrega da Plaquinha Física NFC pro balcão</li>
+            <li>Régua de resposta rápida para avaliações</li>
+            <li>Padronização visual e fotos de serviço</li>
+          </ul>
+        </div>
+        <div class="fase-card">
+          <div class="fase-num">FASE 03 · 21 DIAS</div>
+          <h3>Tráfego no Topo</h3>
+          <ul>
+            <li>Criação da conta e campanha no Google Ads</li>
+            <li>Palavras-chave de socorro e revisão na cidade</li>
+            <li>Lista de negativas para não queimar verba</li>
+            <li>Painel de acompanhamento de cliques e contatos</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fechamento e CTA -->
+    <div class="fechamento">
+      <h3>Investimento de Implantação Completa</h3>
+      <p>Entrega das 3 Fases integradas: site no ar, kit de balcão NFC e campanha de Google Ads pronta para rodar.</p>
+
+      <div class="precos">
+        <span class="preco-antigo">${esc(valorAncorado)}</span>
+        <span class="preco-novo">${esc(precoAVista)}</span>
+      </div>
+      <div class="condicao">ou em ${esc(parcelamento)} · Verba de anúncio paga direto ao Google</div>
+
+      <a href="${esc(linkZapAceite)}" target="_blank" rel="noopener" class="btn-acao">
+        Aprovar Roadmap pelo WhatsApp
       </a>
-      <div class="escassez">⏳ Condição reservada até ${validade}</div>
-    </div>
-
-    <div class="fine-print">
-      * A verba de anúncios do Google e Meta é paga diretamente às plataformas conforme o seu orçamento. Domínio e hospedagem sob responsabilidade do cliente. Acompanhamento contínuo pós-implantação orçado à parte.
+      <div class="aviso-validade">Condição especial e reserva de exclusividade na região válida até ${esc(validade)}.</div>
     </div>
   </div>
-
 </body>
 </html>`;
 }
 
-function gerarTodos() {
-  leads.forEach((L, idx) => {
-    const slug = L.slug || `lead_${idx}`;
-    const html = gerarHTMLRoadmap(L, idx);
-    const arq = path.join(pastaRodada, `roadmap-${slug}.html`);
-    fs.writeFileSync(arq, html, 'utf-8');
-    console.log(`[ProspectOS] Roadmap de Dores & Curas gerado para ${L.title}: ${arq}`);
-  });
-}
+// Geração de todos os roadmaps
+fs.mkdirSync(pastaRodada, { recursive: true });
 
-gerarTodos();
+entradasLeads.forEach(([pasta, L], idx) => {
+  const slug = L.slug || pasta;
+  const html = gerarHTMLRoadmap(pasta, L, idx);
+  const outPath = path.join(pastaRodada, `roadmap-${slug}.html`);
+  fs.writeFileSync(outPath, html, 'utf8');
+  console.log(`[ProspectOS] Roadmap gerado: ${outPath}`);
+});
+
+console.log(`[ProspectOS] Total de ${entradasLeads.length} roadmaps gerados com sucesso.`);

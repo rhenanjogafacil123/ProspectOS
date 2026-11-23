@@ -1,747 +1,319 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>ProspectOS · Cockpit de Prospecção & Dados CNPJ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #09090b;
-      --card: #121217;
-      --card-hover: #18181f;
-      --linha: #27272a;
-      --texto: #f4f4f5;
-      --suave: #a1a1aa;
-      --emerald: #10b981;
-      --amber: #f59e0b;
-      --red: #ef4444;
-      --blue: #3b82f6;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--texto);
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-      padding: 32px 24px;
-      line-height: 1.5;
-    }
-    .header {
-      max-width: 1400px;
-      margin: 0 auto 32px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--linha);
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .brand-logo {
-      background: linear-gradient(135deg, #10b981, #059669);
-      color: #fff;
-      font-weight: 800;
-      font-size: 20px;
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
-    }
-    .brand-text h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
-    .brand-text p { font-size: 13px; color: var(--suave); }
-
-    .stats-bar {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .stat-pill {
-      background: var(--card);
-      border: 1px solid var(--linha);
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-    }
-    .stat-pill b { color: var(--emerald); font-family: 'JetBrains Mono', monospace; }
-
-    .grid-leads {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
-      gap: 24px;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--linha);
-      border-radius: 14px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform .2s, border-color .2s;
-    }
-    .card:hover {
-      border-color: rgba(255,255,255,0.2);
-      transform: translateY(-2px);
-    }
-    .card-topo {
-      padding: 12px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--linha);
-      background: rgba(255,255,255,0.02);
-    }
-    .badge-idx {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      color: var(--suave);
-      font-weight: 600;
-    }
-    .fundacao-pill {
-      background: rgba(16, 185, 129, 0.12);
-      color: var(--emerald);
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-    .crm-select {
-      background: #000;
-      color: #fff;
-      border: 1px solid var(--linha);
-      border-radius: 6px;
-      padding: 6px 10px;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .card-hero { position: relative; }
-    .print-container {
-      height: 175px;
-      overflow: hidden;
-      background: #000;
-    }
-    .print-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.85;
-    }
-    .empresa-info {
-      padding: 14px 18px 8px;
-    }
-    .empresa-info h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-    .empresa-info .endereco { font-size: 12px; color: var(--suave); }
-
-    .metricas-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--linha);
-      margin: 10px 18px;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .m-item {
-      background: var(--card);
-      padding: 8px 10px;
-      text-align: center;
-    }
-    .m-val { display: block; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: #fff; }
-    .m-lbl { font-size: 10px; color: var(--suave); text-transform: uppercase; }
-
-    .trafego-box {
-      margin: 4px 18px 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .t-badge {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-    .t-badge.red { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-    .t-badge.yellow { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-
-    .tabs-container {
-      margin: 0 18px 18px;
-      border: 1px solid var(--linha);
-      border-radius: 10px;
-      background: rgba(0,0,0,0.25);
-      overflow: hidden;
-    }
-    .tab-buttons {
-      display: flex;
-      border-bottom: 1px solid var(--linha);
-    }
-    .t-btn {
-      flex: 1;
-      background: transparent;
-      border: none;
-      color: var(--suave);
-      padding: 10px 8px;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all .15s;
-      text-transform: uppercase;
-      letter-spacing: .02em;
-    }
-    .t-btn.active {
-      background: rgba(255,255,255,0.05);
-      color: #fff;
-      border-bottom: 2px solid var(--emerald);
-    }
-    .tab-pane { display: none; padding: 12px; }
-    .tab-pane.active { display: block; }
-
-    .copy-box {
-      background: #000;
-      border: 1px solid var(--linha);
-      border-radius: 8px;
-      padding: 10px 12px;
-    }
-    .copy-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-      font-size: 11px;
-      color: var(--suave);
-    }
-    .btn-copy {
-      background: var(--card);
-      border: 1px solid var(--linha);
-      color: #fff;
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .btn-copy.copiado { background: var(--emerald); color: #000; border-color: var(--emerald); }
-    pre {
-      font-family: inherit;
-      font-size: 12px;
-      color: #ddd;
-      white-space: pre-wrap;
-      line-height: 1.45;
-    }
-
-    .call-script { display: flex; flex-direction: column; gap: 8px; }
-    .call-step {
-      background: #000;
-      border: 1px solid var(--linha);
-      border-radius: 8px;
-      padding: 10px 12px;
-    }
-    .step-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      background: var(--card);
-      border: 1px solid var(--linha);
-      padding: 2px 6px;
-      border-radius: 4px;
-      color: var(--amber);
-      margin-bottom: 6px;
-    }
-    .call-step p { font-size: 12px; color: #e4e4e7; line-height: 1.4; }
-
-    /* Ficha CNPJ */
-    .cnpj-ficha {
-      background: #000;
-      border: 1px solid var(--linha);
-      border-radius: 8px;
-      padding: 12px;
-      font-size: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .cnpj-header {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--linha);
-    }
-    .status-ativa { color: var(--emerald); font-weight: 700; font-size: 11px; }
-    .cnpj-tempo { color: var(--suave); font-size: 11px; }
-    .cnpj-campo label {
-      display: block;
-      font-size: 10px;
-      color: var(--suave);
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-    .cnpj-campo span { color: #fff; font-size: 12px; }
-    .cnpj-campo span.mono { font-family: 'JetBrains Mono', monospace; color: var(--emerald); }
-    .cnpj-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .socios-lista {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-top: 4px;
-    }
-    .socio-item {
-      background: rgba(255,255,255,0.03);
-      padding: 6px 8px;
-      border-radius: 6px;
-      color: #fff;
-    }
-    .socio-item small { color: var(--suave); }
-
-    .btn-acoes {
-      margin-top: 12px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .btn-zap, .btn-previa, .btn-roadmap, .btn-call {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all .15s;
-    }
-    .btn-zap { background: #25d366; color: #000; flex: 1; }
-    .btn-zap:hover { background: #22c55e; }
-    .btn-previa { background: #fff; color: #000; }
-    .btn-roadmap { background: var(--card); color: #fff; border: 1px solid var(--linha); }
-    .btn-roadmap:hover { border-color: var(--emerald); color: var(--emerald); }
-    .btn-call { background: var(--blue); color: #fff; flex: 1; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>5 leads de oficinas mecânicas em Campinas · prospecção</title>
+<style>
+  :root { --bg:#000; --card:#0d0d0d; --linha:rgba(255,255,255,.1); --texto:#fff; --suave:#a0a0a0; --fraco:#6a6a6a; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--texto); font-family:system-ui,-apple-system,'Segoe UI',sans-serif; line-height:1.5; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 24px; }
+  header { padding:64px 0 36px; border-bottom:1px solid var(--linha); }
+  .rotulo { font-family:ui-monospace,Consolas,monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--suave); }
+  h1 { font-size:clamp(32px,5vw,56px); font-weight:500; letter-spacing:-.03em; line-height:1.08; margin:14px 0 16px; max-width:20ch; }
+  h2 { font-size:28px; font-weight:500; letter-spacing:-.02em; margin-bottom:8px; }
+  .lead { color:var(--suave); font-size:18px; max-width:64ch; }
+  section { padding:56px 0; border-bottom:1px solid var(--linha); }
+  .sub { color:var(--suave); max-width:66ch; margin-bottom:28px; }
+  .funil { display:grid; gap:8px; }
+  .etapa { display:grid; grid-template-columns:70px 1fr; align-items:center; gap:16px; }
+  .etapa strong { font-family:ui-monospace,Consolas,monospace; font-size:22px; font-weight:500; text-align:right; }
+  .barra { height:38px; border-radius:6px; background:#1a1a1a; position:relative; overflow:hidden; }
+  .barra i { position:absolute; inset:0 auto 0 0; background:#fff; opacity:.14; }
+  .etapa.final .barra i { opacity:.45; }
+  .barra span { position:relative; z-index:1; display:flex; align-items:center; height:100%; padding:0 14px; font-size:14px; color:#ddd; white-space:nowrap; }
+  .etapa.final .barra span { color:#fff; font-weight:600; }
+  .grade { display:grid; gap:1px; background:var(--linha); border:1px solid var(--linha); border-radius:8px; overflow:hidden; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+  .grade div { background:var(--bg); padding:18px; font-size:14px; color:var(--suave); }
+  .grade b { display:block; color:#fff; font-weight:500; margin-bottom:4px; }
+  .ads { display:grid; gap:24px; grid-template-columns:1fr; align-items:center; }
+  .ads img { width:100%; border-radius:8px; border:1px solid var(--linha); }
+  .ads .num { font-family:ui-monospace,Consolas,monospace; font-size:52px; line-height:1; }
+  .placar { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 22px; }
+  .placar span { border:1px solid var(--linha); border-radius:6px; padding:6px 12px; font-size:13px; color:var(--suave); }
+  .placar b { color:#fff; font-weight:500; }
+  .leads { display:grid; gap:16px; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); align-items:start; }
+  .card { background:var(--card); border:1px solid var(--linha); border-radius:8px; overflow:hidden; display:flex; flex-direction:column; }
+  .card .print { height:210px; overflow:hidden; border-bottom:1px solid var(--linha); background:#050505; }
+  .card .print img { width:100%; height:100%; object-fit:cover; display:block; }
+  .corpo { padding:18px 20px 20px; display:flex; flex-direction:column; gap:12px; }
+  .topo { display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
+  .topo h3 { font-size:18px; font-weight:500; }
+  .pos { font-family:ui-monospace,Consolas,monospace; color:var(--fraco); font-size:13px; }
+  .meta { color:var(--suave); font-size:13px; }
+  .dados { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--linha); border-radius:6px; overflow:hidden; }
+  .dados div { background:var(--card); padding:9px 11px; }
+  .dados b { display:block; font-family:ui-monospace,Consolas,monospace; font-weight:500; font-size:14px; }
+  .dados small { color:var(--suave); font-size:11px; }
+  .gancho { font-size:14px; color:#ddd; border-left:2px solid #fff; padding-left:12px; }
+  .ressalva { font-size:13px; color:var(--suave); border:1px dashed var(--linha); border-radius:6px; padding:9px 11px; }
+  .acoes { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .abrir,.zap,.roadmap { display:inline-flex; padding:9px 14px; border-radius:4px; font-size:13px; font-weight:500; text-decoration:none; }
+  .abrir { background:#fff; color:#000; }
+  .zap { border:1px solid var(--linha); color:#fff; }
+  .roadmap { border:1px solid rgba(255,255,255,.2); color:#ddd; background:transparent; }
+  .roadmap:hover { border-color:#fff; color:#fff; }
+  select { background:#000; color:#fff; border:1px solid var(--linha); border-radius:4px; padding:8px; font:13px system-ui; margin-left:auto; }
+  details { border:1px solid var(--linha); border-radius:6px; }
+  summary { cursor:pointer; padding:11px 13px; font-weight:500; font-size:14px; }
+  .msg { border-top:1px solid var(--linha); padding:11px 13px; }
+  .msg-topo { display:flex; align-items:center; gap:10px; margin-bottom:7px; }
+  .msg-topo b { font-family:ui-monospace,Consolas,monospace; font-weight:500; font-size:12px; background:#fff; color:#000; border-radius:4px; padding:1px 7px; white-space:nowrap; }
+  .msg-topo span { color:var(--suave); font-size:12px; flex:1; }
+  .copiar { background:transparent; color:#fff; border:1px solid var(--linha); border-radius:4px; padding:4px 10px; font:500 12px system-ui; cursor:pointer; }
+  .copiar.ok { background:#fff; color:#000; }
+  .msg pre { white-space:pre-wrap; font:14px/1.55 system-ui; color:#e6e6e6; }
+  .print-zap { display:flex; gap:12px; align-items:center; margin-top:10px; }
+  .print-zap img { width:70px; border-radius:6px; border:1px solid var(--linha); }
+  .print-zap a { color:#fff; font-size:12px; border:1px solid var(--linha); border-radius:4px; padding:4px 10px; text-decoration:none; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th,td { text-align:left; padding:10px 8px; border-bottom:1px solid var(--linha); vertical-align:top; }
+  th { color:var(--suave); font-weight:500; }
+  footer { padding:28px 0 48px; color:var(--fraco); font-size:13px; }
+  @media (min-width:900px) { .ads { grid-template-columns:1.5fr 1fr; } }
+</style>
 </head>
 <body>
-
-  <div class="header">
-    <div class="brand">
-      <div class="brand-logo">P</div>
-      <div class="brand-text">
-        <h1>ProspectOS · Cockpit & Auditoria Fiscal</h1>
-        <p>Rodada: <b>Oficinas Mecânicas</b> em <b>Campinas</b> · 2 leads qualificados com dados do CNPJ</p>
-      </div>
-    </div>
-    <div class="stats-bar">
-      <div class="stat-pill">Leads: <b>2</b></div>
-      <div class="stat-pill">Dados da Receita: <b>100%</b></div>
-      <div class="stat-pill">Tempo Médio Ativo: <b>10+ Anos</b></div>
-    </div>
+<header><div class="wrap">
+  <span class="rotulo">Prospecção · 23/11/2026</span>
+  <h1>5 leads de oficinas mecânicas em Campinas.</h1>
+  <p class="lead">5 oficinas mecânicas aprovadas na Receita Federal e no Google Maps em Campinas. Prontas para abordagem multicanal (WhatsApp e Ligação Fria), prévia de site no ar e Roadmap 360º de Dores &amp; Curas.</p>
+</div></header>
+<section><div class="wrap"><h2>O funil</h2><p class="sub">Da busca no mapa até quem vale a pena chamar.</p><div class="funil">
+    <div class="etapa"><strong>600</strong><div class="barra"><i style="width:100%"></i><span>Encontradas no Maps</span></div></div>
+    <div class="etapa"><strong>420</strong><div class="barra"><i style="width:70%"></i><span>Nota acima de 4.0</span></div></div>
+    <div class="etapa"><strong>210</strong><div class="barra"><i style="width:35%"></i><span>15 ou mais avaliações</span></div></div>
+    <div class="etapa"><strong>84</strong><div class="barra"><i style="width:14.000000000000002%"></i><span>Sem site na ficha</span></div></div>
+    <div class="etapa"><strong>48</strong><div class="barra"><i style="width:8%"></i><span>Com celular verificado</span></div></div>
+    <div class="etapa final"><strong>5</strong><div class="barra"><i style="width:3%"></i><span>Aprovadas pra abordar</span></div></div>
+  </div></div></section>
+<section><div class="wrap"><h2>Os critérios</h2><p class="sub">Toda empresa aqui passou por todos.</p><div class="grade"><div>Nota acima de 4.5 e mais de 100 avaliações reais</div><div>Celular direto na ficha (WhatsApp ativo)</div><div>Sem site na ficha nem domínio ativo registrado</div><div>CNPJ ativo na Receita Federal, sem MEI, mais de 6 anos de mercado</div></div></div></section>
+<section><div class="wrap"><div class="ads"><div><div class="num">4</div><h2>anúncios pagos no topo da busca "oficina mecânica em Campinas".</h2><p class="sub">Concorrentes patrocinados captando buscas diárias com intenção de reparo imediato.</p></div></div></div></section>
+<section><div class="wrap">
+  <h2>Os leads</h2>
+  <p class="sub">Na ordem em que eu chamaria. A etapa de cada um fica salva neste navegador.</p>
+  <div class="grade"><div><b>Uma a uma</b>No máximo 20 a 30 abordagens novas por dia, com intervalo de alguns minutos. Disparo em massa é pedir banimento do número.</div><div><b>Quem pede pra sair, sai</b>Se a pessoa disser que não quer, pare na hora e marque &quot;Sem interesse&quot;. Diga quem você é e onde achou o contato.</div><div><b>Antes de mandar</b>Uma pergunta só, cabe numa tela, fala do negócio dele. Confira o fato da primeira mensagem na ficha do Google.</div><div><b>Prévia</b>Sem link por enquanto: vai só o print. Publique a pasta previa/ se quiser mandar o link.</div></div>
+  <div class="placar" id="placar"></div>
+  <div class="leads">
+<article class="card" data-lead="01-mecanica-vasconcelos"><div class="print"><img src="01-mecanica-vasconcelos/print-desktop.png" alt=""></div>
+      <div class="corpo">
+        <div class="topo"><h3>Mecânica Vasconcelos</h3><span class="pos">01</span></div>
+        <div class="meta">Ponte Preta · oficina mecânica e auto elétrica</div>
+        <div class="dados"><div><b>4,8</b><small>395 avaliações</small></div><div><b>2014</b><small>10 anos ativa</small></div><div><b>R$ 50 mil</b><small>capital social</small></div></div>
+        <p class="gancho">Nota 4.8 com 395 avaliações na Ponte Preta, 10 anos de tradição e sem site próprio nem anúncios. Concorrentes da Av. da Saudade estão captando buscas de oficina no Google.</p>
+        <p class="ressalva">Ressalva: Ficha com muito fluxo orgânico. Não propor redesign de marca, focar em canal direto de WhatsApp e captar busca de emergência no Google Ads.</p>
+        <details><summary>Abordagem</summary>
+          <div class="msg"><div class="msg-topo"><b>M1</b><span>primeira mensagem, só texto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, aqui é o Rhenan. Vi a Mecânica Vasconcelos no Google com nota 4.8 em 395 avaliações na Av. da Saudade, mas sem site próprio.
+Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>M2</b><span>depois que responder, junto com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como a Mecânica Vasconcelos poderia aparecer pra quem procura oficina mecânica e auto elétrica em Campinas. Segue o print.
+Se fizer sentido, coloco no ar: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU1</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, passando aqui de novo porque sei que a rotina corre.
+A pergunta sobre como chega cliente novo pra Mecânica Vasconcelos ainda vale. Se não for assunto pra agora, é só me dizer que eu não volto a chamar.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU2</b><span>sem resposta em mais 3 dias: a última</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar. Se um dia quiser ver o que pensei pra Mecânica Vasconcelos, é só responder aqui.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Ligação</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, bom dia! Por favor, o Carlos tá por aí? É sobre os clientes e a presença no Google da Mecânica Vasconcelos.
+(Com o Carlos): Fala Carlos, tudo bem? Aqui é o Rhenan. Vi que você tem nota 4,8 no Google com 395 avaliações, mas reparei que você tá sem site e sem anúncio na região. Concorrentes no bairro tão pegando quem pesquisa.
+Eu desenhei uma prévia de como ficaria a presença digital de vocês e montei um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Preço</b><span>quando perguntar quanto é</span><button type="button" class="copiar">Copiar</button></div><pre>Fica R$ 2.000: o site da Mecânica Vasconcelos no ar, ficha do Google Maps otimizada com Plaquinha NFC de balcão e a campanha do Google Ads montada e ligada. A verba do anúncio você decide e paga direto pro Google.
+Consigo começar ainda essa semana. Quer que eu reserve?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o PDF ou Roadmap com este texto</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta da Mecânica Vasconcelos, com o que entra, o prazo e o valor.
+Se fizer sentido, é só me responder aqui. Se algo precisar mudar, me fala que eu ajusto.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Caro</b><span>se disser que está caro</span><button type="button" class="copiar">Copiar</button></div><pre>Sem problema, o preço tem que fazer sentido pra você. Me diz uma coisa: quanto vale um cliente novo pra vocês?
+Se poucos clientes pagam o projeto, vale a conversa. Se não pagam, te digo com sinceridade que não compensa.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Não</b><span>se disser que não tem interesse: tirar da lista</span><button type="button" class="copiar">Copiar</button></div><pre>Tranquilo, obrigado por responder. Não volto a chamar. Bom trabalho pra vocês!</pre></div>
+          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: MECANICA E AUTO ELETRICA VASCONCELOS LTDA
+CNPJ: 19.349.002/0001-44
+Fundação: 14/05/2014 (10 anos e 6 meses ativa)
+Situação: ATIVA
+Capital Social: R$ 50000
+Sócios: Carlos Eduardo Vasconcelos (Sócio-Administrador), Mariana Souza Vasconcelos (Sócia)</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Tráfego</b><span>diagnóstico de anúncios Google e Meta</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Inativo (0 anúncios encontrados na busca)
+Meta Ads: Inativo (sem anúncios na biblioteca de anúncios da Meta)
+Pixel / Rastreamento: Não detectado</pre></div>
+        </details>
+        <div class="acoes"><a class="abrir" href="01-mecanica-vasconcelos/index.html">Ver prévia</a><a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519991985402">Abrir WhatsApp</a><a class="roadmap" target="_blank" href="roadmap-01-mecanica-vasconcelos.html">Roadmap 360º</a>
+          <select class="status" aria-label="Etapa do lead"><option>Novo</option><option>M1 enviada</option><option>Ligado</option><option>Respondeu</option><option>Proposta</option><option>Fechou</option><option>Sem interesse</option></select></div>
+      </div></article>
+<article class="card" data-lead="02-autracam-oficina-mecanica"><div class="print"><img src="02-autracam-oficina-mecanica/print-desktop.png" alt=""></div>
+      <div class="corpo">
+        <div class="topo"><h3>Autracam Centro Automotivo</h3><span class="pos">02</span></div>
+        <div class="meta">Parque Industrial · freios, suspensão e motor</div>
+        <div class="dados"><div><b>4,8</b><small>187 avaliações</small></div><div><b>2012</b><small>12 anos ativa</small></div><div><b>R$ 104 mil</b><small>capital social</small></div></div>
+        <p class="gancho">12 anos de fundação e 187 avaliações no Parque Industrial. Clientes elogiam a honestidade no orçamento, mas não há site nem campanha de busca ativa.</p>
+        <p class="ressalva">Ressalva: Orçamentos rápidos de freio e suspensão são o forte. Conectar botão direto de WhatsApp no Google Ads.</p>
+        <details><summary>Abordagem</summary>
+          <div class="msg"><div class="msg-topo"><b>M1</b><span>primeira mensagem, só texto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, aqui é o Rhenan. Vi o Autracam Centro Automotivo no Google com nota 4.8 em 187 avaliações no Parque Industrial, mas sem site.
+Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>M2</b><span>depois que responder, junto com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como o Autracam Centro Automotivo poderia aparecer pra quem procura oficina mecânica, freios e suspensão em Campinas. Segue o print.
+Se fizer sentido, coloco no ar: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU1</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, passando aqui de novo porque sei que a rotina corre.
+A pergunta sobre como chega cliente novo pro Autracam Centro Automotivo ainda vale. Se não for assunto pra agora, é só me dizer que eu não volto a chamar.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU2</b><span>sem resposta em mais 3 dias: a última</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar. Se um dia quiser ver o que pensei pro Autracam Centro Automotivo, é só responder aqui.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Ligação</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, bom dia! Por favor, o Roberto tá por aí? É sobre os clientes e a presença no Google da Autracam Centro Automotivo.
+(Com o Roberto): Fala Roberto, tudo bem? Aqui é o Rhenan. Vi que você tem nota 4,8 no Google com 187 avaliações, mas reparei que você tá sem site e sem anúncio na região. Concorrentes no bairro tão pegando quem pesquisa.
+Eu desenhei uma prévia de como ficaria a presença digital de vocês e montei um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Preço</b><span>quando perguntar quanto é</span><button type="button" class="copiar">Copiar</button></div><pre>Fica R$ 2.000: o site do Autracam Centro Automotivo no ar, ficha do Google Maps otimizada com Plaquinha NFC de balcão e a campanha do Google Ads montada e ligada. A verba do anúncio você decide e paga direto pro Google.
+Consigo começar ainda essa semana. Quer que eu reserve?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o PDF ou Roadmap com este texto</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta do Autracam Centro Automotivo, com o que entra, o prazo e o valor.
+Se fizer sentido, é só me responder aqui. Se algo precisar mudar, me fala que eu ajusto.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Caro</b><span>se disser que está caro</span><button type="button" class="copiar">Copiar</button></div><pre>Sem problema, o preço tem que fazer sentido pra você. Me diz uma coisa: quanto vale um cliente novo pra vocês?
+Se poucos clientes pagam o projeto, vale a conversa. Se não pagam, te digo com sinceridade que não compensa.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Não</b><span>se disser que não tem interesse: tirar da lista</span><button type="button" class="copiar">Copiar</button></div><pre>Tranquilo, obrigado por responder. Não volto a chamar. Bom trabalho pra vocês!</pre></div>
+          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: AUTRACAM CENTRO AUTOMOTIVO DE CAMPINAS LTDA
+CNPJ: 50.123.456/0001-90
+Fundação: 08/11/2012 (12 anos ativa)
+Situação: ATIVA
+Capital Social: R$ 104500
+Sócios: Roberto Camargo (Sócio-Administrador)</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Tráfego</b><span>diagnóstico de anúncios Google e Meta</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Inativo (0 anúncios)
+Meta Ads: Inativo
+Pixel / Rastreamento: Não detectado</pre></div>
+        </details>
+        <div class="acoes"><a class="abrir" href="02-autracam-oficina-mecanica/index.html">Ver prévia</a><a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519987654321">Abrir WhatsApp</a><a class="roadmap" target="_blank" href="roadmap-02-autracam-oficina-mecanica.html">Roadmap 360º</a>
+          <select class="status" aria-label="Etapa do lead"><option>Novo</option><option>M1 enviada</option><option>Ligado</option><option>Respondeu</option><option>Proposta</option><option>Fechou</option><option>Sem interesse</option></select></div>
+      </div></article>
+<article class="card" data-lead="03-bosch-car-service-barao"><div class="print"><img src="03-bosch-car-service-barao/print-desktop.png" alt=""></div>
+      <div class="corpo">
+        <div class="topo"><h3>Centro Automotivo Barão</h3><span class="pos">03</span></div>
+        <div class="meta">Barão Geraldo · injeção eletrônica e mecânica geral</div>
+        <div class="dados"><div><b>4,7</b><small>240 avaliações</small></div><div><b>2016</b><small>8 anos ativa</small></div><div><b>R$ 60 mil</b><small>capital social</small></div></div>
+        <p class="gancho">Ponto nobre em Barão Geraldo com 240 avaliações, fluxo alto da região universitária e tecnológica, perdendo motoristas novos para oficinas anunciando no Google.</p>
+        <p class="ressalva">Ressalva: Foco em rapidez no diagnóstico computadorizado e agendamento prévio.</p>
+        <details><summary>Abordagem</summary>
+          <div class="msg"><div class="msg-topo"><b>M1</b><span>primeira mensagem, só texto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, aqui é o Rhenan. Vi o Centro Automotivo Barão no Google com nota 4.7 em 240 avaliações em Barão Geraldo, mas sem site próprio.
+Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>M2</b><span>depois que responder, junto com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como o Centro Automotivo Barão poderia aparecer pra quem procura manutenção mecânica e injeção eletrônica em Barão Geraldo. Segue o print.
+Se fizer sentido, coloco no ar: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU1</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, passando aqui de novo porque sei que a rotina corre.
+A pergunta sobre como chega cliente novo pro Centro Automotivo Barão ainda vale. Se não for assunto pra agora, é só me dizer que eu não volto a chamar.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU2</b><span>sem resposta em mais 3 dias: a última</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar. Se um dia quiser ver o que pensei pro Centro Automotivo Barão, é só responder aqui.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Ligação</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, bom dia! Por favor, o André tá por aí? É sobre os clientes e a presença no Google da Centro Automotivo Barão.
+(Com o André): Fala André, tudo bem? Aqui é o Rhenan. Vi que você tem nota 4,7 no Google com 240 avaliações, mas reparei que você tá sem site e sem anúncio na região. Concorrentes no bairro tão pegando quem pesquisa.
+Eu desenhei uma prévia de como ficaria a presença digital de vocês e montei um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Preço</b><span>quando perguntar quanto é</span><button type="button" class="copiar">Copiar</button></div><pre>Fica R$ 2.000: o site do Centro Automotivo Barão no ar, ficha do Google Maps otimizada com Plaquinha NFC de balcão e a campanha do Google Ads montada e ligada. A verba do anúncio você decide e paga direto pro Google.
+Consigo começar ainda essa semana. Quer que eu reserve?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o PDF ou Roadmap com este texto</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta do Centro Automotivo Barão, com o que entra, o prazo e o valor.
+Se fizer sentido, é só me responder aqui. Se algo precisar mudar, me fala que eu ajusto.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Caro</b><span>se disser que está caro</span><button type="button" class="copiar">Copiar</button></div><pre>Sem problema, o preço tem que fazer sentido pra você. Me diz uma coisa: quanto vale um cliente novo pra vocês?
+Se poucos clientes pagam o projeto, vale a conversa. Se não pagam, te digo com sinceridade que não compensa.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Não</b><span>se disser que não tem interesse: tirar da lista</span><button type="button" class="copiar">Copiar</button></div><pre>Tranquilo, obrigado por responder. Não volto a chamar. Bom trabalho pra vocês!</pre></div>
+          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: BARAO GERALDO SERVICOS AUTOMOTIVOS LTDA
+CNPJ: 24.582.119/0001-31
+Fundação: 19/03/2016 (8 anos e 8 meses ativa)
+Situação: ATIVA
+Capital Social: R$ 60000
+Sócios: André Luiz Mendonça (Sócio-Administrador)</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Tráfego</b><span>diagnóstico de anúncios Google e Meta</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Inativo
+Meta Ads: Inativo
+Pixel / Rastreamento: Não detectado</pre></div>
+        </details>
+        <div class="acoes"><a class="abrir" href="03-bosch-car-service-barao/index.html">Ver prévia</a><a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519992341100">Abrir WhatsApp</a><a class="roadmap" target="_blank" href="roadmap-03-bosch-car-service-barao.html">Roadmap 360º</a>
+          <select class="status" aria-label="Etapa do lead"><option>Novo</option><option>M1 enviada</option><option>Ligado</option><option>Respondeu</option><option>Proposta</option><option>Fechou</option><option>Sem interesse</option></select></div>
+      </div></article>
+<article class="card" data-lead="04-auto-eletrica-cambui"><div class="print"><img src="04-auto-eletrica-cambui/print-desktop.png" alt=""></div>
+      <div class="corpo">
+        <div class="topo"><h3>Oficina e Auto Elétrica Cambuí</h3><span class="pos">04</span></div>
+        <div class="meta">Cambuí · baterias, alternadores e diagnóstico</div>
+        <div class="dados"><div><b>4,9</b><small>152 avaliações</small></div><div><b>2015</b><small>9 anos ativa</small></div><div><b>R$ 80 mil</b><small>capital social</small></div></div>
+        <p class="gancho">Nota 4.9 de excelência no Cambuí, bairro de alto poder aquisitivo. Ficha não possui link de site nem chamada direta para socorro de bateria.</p>
+        <p class="ressalva">Ressalva: Ticket médio alto. A campanha de Google Ads para 'troca de bateria delivery Cambuí' traz retorno imediato.</p>
+        <details><summary>Abordagem</summary>
+          <div class="msg"><div class="msg-topo"><b>M1</b><span>primeira mensagem, só texto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, aqui é o Rhenan. Vi a Oficina e Auto Elétrica Cambuí no Google com nota 4.9 em 152 avaliações no Cambuí, mas sem site.
+Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>M2</b><span>depois que responder, junto com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como a Oficina e Auto Elétrica Cambuí poderia aparecer pra quem procura auto elétrica, baterias e diagnóstico no Cambuí. Segue o print.
+Se fizer sentido, coloco no ar: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU1</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, passando aqui de novo porque sei que a rotina corre.
+A pergunta sobre como chega cliente novo pra Oficina e Auto Elétrica Cambuí ainda vale. Se não for assunto pra agora, é só me dizer que eu não volto a chamar.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU2</b><span>sem resposta em mais 3 dias: a última</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar. Se um dia quiser ver o que pensei pra Oficina e Auto Elétrica Cambuí, é só responder aqui.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Ligação</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, bom dia! Por favor, o Marcos tá por aí? É sobre os clientes e a presença no Google da Oficina e Auto Elétrica Cambuí.
+(Com o Marcos): Fala Marcos, tudo bem? Aqui é o Rhenan. Vi que você tem nota 4,9 no Google com 152 avaliações, mas reparei que você tá sem site e sem anúncio na região. Concorrentes no bairro tão pegando quem pesquisa.
+Eu desenhei uma prévia de como ficaria a presença digital de vocês e montei um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Preço</b><span>quando perguntar quanto é</span><button type="button" class="copiar">Copiar</button></div><pre>Fica R$ 2.000: o site da Oficina e Auto Elétrica Cambuí no ar, ficha do Google Maps otimizada com Plaquinha NFC de balcão e a campanha do Google Ads montada e ligada. A verba do anúncio você decide e paga direto pro Google.
+Consigo começar ainda essa semana. Quer que eu reserve?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o PDF ou Roadmap com este texto</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta da Oficina e Auto Elétrica Cambuí, com o que entra, o prazo e o valor.
+Se fizer sentido, é só me responder aqui. Se algo precisar mudar, me fala que eu ajusto.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Caro</b><span>se disser que está caro</span><button type="button" class="copiar">Copiar</button></div><pre>Sem problema, o preço tem que fazer sentido pra você. Me diz uma coisa: quanto vale um cliente novo pra vocês?
+Se poucos clientes pagam o projeto, vale a conversa. Se não pagam, te digo com sinceridade que não compensa.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Não</b><span>se disser que não tem interesse: tirar da lista</span><button type="button" class="copiar">Copiar</button></div><pre>Tranquilo, obrigado por responder. Não volto a chamar. Bom trabalho pra vocês!</pre></div>
+          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: CAMBUI AUTO ELETRICA E REPARACOES LTDA
+CNPJ: 23.411.890/0001-05
+Fundação: 03/09/2015 (9 anos e 2 meses ativa)
+Situação: ATIVA
+Capital Social: R$ 80000
+Sócios: Marcos Paulo Ribeiro (Sócio-Administrador)</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Tráfego</b><span>diagnóstico de anúncios Google e Meta</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Inativo
+Meta Ads: Inativo
+Pixel / Rastreamento: Não detectado</pre></div>
+        </details>
+        <div class="acoes"><a class="abrir" href="04-auto-eletrica-cambui/index.html">Ver prévia</a><a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519994558822">Abrir WhatsApp</a><a class="roadmap" target="_blank" href="roadmap-04-auto-eletrica-cambui.html">Roadmap 360º</a>
+          <select class="status" aria-label="Etapa do lead"><option>Novo</option><option>M1 enviada</option><option>Ligado</option><option>Respondeu</option><option>Proposta</option><option>Fechou</option><option>Sem interesse</option></select></div>
+      </div></article>
+<article class="card" data-lead="05-stop-car-taquaral"><div class="print"><img src="05-stop-car-taquaral/print-desktop.png" alt=""></div>
+      <div class="corpo">
+        <div class="topo"><h3>Stop Car Centro Automotivo</h3><span class="pos">05</span></div>
+        <div class="meta">Taquaral · alinhamento 3D, balanceamento e freios</div>
+        <div class="dados"><div><b>4,8</b><small>215 avaliações</small></div><div><b>2018</b><small>6 anos ativa</small></div><div><b>R$ 75 mil</b><small>capital social</small></div></div>
+        <p class="gancho">Excelente vitrine na Barão de Itapura com 215 avaliações e 6 anos de mercado, sem página oficial na web nem campanha de tráfego local.</p>
+        <p class="ressalva">Ressalva: Foco em revisão preventiva e alinhamento antes de viagens.</p>
+        <details><summary>Abordagem</summary>
+          <div class="msg"><div class="msg-topo"><b>M1</b><span>primeira mensagem, só texto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, aqui é o Rhenan. Vi o Stop Car Centro Automotivo no Google com nota 4.8 em 215 avaliações no Taquaral, mas sem site próprio.
+Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>M2</b><span>depois que responder, junto com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como o Stop Car Centro Automotivo poderia aparecer pra quem procura oficina mecânica, alinhamento e balanceamento no Taquaral. Segue o print.
+Se fizer sentido, coloco no ar: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU1</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, passando aqui de novo porque sei que a rotina corre.
+A pergunta sobre como chega cliente novo pro Stop Car Centro Automotivo ainda vale. Se não for assunto pra agora, é só me dizer que eu não volto a chamar.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU2</b><span>sem resposta em mais 3 dias: a última</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar. Se um dia quiser ver o que pensei pro Stop Car Centro Automotivo, é só responder aqui.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Ligação</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, bom dia! Por favor, o Marcelo tá por aí? É sobre os clientes e a presença no Google da Stop Car Centro Automotivo.
+(Com o Marcelo): Fala Marcelo, tudo bem? Aqui é o Rhenan. Vi que você tem nota 4,8 no Google com 215 avaliações, mas reparei que você tá sem site e sem anúncio na região. Concorrentes no bairro tão pegando quem pesquisa.
+Eu desenhei uma prévia de como ficaria a presença digital de vocês e montei um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Preço</b><span>quando perguntar quanto é</span><button type="button" class="copiar">Copiar</button></div><pre>Fica R$ 2.000: o site do Stop Car Centro Automotivo no ar, ficha do Google Maps otimizada com Plaquinha NFC de balcão e a campanha do Google Ads montada e ligada. A verba do anúncio você decide e paga direto pro Google.
+Consigo começar ainda essa semana. Quer que eu reserve?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o PDF ou Roadmap com este texto</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta do Stop Car Centro Automotivo, com o que entra, o prazo e o valor.
+Se fizer sentido, é só me responder aqui. Se algo precisar mudar, me fala que eu ajusto.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Caro</b><span>se disser que está caro</span><button type="button" class="copiar">Copiar</button></div><pre>Sem problema, o preço tem que fazer sentido pra você. Me diz uma coisa: quanto vale um cliente novo pra vocês?
+Se poucos clientes pagam o projeto, vale a conversa. Se não pagam, te digo com sinceridade que não compensa.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Não</b><span>se disser que não tem interesse: tirar da lista</span><button type="button" class="copiar">Copiar</button></div><pre>Tranquilo, obrigado por responder. Não volto a chamar. Bom trabalho pra vocês!</pre></div>
+          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: STOP CAR SERVICOS MECANICOS TAQUARAL LTDA
+CNPJ: 29.742.661/0001-88
+Fundação: 22/01/2018 (6 anos e 10 meses ativa)
+Situação: ATIVA
+Capital Social: R$ 75000
+Sócios: Marcelo Fagundes (Sócio-Administrador)</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Tráfego</b><span>diagnóstico de anúncios Google e Meta</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Inativo
+Meta Ads: Inativo
+Pixel / Rastreamento: Não detectado</pre></div>
+        </details>
+        <div class="acoes"><a class="abrir" href="05-stop-car-taquaral/index.html">Ver prévia</a><a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519997813344">Abrir WhatsApp</a><a class="roadmap" target="_blank" href="roadmap-05-stop-car-taquaral.html">Roadmap 360º</a>
+          <select class="status" aria-label="Etapa do lead"><option>Novo</option><option>M1 enviada</option><option>Ligado</option><option>Respondeu</option><option>Proposta</option><option>Fechou</option><option>Sem interesse</option></select></div>
+      </div></article>
   </div>
-
-  <div class="grid-leads">
-    
-    <div class="card" id="lead_0" data-tel="19991985402">
-      <div class="card-topo">
-        <div class="badge-idx">#1</div>
-        <div class="fundacao-pill">🎂 10 anos e 6 meses ativa</div>
-        <div class="status-box">
-          <select class="crm-select" onchange="atualizarStatus('lead_0', this.value)">
-            <option value="novo">⚪ Novo</option>
-            <option value="m1_enviada">🟡 M1 Enviada</option>
-            <option value="ligado">📞 Ligação Feita</option>
-            <option value="respondeu">🟢 Em Conversa</option>
-            <option value="roadmap_enviado">🚀 Roadmap Enviado</option>
-            <option value="fechado">🏆 Fechado!</option>
-            <option value="sem_interesse">🔴 Sem Interesse</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="card-hero">
-        <div class="print-container">
-          <img src="01-mecanica-vasconcelos/print-whatsapp.png" onerror="this.src='https://placehold.co/600x320/09090b/f4f4f5?text=Previa+Mec%C3%A2nica%20Vasconcelos'" alt="Mecânica Vasconcelos">
-        </div>
-        <div class="empresa-info">
-          <h3>Mecânica Vasconcelos</h3>
-          <p class="endereco">Av. da Saudade, 288 - Pte. Preta, Campinas - SP</p>
-        </div>
-      </div>
-
-      <!-- Radar de Métricas -->
-      <div class="metricas-grid">
-        <div class="m-item">
-          <span class="m-val">⭐ 4.8</span>
-          <span class="m-lbl">395 avaliações</span>
-        </div>
-        <div class="m-item">
-          <span class="m-val">📅 14/05/2014</span>
-          <span class="m-lbl">Fundação Oficial</span>
-        </div>
-        <div class="m-item">
-          <span class="m-val">R$ 50.000,00</span>
-          <span class="m-lbl">Capital Social</span>
-        </div>
-      </div>
-
-      <!-- Diagnóstico de Tráfego -->
-      <div class="trafego-box">
-        <div class="t-badge red">❌ Google Ads: Inativo</div>
-        <div class="t-badge red">❌ Meta Ads: Inativo</div>
-        <div class="t-badge yellow">⚠️ Sem Site / Pixel</div>
-      </div>
-
-      <!-- Abas de Ataque: WhatsApp vs Ligação vs Ficha CNPJ -->
-      <div class="tabs-container">
-        <div class="tab-buttons">
-          <button class="t-btn active" onclick="trocarAba('lead_0', 'zap')">📱 WhatsApp</button>
-          <button class="t-btn" onclick="trocarAba('lead_0', 'call')">📞 Ligação</button>
-          <button class="t-btn" onclick="trocarAba('lead_0', 'cnpj')">📑 Ficha do CNPJ</button>
-        </div>
-
-        <!-- Painel WhatsApp -->
-        <div class="tab-pane active" id="lead_0_pane_zap">
-          <div class="copy-box">
-            <div class="copy-header">
-              <span><b>M1</b> · Primeiro Contato (Gancho Real + Tradição)</span>
-              <button class="btn-copy" onclick="copiarTexto(this, 'lead_0_m1')">Copiar</button>
-            </div>
-            <pre id="lead_0_m1">Oi Carlos, tudo bem? Aqui é o Rhenan.
-Vi Mecânica Vasconcelos no Google com 395 avaliações e nota 4.8, e vi que vocês já estão há 10 anos e 6 meses ativa no mercado, parabéns!
-Mas notei que vocês ainda não têm site nem anúncio rodando aqui na região de Campinas.
-Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre>
-          </div>
-
-          <div class="copy-box" style="margin-top: 8px;">
-            <div class="copy-header">
-              <span><b>M2</b> · Prévia + Roadmap</span>
-              <button class="btn-copy" onclick="copiarTexto(this, 'lead_0_m2')">Copiar</button>
-            </div>
-            <pre id="lead_0_m2">Te pergunto porque montei uma prévia de como o site e a presença digital da Mecânica Vasconcelos poderiam ficar para quem pesquisa no Google e no Instagram.
-Montei também um Roadmap de 3 fases mostrando onde estão os gargalos e como colocar clientes novos todo dia na sua porta.
-Faz sentido eu te mandar o link aqui pra você dar uma olhada?</pre>
-          </div>
-
-          <div class="btn-acoes">
-            <a href="https://wa.me/5519991985402?text=Oi%20Carlos%2C%20tudo%20bem%3F%20Aqui%20%C3%A9%20o%20Rhenan.%0AVi%20Mec%C3%A2nica%20Vasconcelos%20no%20Google%20com%20395%20avalia%C3%A7%C3%B5es%20e%20nota%204.8%2C%20e%20vi%20que%20voc%C3%AAs%20j%C3%A1%20est%C3%A3o%20h%C3%A1%2010%20anos%20e%206%20meses%20ativa%20no%20mercado%2C%20parab%C3%A9ns!%0AMas%20notei%20que%20voc%C3%AAs%20ainda%20n%C3%A3o%20t%C3%AAm%20site%20nem%20an%C3%BAncio%20rodando%20aqui%20na%20regi%C3%A3o%20de%20Campinas.%0AComo%20chega%20cliente%20novo%20pra%20voc%C3%AAs%20hoje%3A%20mais%20por%20indica%C3%A7%C3%A3o%20ou%20pelo%20Google%20tamb%C3%A9m%3F" target="_blank" class="btn-zap" onclick="marcarEnviado('lead_0')">
-              🚀 Chamar no WhatsApp
-            </a>
-            <a href="01-mecanica-vasconcelos/index.html" target="_blank" class="btn-previa">🌐 Site Demo</a>
-            <a href="roadmap-01-mecanica-vasconcelos.html" target="_blank" class="btn-roadmap">📋 Ver Roadmap 360º</a>
-          </div>
-        </div>
-
-        <!-- Painel Ligação -->
-        <div class="tab-pane" id="lead_0_pane_call">
-          
-<div class="call-script">
-  <div class="call-step">
-    <span class="step-badge">Fase 1 · Secretária / Balcão</span>
-    <p>"Oi, bom dia! Por favor, o <b>Carlos</b> tá por aí? É sobre a presença digital e os clientes da Mecânica Vasconcelos."</p>
-  </div>
-  <div class="call-step">
-    <span class="step-badge">Fase 2 · Gancho com o Dono (Carlos)</span>
-    <p>"Fala Carlos, tudo bem? Aqui é o Rhenan. Vi que a Mecânica Vasconcelos foi fundada em <b>14/05/2014</b>, já são <b>10 anos e 6 meses ativa</b> com quase 395 avaliações nota 4.8 no Google. Tradição monstra! Mas notei que você tá 100% invisível em anúncios patrocinados e sem site rápido. Os concorrentes da região tão pegando quem pesquisa no bairro. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar novos clientes todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?"</p>
-  </div>
-  <div class="call-step">
-    <span class="step-badge">Fase 3 · Se falar que tá corrido</span>
-    <p>"Sem problemas, Carlos. Te mandei a prévia no seu WhatsApp <b>(19) 99198-5402</b>. Dá uma olhada com calma e se fizer sentido me responde lá com um OK. Abraço!"</p>
-  </div>
-</div>
-          <div class="btn-acoes" style="margin-top: 10px;">
-            <a href="tel:19991985402" class="btn-call">📞 Ligar Agora ((19) 99198-5402)</a>
-            <a href="roadmap-01-mecanica-vasconcelos.html" target="_blank" class="btn-roadmap">📋 Abrir Roadmap na Tela</a>
-          </div>
-        </div>
-
-        <!-- Painel Ficha do CNPJ -->
-        <div class="tab-pane" id="lead_0_pane_cnpj">
-          
-<div class="cnpj-ficha">
-  <div class="cnpj-header">
-    <span class="status-ativa">🟢 SITUAÇÃO CADASTRAL: ATIVA</span>
-    <span class="cnpj-tempo">Fundada em: <b>14/05/2014</b> (10 anos e 6 meses ativa)</span>
-  </div>
-  <div class="cnpj-campo">
-    <label>Razão Social:</label>
-    <span>MECANICA E AUTO ELETRICA VASCONCELOS LTDA</span>
-  </div>
-  <div class="cnpj-grid-2">
-    <div class="cnpj-campo">
-      <label>CNPJ:</label>
-      <span class="mono">19.349.002/0001-44</span>
-    </div>
-    <div class="cnpj-campo">
-      <label>Porte / Regime:</label>
-      <span>ME - Microempresa · Simples Nacional</span>
-    </div>
-  </div>
-  <div class="cnpj-grid-2">
-    <div class="cnpj-campo">
-      <label>Capital Social Registrado:</label>
-      <span class="mono">R$ 50.000,00</span>
-    </div>
-    <div class="cnpj-campo">
-      <label>Natureza Jurídica:</label>
-      <span>206-2 - Sociedade Empresária Limitada</span>
-    </div>
-  </div>
-  <div class="cnpj-campo">
-    <label>Atividade Principal (CNAE):</label>
-    <span>45.20-0-01 - Serviços de manutenção e reparação mecânica de veículos automotores</span>
-  </div>
-  <div class="cnpj-campo">
-    <label>Quadro de Sócios e Administradores (QSA):</label>
-    <div class="socios-lista">
-      
-        <div class="socio-item">
-          👤 <b>Carlos Eduardo Vasconcelos</b> <small>(Sócio-Administrador)</small>
-        </div>
-      
-        <div class="socio-item">
-          👤 <b>Mariana Souza Vasconcelos</b> <small>(Sócia)</small>
-        </div>
-      
-    </div>
-  </div>
-</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" id="lead_1" data-tel="19987654321">
-      <div class="card-topo">
-        <div class="badge-idx">#2</div>
-        <div class="fundacao-pill">🎂 12 anos ativa</div>
-        <div class="status-box">
-          <select class="crm-select" onchange="atualizarStatus('lead_1', this.value)">
-            <option value="novo">⚪ Novo</option>
-            <option value="m1_enviada">🟡 M1 Enviada</option>
-            <option value="ligado">📞 Ligação Feita</option>
-            <option value="respondeu">🟢 Em Conversa</option>
-            <option value="roadmap_enviado">🚀 Roadmap Enviado</option>
-            <option value="fechado">🏆 Fechado!</option>
-            <option value="sem_interesse">🔴 Sem Interesse</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="card-hero">
-        <div class="print-container">
-          <img src="02-autracam-oficina-mecanica/print-whatsapp.png" onerror="this.src='https://placehold.co/600x320/09090b/f4f4f5?text=Previa+Autracam%20Oficina%20Mec%C3%A2nica'" alt="Autracam Oficina Mecânica">
-        </div>
-        <div class="empresa-info">
-          <h3>Autracam Oficina Mecânica</h3>
-          <p class="endereco">Parque Industrial, Campinas - SP</p>
-        </div>
-      </div>
-
-      <!-- Radar de Métricas -->
-      <div class="metricas-grid">
-        <div class="m-item">
-          <span class="m-val">⭐ 4.8</span>
-          <span class="m-lbl">187 avaliações</span>
-        </div>
-        <div class="m-item">
-          <span class="m-val">📅 08/11/2012</span>
-          <span class="m-lbl">Fundação Oficial</span>
-        </div>
-        <div class="m-item">
-          <span class="m-val">R$ 104.500,00</span>
-          <span class="m-lbl">Capital Social</span>
-        </div>
-      </div>
-
-      <!-- Diagnóstico de Tráfego -->
-      <div class="trafego-box">
-        <div class="t-badge red">❌ Google Ads: Inativo</div>
-        <div class="t-badge red">❌ Meta Ads: Inativo</div>
-        <div class="t-badge yellow">⚠️ Sem Site / Pixel</div>
-      </div>
-
-      <!-- Abas de Ataque: WhatsApp vs Ligação vs Ficha CNPJ -->
-      <div class="tabs-container">
-        <div class="tab-buttons">
-          <button class="t-btn active" onclick="trocarAba('lead_1', 'zap')">📱 WhatsApp</button>
-          <button class="t-btn" onclick="trocarAba('lead_1', 'call')">📞 Ligação</button>
-          <button class="t-btn" onclick="trocarAba('lead_1', 'cnpj')">📑 Ficha do CNPJ</button>
-        </div>
-
-        <!-- Painel WhatsApp -->
-        <div class="tab-pane active" id="lead_1_pane_zap">
-          <div class="copy-box">
-            <div class="copy-header">
-              <span><b>M1</b> · Primeiro Contato (Gancho Real + Tradição)</span>
-              <button class="btn-copy" onclick="copiarTexto(this, 'lead_1_m1')">Copiar</button>
-            </div>
-            <pre id="lead_1_m1">Oi Roberto, tudo bem? Aqui é o Rhenan.
-Vi Autracam Oficina Mecânica no Google com 187 avaliações e nota 4.8, e vi que vocês já estão há 12 anos ativa no mercado, parabéns!
-Mas notei que vocês ainda não têm site nem anúncio rodando aqui na região de Campinas.
-Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre>
-          </div>
-
-          <div class="copy-box" style="margin-top: 8px;">
-            <div class="copy-header">
-              <span><b>M2</b> · Prévia + Roadmap</span>
-              <button class="btn-copy" onclick="copiarTexto(this, 'lead_1_m2')">Copiar</button>
-            </div>
-            <pre id="lead_1_m2">Te pergunto porque montei uma prévia de como o site e a presença digital da Autracam Oficina Mecânica poderiam ficar para quem pesquisa no Google e no Instagram.
-Montei também um Roadmap de 3 fases mostrando onde estão os gargalos e como colocar clientes novos todo dia na sua porta.
-Faz sentido eu te mandar o link aqui pra você dar uma olhada?</pre>
-          </div>
-
-          <div class="btn-acoes">
-            <a href="https://wa.me/5519987654321?text=Oi%20Roberto%2C%20tudo%20bem%3F%20Aqui%20%C3%A9%20o%20Rhenan.%0AVi%20Autracam%20Oficina%20Mec%C3%A2nica%20no%20Google%20com%20187%20avalia%C3%A7%C3%B5es%20e%20nota%204.8%2C%20e%20vi%20que%20voc%C3%AAs%20j%C3%A1%20est%C3%A3o%20h%C3%A1%2012%20anos%20ativa%20no%20mercado%2C%20parab%C3%A9ns!%0AMas%20notei%20que%20voc%C3%AAs%20ainda%20n%C3%A3o%20t%C3%AAm%20site%20nem%20an%C3%BAncio%20rodando%20aqui%20na%20regi%C3%A3o%20de%20Campinas.%0AComo%20chega%20cliente%20novo%20pra%20voc%C3%AAs%20hoje%3A%20mais%20por%20indica%C3%A7%C3%A3o%20ou%20pelo%20Google%20tamb%C3%A9m%3F" target="_blank" class="btn-zap" onclick="marcarEnviado('lead_1')">
-              🚀 Chamar no WhatsApp
-            </a>
-            <a href="02-autracam-oficina-mecanica/index.html" target="_blank" class="btn-previa">🌐 Site Demo</a>
-            <a href="roadmap-02-autracam-oficina-mecanica.html" target="_blank" class="btn-roadmap">📋 Ver Roadmap 360º</a>
-          </div>
-        </div>
-
-        <!-- Painel Ligação -->
-        <div class="tab-pane" id="lead_1_pane_call">
-          
-<div class="call-script">
-  <div class="call-step">
-    <span class="step-badge">Fase 1 · Secretária / Balcão</span>
-    <p>"Oi, bom dia! Por favor, o <b>Roberto</b> tá por aí? É sobre a presença digital e os clientes da Autracam Oficina Mecânica."</p>
-  </div>
-  <div class="call-step">
-    <span class="step-badge">Fase 2 · Gancho com o Dono (Roberto)</span>
-    <p>"Fala Roberto, tudo bem? Aqui é o Rhenan. Vi que a Autracam Oficina Mecânica foi fundada em <b>08/11/2012</b>, já são <b>12 anos ativa</b> com quase 187 avaliações nota 4.8 no Google. Tradição monstra! Mas notei que você tá 100% invisível em anúncios patrocinados e sem site rápido. Os concorrentes da região tão pegando quem pesquisa no bairro. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar novos clientes todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?"</p>
-  </div>
-  <div class="call-step">
-    <span class="step-badge">Fase 3 · Se falar que tá corrido</span>
-    <p>"Sem problemas, Roberto. Te mandei a prévia no seu WhatsApp <b>(19) 98765-4321</b>. Dá uma olhada com calma e se fizer sentido me responde lá com um OK. Abraço!"</p>
-  </div>
-</div>
-          <div class="btn-acoes" style="margin-top: 10px;">
-            <a href="tel:19987654321" class="btn-call">📞 Ligar Agora ((19) 98765-4321)</a>
-            <a href="roadmap-02-autracam-oficina-mecanica.html" target="_blank" class="btn-roadmap">📋 Abrir Roadmap na Tela</a>
-          </div>
-        </div>
-
-        <!-- Painel Ficha do CNPJ -->
-        <div class="tab-pane" id="lead_1_pane_cnpj">
-          
-<div class="cnpj-ficha">
-  <div class="cnpj-header">
-    <span class="status-ativa">🟢 SITUAÇÃO CADASTRAL: ATIVA</span>
-    <span class="cnpj-tempo">Fundada em: <b>08/11/2012</b> (12 anos ativa)</span>
-  </div>
-  <div class="cnpj-campo">
-    <label>Razão Social:</label>
-    <span>AUTRACAM CENTRO AUTOMOTIVO DE CAMPINAS LTDA</span>
-  </div>
-  <div class="cnpj-grid-2">
-    <div class="cnpj-campo">
-      <label>CNPJ:</label>
-      <span class="mono">50.123.456/0001-90</span>
-    </div>
-    <div class="cnpj-campo">
-      <label>Porte / Regime:</label>
-      <span>EPP - Empresa de Pequeno Porte · Simples Nacional</span>
-    </div>
-  </div>
-  <div class="cnpj-grid-2">
-    <div class="cnpj-campo">
-      <label>Capital Social Registrado:</label>
-      <span class="mono">R$ 104.500,00</span>
-    </div>
-    <div class="cnpj-campo">
-      <label>Natureza Jurídica:</label>
-      <span>206-2 - Sociedade Empresária Limitada</span>
-    </div>
-  </div>
-  <div class="cnpj-campo">
-    <label>Atividade Principal (CNAE):</label>
-    <span>45.20-0-01 - Serviços de manutenção e reparação mecânica e elétrica de veículos</span>
-  </div>
-  <div class="cnpj-campo">
-    <label>Quadro de Sócios e Administradores (QSA):</label>
-    <div class="socios-lista">
-      
-        <div class="socio-item">
-          👤 <b>Roberto Camargo</b> <small>(Sócio-Administrador)</small>
-        </div>
-      
-    </div>
-  </div>
-</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function trocarAba(cardId, aba) {
-      const card = document.getElementById(cardId);
-      const btns = card.querySelectorAll('.t-btn');
-      const panes = card.querySelectorAll('.tab-pane');
-
-      btns.forEach(b => b.classList.remove('active'));
-      panes.forEach(p => p.classList.remove('active'));
-
-      if (aba === 'zap') {
-        btns[0].classList.add('active');
-        document.getElementById(cardId + '_pane_zap').classList.add('active');
-      } else if (aba === 'call') {
-        btns[1].classList.add('active');
-        document.getElementById(cardId + '_pane_call').classList.add('active');
-      } else if (aba === 'cnpj') {
-        btns[2].classList.add('active');
-        document.getElementById(cardId + '_pane_cnpj').classList.add('active');
-      }
-    }
-
-    function copiarTexto(btn, elementoId) {
-      const texto = document.getElementById(elementoId).innerText;
-      navigator.clipboard.writeText(texto).then(() => {
-        btn.innerText = 'Copiado!';
-        btn.classList.add('copiado');
-        setTimeout(() => {
-          btn.innerText = 'Copiar';
-          btn.classList.remove('copiado');
-        }, 2000);
-      });
-    }
-
-    function marcarEnviado(cardId) {
-      const sel = document.querySelector('#' + cardId + ' .crm-select');
-      if (sel && sel.value === 'novo') {
-        sel.value = 'm1_enviada';
-        atualizarStatus(cardId, 'm1_enviada');
-      }
-    }
-
-    function atualizarStatus(cardId, status) {
-      localStorage.setItem('prospectos_' + cardId, status);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.card').forEach(card => {
-        const salvo = localStorage.getItem('prospectos_' + card.id);
-        if (salvo) {
-          const sel = card.querySelector('.crm-select');
-          if (sel) sel.value = salvo;
-        }
-      });
-    });
-  </script>
+</div></section>
+<section><div class="wrap"><h2>Quem parecia bom e caiu</h2><p class="sub">Pra você não perder tempo com eles.</p><table><tr><th>Empresa</th><th>Por que caiu</th></tr><tr><td>Mecânica Campinas Express</td><td>Site no ar encontrado com o mesmo telefone</td></tr><tr><td>Centro Automotivo Taquaral MEI</td><td>CNPJ enquadrado como MEI (sem porte para investimento)</td></tr><tr><td>Oficina São Quirino</td><td>Apenas telefone fixo na ficha (sem celular WhatsApp)</td></tr></table></div></section>
+<footer><div class="wrap">Dados públicos do Google Maps e da Receita Federal. Confira antes de enviar.</div></footer>
+<script>
+  var CHAVE = 'prospecta:' + "teste-oficinas-campinas-2026-11";
+  var salvo = {};
+  try { salvo = JSON.parse(localStorage.getItem(CHAVE) || '{}'); } catch (e) {}
+  function placar() {
+    var c = {};
+    document.querySelectorAll('.status').forEach(function (s) { c[s.value] = (c[s.value] || 0) + 1; });
+    document.getElementById('placar').innerHTML = Object.keys(c).map(function (k) { return '<span><b>' + c[k] + '</b> ' + k + '</span>'; }).join('');
+  }
+  document.querySelectorAll('.card').forEach(function (card) {
+    var s = card.querySelector('.status');
+    if (salvo[card.dataset.lead]) s.value = salvo[card.dataset.lead];
+    s.addEventListener('change', function () { salvo[card.dataset.lead] = s.value; try { localStorage.setItem(CHAVE, JSON.stringify(salvo)); } catch (e) {} placar(); });
+  });
+  placar();
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.copiar');
+    if (!b) return;
+    var txt = b.closest('.msg').querySelector('pre').innerText;
+    var feito = function () { b.textContent = 'Copiado'; b.classList.add('ok'); setTimeout(function () { b.textContent = 'Copiar'; b.classList.remove('ok'); }, 1600); };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(feito);
+    else { var t = document.createElement('textarea'); t.value = txt; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); feito(); }
+  });
+</script>
 </body>
 </html>
