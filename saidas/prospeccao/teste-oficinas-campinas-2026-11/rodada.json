@@ -1,0 +1,70 @@
+{
+  "nicho": "Oficinas Mecânicas",
+  "cidade": "Campinas",
+  "remetente": "Rhenan",
+  "telefone_remetente": "5521999999999",
+  "preco": "R$ 2.000",
+  "valor_ancorado": "R$ 6.800",
+  "parcelamento": "4x de R$ 560",
+  "leads": [
+    {
+      "title": "Mecânica Vasconcelos",
+      "category": "Oficina mecânica e freios",
+      "rating": 4.8,
+      "reviews_count": 395,
+      "phone": "(19) 99198-5402",
+      "phone_clean": "19991985402",
+      "address": "Av. da Saudade, 288 - Pte. Preta, Campinas - SP",
+      "cnpj": "19.349.002/0001-44",
+      "razao_social": "MECANICA E AUTO ELETRICA VASCONCELOS LTDA",
+      "data_fundacao": "14/05/2014",
+      "tempo_ativo_extenso": "10 anos e 6 meses ativa",
+      "tempo_mercado_anos": 10,
+      "situacao_cadastral": "ATIVA",
+      "natureza_juridica": "206-2 - Sociedade Empresária Limitada",
+      "porte": "ME - Microempresa",
+      "optante_simples": true,
+      "eh_mei": false,
+      "capital_social": 50000,
+      "cnae_principal": {
+        "codigo": "45.20-0-01",
+        "descricao": "Serviços de manutenção e reparação mecânica de veículos automotores"
+      },
+      "socio_principal": "Carlos",
+      "socios": [
+        { "nome": "Carlos Eduardo Vasconcelos", "qualificacao": "Sócio-Administrador" },
+        { "nome": "Mariana Souza Vasconcelos", "qualificacao": "Sócia" }
+      ],
+      "slug": "01-mecanica-vasconcelos"
+    },
+    {
+      "title": "Autracam Oficina Mecânica",
+      "category": "Oficina mecânica e suspensão",
+      "rating": 4.8,
+      "reviews_count": 187,
+      "phone": "(19) 98765-4321",
+      "phone_clean": "19987654321",
+      "address": "Parque Industrial, Campinas - SP",
+      "cnpj": "50.123.456/0001-90",
+      "razao_social": "AUTRACAM CENTRO AUTOMOTIVO DE CAMPINAS LTDA",
+      "data_fundacao": "08/11/2012",
+      "tempo_ativo_extenso": "12 anos ativa",
+      "tempo_mercado_anos": 12,
+      "situacao_cadastral": "ATIVA",
+      "natureza_juridica": "206-2 - Sociedade Empresária Limitada",
+      "porte": "EPP - Empresa de Pequeno Porte",
+      "optante_simples": true,
+      "eh_mei": false,
+      "capital_social": 104500,
+      "cnae_principal": {
+        "codigo": "45.20-0-01",
+        "descricao": "Serviços de manutenção e reparação mecânica e elétrica de veículos"
+      },
+      "socio_principal": "Roberto",
+      "socios": [
+        { "nome": "Roberto Camargo", "qualificacao": "Sócio-Administrador" }
+      ],
+      "slug": "02-autracam-oficina-mecanica"
+    }
+  ]
+}

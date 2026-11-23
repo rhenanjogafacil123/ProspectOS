@@ -1,0 +1,30 @@
+{
+  "name": "prospect-os",
+  "version": "1.0.0",
+  "description": "ProspectOS — O Sistema Operacional de Prospecção B2B de Alta Conversão",
+  "main": "core/orquestrador.js",
+  "type": "commonjs",
+  "scripts": {
+    "iniciar": "node core/orquestrador.js",
+    "scraper:abrir": "node core/scraper.js abrir",
+    "buscar": "node core/scraper.js buscar",
+    "qualifica": "node core/qualifica.js",
+    "valida": "node core/valida.js",
+    "trafego": "node core/detector-trafego.js",
+    "fotos": "node core/fotos.js",
+    "previa": "node core/gera-sites.js",
+    "painel": "node core/monta-painel.js",
+    "roadmap": "node core/gera-roadmap.js"
+  },
+  "keywords": [
+    "prospeccao",
+    "b2b",
+    "growth",
+    "scraper",
+    "google-maps",
+    "roadmap",
+    "whatsapp"
+  ],
+  "author": "Teixo / ProspectOS",
+  "license": "MIT"
+}

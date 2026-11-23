@@ -1,0 +1,17 @@
+{
+  "remetente": "Rhenan",
+  "assinatura": "Teixo Growth",
+  "telefone_remetente": "5521999999999",
+  "oferta": "Site de Alta Conversão + Google Ads + Otimização Google Meu Negócio",
+  "preco": "R$ 2.000",
+  "valor_ancorado": "R$ 6.800",
+  "parcelamento": "4x de R$ 560",
+  "criterios": {
+    "nota_minima": 4.0,
+    "minimo_avaliacoes": 10,
+    "exigir_celular": true,
+    "exigir_sem_site": true,
+    "excluir_mei": true,
+    "tempo_minimo_anos": 2
+  }
+}

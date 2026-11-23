@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>ProspectOS · B2B Growth & Prospecting Machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --card: #121217;
+      --card-hover: #18181f;
+      --linha: #27272a;
+      --texto: #f4f4f5;
+      --suave: #a1a1aa;
+      --emerald: #10b981;
+      --emerald-dark: #059669;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--texto);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      padding: 60px 24px;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    h1 span {
+      background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.lead {
+      font-size: 17px;
+      color: var(--suave);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .grid-acessos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+    .card-acesso {
+      background: var(--card);
+      border: 1px solid var(--linha);
+      border-radius: 16px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .2s, border-color .2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card-acesso:hover {
+      transform: translateY(-4px);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+    .card-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--emerald);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .card-acesso h2 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+    .card-acesso p {
+      font-size: 14px;
+      color: var(--suave);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--linha);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      transition: all .15s;
+    }
+    .card-acesso:hover .btn-link {
+      background: var(--emerald);
+      color: #000;
+      border-color: var(--emerald);
+    }
+
+    .features-section {
+      background: var(--card);
+      border: 1px solid var(--linha);
+      border-radius: 16px;
+      padding: 36px 32px;
+    }
+    .features-section h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .feature-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--emerald);
+      margin-bottom: 6px;
+    }
+    .feature-item p {
+      font-size: 13px;
+      color: var(--suave);
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 12px;
+      color: #71717a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="badge">🚀 B2B Growth & Prospecting Machine</div>
+      <h1>Prospect<span>OS</span></h1>
+      <p class="lead">
+        Sistema Operacional autônomo de inteligência de mercado, auditoria fiscal, prospecção multicanal e fechamento com Roadmaps de Implantação 360º.
+      </p>
+    </div>
+
+    <div class="grid-acessos">
+      <a href="saidas/prospeccao/teste-oficinas-campinas-2026-11/index.html" class="card-acesso">
+        <div>
+          <span class="card-tag">Cockpit da Rodada</span>
+          <h2>Painel Interativo de Leads</h2>
+          <p>
+            Grid completo com filtros de qualificação, badges de tráfego, abas individuais de WhatsApp, scripts de Ligação (Cold Call) e Ficha Cadastral da Receita Federal.
+          </p>
+        </div>
+        <div>
+          <span class="btn-link">Acessar Cockpit da Rodada →</span>
+        </div>
+      </a>
+
+      <a href="saidas/prospeccao/teste-oficinas-campinas-2026-11/roadmap-01-mecanica-vasconcelos.html" class="card-acesso">
+        <div>
+          <span class="card-tag">Roadmap de Implantação</span>
+          <h2>Diagnóstico de Dores & Curas</h2>
+          <p>
+            Raio-X de presença digital, histórico e tradição da empresa, comparativo contra a concorrência líder do bairro e proposta One-Pager com botão direto pro WhatsApp.
+          </p>
+        </div>
+        <div>
+          <span class="btn-link">Visualizar Exemplo de Roadmap →</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="features-section">
+      <h3>Arsenal Técnico do ProspectOS</h3>
+      <div class="features-grid">
+        <div class="feature-item">
+          <h4>📍 Maps Scraper</h4>
+          <p>Extração profunda de estabelecimentos locais sem custos de API do Google.</p>
+        </div>
+        <div class="feature-item">
+          <h4>🎯 Radar de Tráfego</h4>
+          <p>Checagem automática de anúncios no Google Ads, Meta Ads e presença de Pixel.</p>
+        </div>
+        <div class="feature-item">
+          <h4>🏢 Auditoria Receita & QSA</h4>
+          <p>Data exata de fundação, tempo de mercado e nomes oficiais dos sócios-administradores.</p>
+        </div>
+        <div class="feature-item">
+          <h4>📲 Plaquinha Balcão NFC</h4>
+          <p>Geração de estratégia para transformar clientes físicos em avaliações 5 estrelas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      ProspectOS · Desenvolvido por Teixo Growth & Rhenan Teixeira
+    </div>
+  </div>
+
+</body>
+</html>
