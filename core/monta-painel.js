@@ -220,7 +220,7 @@ Faz sentido eu te mandar o link aqui pra você dar uma olhada?`;
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>ProspectOS · Cockpit de Prospecção & Dados CNPJ</title>
+  <title>Rhenan · Cockpit de Prospecção &amp; Inteligência</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -560,7 +560,7 @@ Faz sentido eu te mandar o link aqui pra você dar uma olhada?`;
     <div class="brand">
       <div class="brand-logo">P</div>
       <div class="brand-text">
-        <h1>ProspectOS · Cockpit & Auditoria Fiscal</h1>
+        <h1>Rhenan · Cockpit de Prospecção &amp; Inteligência</h1>
         <p>Rodada: <b>${esc(nicho)}</b> em <b>${esc(cidade)}</b> · ${leads.length} leads qualificados com dados do CNPJ</p>
       </div>
     </div>

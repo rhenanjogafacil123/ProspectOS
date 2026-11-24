@@ -719,7 +719,7 @@ function gerarHTMLRoadmap(pasta, L, idx) {
   <!-- BARRA SUPERIOR FIXA -->
   <aside class="toolbar-fixa">
     <div>
-      <strong>ProspectOS</strong> · Proposta &amp; Roadmap de <strong>${esc(nomeEmpresa)}</strong>
+      <strong>RHENAN</strong> · Proposta &amp; Roadmap de <strong>${esc(nomeEmpresa)}</strong>
     </div>
     <div class="toolbar-acoes">
       <a href="${esc(linkPdfDownload)}" download class="btn-tb btn-tb-pdf">📥 Baixar PDF Oficial</a>
@@ -735,7 +735,7 @@ function gerarHTMLRoadmap(pasta, L, idx) {
       <div>
         <header class="head-escuro">
           <div class="head-meta">
-            <div class="head-logo"><strong>TEIXO<span>OS</span></strong> · PROSPECT</div>
+            <div class="head-logo"><strong>RHENAN</strong> · ASSESSORIA DIGITAL</div>
             <div>PROPOSTA &amp; ROADMAP · 24 DE NOVEMBRO DE 2026</div>
           </div>
           <div class="head-tags">SITE DE ALTA CONVERSÃO · GOOGLE ADS · GOOGLE MEU NEGÓCIO · PLAQUINHA NFC DE BALCÃO</div>
@@ -818,7 +818,7 @@ function gerarHTMLRoadmap(pasta, L, idx) {
       </div>
 
       <footer class="folha-footer">
-        <div>ProspectOS · Design e Performance Web</div>
+        <div>Rhenan · Assessoria &amp; Performance Digital</div>
         <div>Página 1 / 3</div>
       </footer>
     </section>
@@ -829,7 +829,7 @@ function gerarHTMLRoadmap(pasta, L, idx) {
       <div>
         <header class="head-mini">
           <div class="head-meta">
-            <div class="head-logo"><strong>TEIXO<span>OS</span></strong> · PROSPECT</div>
+            <div class="head-logo"><strong>RHENAN</strong> · ASSESSORIA DIGITAL</div>
             <div>${esc(nomeEmpresa).toUpperCase()} · DIAGNÓSTICO &amp; ENTREGAS</div>
           </div>
         </header>
@@ -926,7 +926,7 @@ function gerarHTMLRoadmap(pasta, L, idx) {
       </div>
 
       <footer class="folha-footer">
-        <div>ProspectOS · Design e Performance Web</div>
+        <div>Rhenan · Assessoria &amp; Performance Digital</div>
         <div>Página 2 / 3</div>
       </footer>
     </section>
@@ -937,7 +937,7 @@ function gerarHTMLRoadmap(pasta, L, idx) {
       <div>
         <header class="head-mini">
           <div class="head-meta">
-            <div class="head-logo"><strong>TEIXO<span>OS</span></strong> · PROSPECT</div>
+            <div class="head-logo"><strong>RHENAN</strong> · ASSESSORIA DIGITAL</div>
             <div>${esc(nomeEmpresa).toUpperCase()} · INVESTIMENTO &amp; FECHAMENTO</div>
           </div>
         </header>
@@ -1037,7 +1037,7 @@ function gerarHTMLRoadmap(pasta, L, idx) {
               <p>Fechando até <strong>${esc(validade)}</strong>, garanto a taxa de implantação reduzida do site e a entrega da Plaquinha NFC de Balcão.</p>
             </div>
             <a href="${esc(linkZapAceite)}" target="_blank" rel="noopener" class="btn-fechado">
-              <span class="sub-tt">${esc(remetente).toUpperCase()} · PROSPECTOS</span>
+              <span class="sub-tt">${esc(remetente).toUpperCase()}</span>
               <span class="zap-tt">${esc(telefoneRemetenteFmt)}</span>
             </a>
           </div>
@@ -1045,7 +1045,7 @@ function gerarHTMLRoadmap(pasta, L, idx) {
       </div>
 
       <footer class="folha-footer">
-        <div>ProspectOS · Rhenan (${telefoneRemetenteFmt}) · Rio de Janeiro / Campinas</div>
+        <div>Rhenan (${telefoneRemetenteFmt}) · Rio de Janeiro / Campinas</div>
         <div>Página 3 / 3</div>
       </footer>
     </section>

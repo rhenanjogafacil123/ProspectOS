@@ -1,4 +1,4 @@
-// ProspectOS · Mazy Engine (Scraper 100% Fiel à Interface Localhost com Inteligência Abacus)
+// Rhenan · Inteligência Comercial (Scraper 100% Fiel à Interface Localhost com Inteligência Comercial)
 (function () {
     'use strict';
 
@@ -59,12 +59,12 @@
             diagnostico_oportunidade: 'Sem anúncios e sem tags de rastreamento. Empresa com 10 anos de mercado e 395 avaliações, mas 100% invisível para buscas de urgência no Google.',
             status_trafego: 'nunca_fez',
             tipo_lead: 'invisivel_tradicao',
-            script_cold_call: 'Olá, bom dia! Aqui é o Rhenan da ProspectOS. É da Mecânica Vasconcelos, na Av. da Saudade? Estou tentando falar com o Carlos Eduardo, responsável pelo agendamento e captação de clientes. Não é contato de cliente, quem cuida dessa parte por aí?\n\n[Carlos no telefone]: Carlos, rápido e direto: analisei a presença digital de vocês em Campinas. Vocês têm 395 avaliações e nota 4.8 na Ponte Preta, mas estão sem página oficial e sem anúncios no Google. Na prática, oficinas concorrentes da Av. da Saudade estão pagando anúncios e pegando motoristas com pane que deveriam estar entrando na sua oficina. Montei um raio-x visual de 3 páginas mostrando exatamente quanto vocês deixam na mesa e como virar essa chave. Te mando no WhatsApp agora?',
+            script_cold_call: 'Olá, bom dia! Aqui é o Rhenan. É da Mecânica Vasconcelos, na Av. da Saudade? Estou tentando falar com o Carlos Eduardo, responsável pelo agendamento e captação de clientes. Não é contato de cliente, quem cuida dessa parte por aí?\n\n[Carlos no telefone]: Carlos, rápido e direto: analisei a presença digital de vocês em Campinas. Vocês têm 395 avaliações e nota 4.8 na Ponte Preta, mas estão sem página oficial e sem anúncios no Google. Na prática, oficinas concorrentes da Av. da Saudade estão pagando anúncios e pegando motoristas com pane que deveriam estar entrando na sua oficina. Montei um raio-x visual de 3 páginas mostrando exatamente quanto vocês deixam na mesa e como virar essa chave. Te mando no WhatsApp agora?',
             emails: [
                 {
                     dia: 'D+0',
                     assunto: 'Mecânica Vasconcelos: 395 avaliações na Ponte Preta sem canal oficial de busca',
-                    corpo: 'Olá, Carlos Eduardo.\n\nNotei a excelência da Mecânica Vasconcelos com nota 4.8 e quase 400 avaliações no Google Maps na Ponte Preta.\n\nPorém, identificamos que ao pesquisar por socorro mecânico ou revisão em Campinas, a sua oficina não possui página oficial nem campanhas ativas no Google, deixando motoristas da região irem direto para concorrentes patrocinados.\n\nPreparamos um Roadmap de 3 páginas mostrando essa oportunidade e uma demonstração visual pronta.\n\nPodemos conversar 5 minutos essa semana?\n\nAbraços,\nRhenan · ProspectOS\n(21) 97315-2056'
+                    corpo: 'Olá, Carlos Eduardo.\n\nNotei a excelência da Mecânica Vasconcelos com nota 4.8 e quase 400 avaliações no Google Maps na Ponte Preta.\n\nPorém, identificamos que ao pesquisar por socorro mecânico ou revisão em Campinas, a sua oficina não possui página oficial nem campanhas ativas no Google, deixando motoristas da região irem direto para concorrentes patrocinados.\n\nPreparamos um Roadmap de 3 páginas mostrando essa oportunidade e uma demonstração visual pronta.\n\nPodemos conversar 5 minutos essa semana?\n\nAbraços,\nRhenan\n(21) 97315-2056'
                 },
                 {
                     dia: 'D+3',
@@ -115,7 +115,7 @@
                 {
                     dia: 'D+0',
                     assunto: 'Autracam: Pixel FB e GTM instalados, mas campanhas desativadas e botão com falha',
-                    corpo: 'Olá, Roberto.\n\nAo auditar a estrutura digital da Autracam no Parque Industrial, notei algo muito positivo: vocês já possuem o Google Tag Manager (GTM-TW96MXG2) e o Pixel da Meta instalados.\n\nPorém, as campanhas estão pausadas e o botão de WhatsApp no mobile apresenta falha de redirecionamento, demorando 6,4 segundos para responder.\n\nVocê já sabe o poder do tráfego pago. O problema não foi a ferramenta, mas sim os gargalos de conversão na página.\n\nEstruturei um Roadmap executivo para corrigir esses furos e retomar a atração de clientes com alta margem.\n\nPodemos alinhar uma conversa rápida?\n\nRhenan · ProspectOS\n(21) 97315-2056'
+                    corpo: 'Olá, Roberto.\n\nAo auditar a estrutura digital da Autracam no Parque Industrial, notei algo muito positivo: vocês já possuem o Google Tag Manager (GTM-TW96MXG2) e o Pixel da Meta instalados.\n\nPorém, as campanhas estão pausadas e o botão de WhatsApp no mobile apresenta falha de redirecionamento, demorando 6,4 segundos para responder.\n\nVocê já sabe o poder do tráfego pago. O problema não foi a ferramenta, mas sim os gargalos de conversão na página.\n\nEstruturei um Roadmap executivo para corrigir esses furos e retomar a atração de clientes com alta margem.\n\nPodemos alinhar uma conversa rápida?\n\nRhenan\n(21) 97315-2056'
                 },
                 {
                     dia: 'D+3',
@@ -166,7 +166,7 @@
                 {
                     dia: 'D+0',
                     assunto: 'Centro Automotivo Barão: 240 avaliações em Barão Geraldo e tag GTM sem anúncios ativos',
-                    corpo: 'Olá, André Luiz.\n\nLocalizamos a estrutura do Centro Automotivo Barão em Barão Geraldo com excelentes 240 avaliações e tag Google Tag Manager ativa.\n\nNo entanto, vocês não estão aparecendo nos links patrocinados do Google para termos de alta intenção como \'oficina mecânica em Barão Geraldo\' e \'injeção eletrônica Campinas\'.\n\nConstruímos um Roadmap sob medida para ligar a captação local imediata.\n\nPodemos falar 5 minutos?\n\nRhenan · ProspectOS\n(21) 97315-2056'
+                    corpo: 'Olá, André Luiz.\n\nLocalizamos a estrutura do Centro Automotivo Barão em Barão Geraldo com excelentes 240 avaliações e tag Google Tag Manager ativa.\n\nNo entanto, vocês não estão aparecendo nos links patrocinados do Google para termos de alta intenção como \'oficina mecânica em Barão Geraldo\' e \'injeção eletrônica Campinas\'.\n\nConstruímos um Roadmap sob medida para ligar a captação local imediata.\n\nPodemos falar 5 minutos?\n\nRhenan\n(21) 97315-2056'
                 },
                 {
                     dia: 'D+3',
@@ -217,7 +217,7 @@
                 {
                     dia: 'D+0',
                     assunto: 'Auto Elétrica Cambuí: Nota 4.9 sem página para socorro de bateria no Google',
-                    corpo: 'Olá, Marcos Paulo.\n\nA Auto Elétrica Cambuí possui uma das maiores notas de reputação do bairro (4.9 em 152 avaliações).\n\nNo entanto, ao pesquisar por troca de bateria delivery ou auto elétrica no Cambuí, a sua empresa não aparece com site nem anúncio patrocinado.\n\nEstruturamos uma prévia de página mobile e campanha no Google Ads focada no público nobre do Cambuí.\n\nPodemos falar 5 minutos essa semana?\n\nRhenan · ProspectOS\n(21) 97315-2056'
+                    corpo: 'Olá, Marcos Paulo.\n\nA Auto Elétrica Cambuí possui uma das maiores notas de reputação do bairro (4.9 em 152 avaliações).\n\nNo entanto, ao pesquisar por troca de bateria delivery ou auto elétrica no Cambuí, a sua empresa não aparece com site nem anúncio patrocinado.\n\nEstruturamos uma prévia de página mobile e campanha no Google Ads focada no público nobre do Cambuí.\n\nPodemos falar 5 minutos essa semana?\n\nRhenan\n(21) 97315-2056'
                 },
                 {
                     dia: 'D+3',
@@ -263,12 +263,12 @@
             diagnostico_oportunidade: 'LEAD DE OURO: Possui Pixel FB e GTM ativos, vitrine excelente na Barão de Itapura com 215 avaliações, mas anúncios desativados e botão de WhatsApp quebrado no site. O empresário já comprou tráfego antes.',
             status_trafego: 'ja_fez',
             tipo_lead: 'queimado_por_agencia',
-            script_cold_call: 'Olá, bom dia! É da Stop Car no Taquaral? Gostaria de falar com o Marcelo Fagundes, responsável pela direção e captação de clientes. Não é cliente, quem cuida dessa parte por aí?\n\n[Marcelo no telefone]: Marcelo, tudo bem? Meu nome é Rhenan da ProspectOS. Estive avaliando a infraestrutura digital da Stop Car na Av. Barão de Itapura. Vocês têm 215 avaliações e nota 4.8, e já contam com o Pixel da Meta e GTM instalados. Porém, o botão de agendamento de WhatsApp na sua página está quebrado e não direciona para conversa. Quem tenta agendar revisão ou alinhamento desiste na hora. Preparei um relatório de 3 páginas corrigindo esse ponto e mostrando como recolocar os anúncios no ar com retorno garantido. Posso te mandar pelo WhatsApp?',
+            script_cold_call: 'Olá, bom dia! É da Stop Car no Taquaral? Gostaria de falar com o Marcelo Fagundes, responsável pela direção e captação de clientes. Não é cliente, quem cuida dessa parte por aí?\n\n[Marcelo no telefone]: Marcelo, tudo bem? Meu nome é Rhenan. Estive avaliando a infraestrutura digital da Stop Car na Av. Barão de Itapura. Vocês têm 215 avaliações e nota 4.8, e já contam com o Pixel da Meta e GTM instalados. Porém, o botão de agendamento de WhatsApp na sua página está quebrado e não direciona para conversa. Quem tenta agendar revisão ou alinhamento desiste na hora. Preparei um relatório de 3 páginas corrigindo esse ponto e mostrando como recolocar os anúncios no ar com retorno garantido. Posso te mandar pelo WhatsApp?',
             emails: [
                 {
                     dia: 'D+0',
                     assunto: 'Stop Car Taquaral: Botão de agendamento de WhatsApp inoperante e GTM ativo',
-                    corpo: 'Olá, Marcelo Fagundes.\n\nIdentificamos uma falha técnica crítica no site da Stop Car no Taquaral: o botão principal de agendamento no WhatsApp está gerando erro de link no celular, impedindo que motoristas fechem serviços de revisão e alinhamento.\n\nComo vocês já contam com tags de rastreamento instaladas (GTM-5NVR3KDP), é questão de horas para corrigir a página e retomar a captação.\n\nEstruturei o Roadmap completo da Stop Car.\n\nPodemos falar 5 minutos?\n\nRhenan · ProspectOS\n(21) 97315-2056'
+                    corpo: 'Olá, Marcelo Fagundes.\n\nIdentificamos uma falha técnica crítica no site da Stop Car no Taquaral: o botão principal de agendamento no WhatsApp está gerando erro de link no celular, impedindo que motoristas fechem serviços de revisão e alinhamento.\n\nComo vocês já contam com tags de rastreamento instaladas (GTM-5NVR3KDP), é questão de horas para corrigir a página e retomar a captação.\n\nEstruturei o Roadmap completo da Stop Car.\n\nPodemos falar 5 minutos?\n\nRhenan\n(21) 97315-2056'
                 },
                 {
                     dia: 'D+3',
@@ -509,7 +509,7 @@
 
         $('livebar').hidden = false;
         $('liveDot').className = 'live-dot run';
-        $('liveText').innerHTML = 'Buscando <b>' + esc(jobName) + '</b> no Google Maps com Inteligência Abacus...';
+        $('liveText').innerHTML = 'Buscando <b>' + esc(jobName) + '</b> no Google Maps com Inteligência Comercial...';
 
         state.jobs.unshift(newJob);
         selectJob(newJob);
@@ -521,7 +521,7 @@
                 var p = BASE_PLACES_CAMPINAS[step - 1];
                 state.places.push(p);
                 addMarkers([p]);
-                $('liveText').innerHTML = 'Auditoria Abacus em andamento: <b>' + state.places.length + ' empresas</b> extraídas e auditadas';
+                $('liveText').innerHTML = 'Auditoria comercial em andamento: <b>' + state.places.length + ' empresas</b> extraídas e auditadas';
                 renderJobs();
                 renderBoard();
             } else {
@@ -533,7 +533,7 @@
                 $('go').disabled = false;
                 $('go').textContent = 'Buscar empresas';
                 renderJobs();
-                toast('Varredura e auditoria Abacus concluídas!');
+                toast('Varredura e auditoria comercial concluídas!');
             }
         }, 350);
     }
@@ -680,7 +680,7 @@
         if ($('boardMain')) $('boardMain').hidden = false;
 
         $('boardTitle').textContent = state.selected.Name;
-        $('boardMeta').textContent = dateBR(state.selected.Date) + ' · ' + state.places.length + ' empresas auditadas pelo motor Abacus';
+        $('boardMeta').textContent = dateBR(state.selected.Date) + ' · ' + state.places.length + ' empresas auditadas por Rhenan';
 
         var semSite = state.places.filter(function (p) { return siteKind(p.website) === 'none'; }).length;
         var comWhats = state.places.filter(function (p) { return Boolean(whatsapp(p.phone)); }).length;
@@ -794,7 +794,7 @@
         }).join('');
     }
 
-    // ---------- Auditoria Consolidada (Dossiê Completo Abacus AI) ----------
+    // ---------- Auditoria Consolidada (Dossiê Completo de Prospecção) ----------
     function renderDocView(places) {
         var paper = $('docPaper');
         if (!paper) return;
@@ -880,7 +880,7 @@
         }
     }
 
-    // ---------- Drawer / Modal de Raio-X Abacus ----------
+    // ---------- Drawer / Modal de Raio-X Comercial ----------
     function openDrawer(p) {
         var d = $('leadDrawer');
         var b = $('drawerBackdrop');
@@ -914,7 +914,7 @@
 
         // 3. Inteligência de Tráfego e Rastreamento
         bodyHtml.push('<div class="drawer-sec">');
-        bodyHtml.push('<div class="drawer-sec-title">Rastreamento & Tráfego Pago (Ouro Abacus)</div>');
+        bodyHtml.push('<div class="drawer-sec-title">Rastreamento & Tráfego Pago (Métricas de Conversão)</div>');
         bodyHtml.push('<div class="drawer-grid-2">');
         bodyHtml.push('<div class="drawer-field"><div class="drawer-field-lbl">Google Ads</div><div class="drawer-field-val">' + esc(p.google_ads || 'Não encontrado') + '</div></div>');
         bodyHtml.push('<div class="drawer-field"><div class="drawer-field-lbl">Meta Ads</div><div class="drawer-field-val">' + esc(p.meta_ads || 'Não encontrado') + '</div></div>');
@@ -1069,7 +1069,7 @@
         var url = URL.createObjectURL(blob);
         var a = document.createElement('a');
         a.href = url;
-        a.download = (state.selected ? state.selected.Name.replace(/[^\w-]/g, '_') : 'leads_abacus') + '.csv';
+        a.download = (state.selected ? state.selected.Name.replace(/[^\w-]/g, '_') : 'leads_rhenan') + '.csv';
         a.click();
         URL.revokeObjectURL(url);
         toast('Planilha CSV gerada e baixada com sucesso!');
@@ -1081,7 +1081,7 @@
     // ---------- Inicialização com Job Ativo ----------
     var initialJob = {
         ID: 'job_campinas_oficinas',
-        Name: 'Oficinas Mecânicas · Campinas (Auditoria Abacus)',
+        Name: 'Oficinas Mecânicas · Campinas',
         Status: 'ok',
         Date: new Date().toISOString(),
         Data: { lat: -22.9056, lon: -47.0608, radius: 5000, email: false }

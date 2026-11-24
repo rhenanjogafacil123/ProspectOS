@@ -1,11 +1,11 @@
-# ProspectOS — Diretrizes Institucionais & Negócio
+# Rhenan — Diretrizes Institucionais & Negócio
 
-> Memória de posicionamento, serviços, diferenciais e cases do Rhenan / ProspectOS.
+> Memória de posicionamento, serviços, diferenciais e cases do Rhenan.
 
 ---
 
 ## 1. Dados da Operação
-- **Nome:** ProspectOS / Teixo Performance
+- **Nome:** Rhenan · Assessoria & Performance Digital
 - **Sócio & Especialista:** Rhenan
 - **Telefone / WhatsApp Comercial:** `(21) 97315-2056` (link oficial: `https://wa.me/5521973152056`)
 - **Base Operacional:** Rio de Janeiro - RJ
