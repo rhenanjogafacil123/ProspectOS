@@ -1,10 +1,10 @@
-# ProspectOS — Sistema Operacional de Prospecção B2B de Alta Conversão
+# Rhenan — Sistema Operacional de Prospecção B2B de Alta Conversão
 
 > Máquina autônoma de prospecção, auditoria de tráfego, abordagem multicanal e fechamento de novos clientes com Roadmaps de Implantação 360º.
 
 ---
 
-## O que o ProspectOS faz na prática:
+## O que o sistema faz na prática:
 
 1. **Varredura Profunda no Google Maps:** Coleta telefone, nota, avaliações, fotos de fachada e endereço sem depender de APIs pagas do Google.
 2. **Detector de Tráfego Pago:** Identifica se a empresa já investe ou não em **Google Ads** ou **Meta Ads** (Instagram/Facebook) e se possui Pixel ativo.
@@ -21,7 +21,7 @@
 ## Estrutura de Arquivos
 
 ```text
-ProspectOS/
+Rhenan/
 ├── core/
 │   ├── scraper.js           # Engine de extração do Google Maps
 │   ├── qualifica.js         # Funil de nota, avaliações, celular e site
@@ -46,7 +46,7 @@ ProspectOS/
 
 ## Como Rodar uma Rodada Completa
 
-No terminal dentro de `c:\Users\rhena\Downloads\ProspectOS`:
+No terminal dentro de `c:\Users\rhena\Downloads\Rhenan`:
 
 ```bash
 node core/orquestrador.js --nicho "oficinas mecanicas" --cidade "Campinas" --quantidade 5

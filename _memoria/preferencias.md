@@ -1,6 +1,6 @@
-# ProspectOS — Preferências, Tom de Voz & Padrão Estético
+# Rhenan — Preferências, Tom de Voz & Padrão Estético
 
-> Regras visuais e diretrizes de comunicação inegociáveis do ProspectOS.
+> Regras visuais e diretrizes de comunicação inegociáveis do Rhenan.
 
 ---
 

@@ -1,4 +1,4 @@
-// MazyOS Scraper: interface sobre a API do google-maps-scraper.
+// Rhenan Scraper: interface sobre a API do google-maps-scraper.
 (function () {
     'use strict';
 
@@ -600,7 +600,7 @@
         var blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
         var a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = 'mazyos-' + slug(state.selected.Name) + '-' + new Date().toISOString().slice(0, 10) + '.csv';
+        a.download = 'leads-' + slug(state.selected.Name) + '-' + new Date().toISOString().slice(0, 10) + '.csv';
         a.click();
         setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
         toast(rows.length + ' empresas exportadas');

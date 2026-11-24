@@ -1,11 +1,11 @@
 ---
 name: prospectar
-description: Orquestra a esteira completa de prospecção do ProspectOS: busca no Google Maps, enriquecimento de CNPJ/Receita, auditoria de Tráfego e Pixels, checagem de Instagram e Bio, geração de prévias de site e roadmaps em HTML/PDF. Use quando disser "prospectar", "/prospectar", "nova rodada", "buscar empresas".
+description: Orquestra a esteira completa de prospecção do Rhenan: busca no Google Maps, enriquecimento de CNPJ/Receita, auditoria de Tráfego e Pixels, checagem de Instagram e Bio, geração de prévias de site e roadmaps em HTML/PDF. Use quando disser "prospectar", "/prospectar", "nova rodada", "buscar empresas".
 ---
 
-# Prospectar — Esteira Completa do ProspectOS
+# Prospectar — Esteira Completa do Rhenan
 
-> **Axioma Central:** Nem sempre todas as informações da empresa estarão no Google Maps. O Maps é apenas o ponto de entrada. O ProspectOS deve investigar ativamente na internet, nas redes e na Receita Federal para mapear o diagnóstico 360º.
+> **Axioma Central:** Nem sempre todas as informações da empresa estarão no Google Maps. O Maps é apenas o ponto de entrada. Devemos investigar ativamente na internet, nas redes e na Receita Federal para mapear o diagnóstico 360º.
 
 ## Procedimento
 1. **Scraping Inicial no Google Maps:** Coletar as empresas do nicho e cidade.

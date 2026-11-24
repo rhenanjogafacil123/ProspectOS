@@ -1,4 +1,4 @@
-# ProspectOS — Playbook Estratégico de Prospecção & Vendas
+# Rhenan — Playbook Estratégico de Prospecção & Vendas
 
 > Metodologia de abordagem multicanal (WhatsApp e Ligação Fria de 60s).
 
@@ -6,7 +6,7 @@
 
 ## 1. O Princípio da Varredura Multi-Fonte (Além do Google Maps)
 
-> **Lição Fundamental:** Nem sempre as informações do cliente vão estar no Google Maps. O Maps é apenas a semente inicial. A obrigação do ProspectOS é cruzar fontes ativamente para encontrar o panorama real da empresa:
+> **Lição Fundamental:** Nem sempre as informações do cliente vão estar no Google Maps. O Maps é apenas a semente inicial. A nossa obrigação é cruzar fontes ativamente para encontrar o panorama real da empresa:
 
 1. **A Queda da Falsa Ausência de Site:**
    - Se o Maps não tem site cadastrado, **não significa que a empresa não tem site**.

@@ -1,5 +1,5 @@
-// ProspectOS — Gerador de Roadmaps de Alta Conversão & Propostas Comerciais
-// Identidade Visual 100% Fiel a proposta-protege.pdf (GBR / Teixo)
+// Rhenan — Gerador de Roadmaps de Alta Conversão & Propostas Comerciais
+// Identidade Visual 100% Fiel a proposta-protege.pdf (GBR / Rhenan)
 // Formatação Estrita de 3 Páginas A4 (Sem overflow, idêntico na tela e na impressão/PDF)
 // Rhenan: (21) 97315-2056 · Rio de Janeiro
 
@@ -17,7 +17,7 @@ if (!rodadaJSON || !pastaRodada) {
 
 const cfg = lerJSON(rodadaJSON);
 if (!cfg) {
-  console.error(`[ProspectOS] Não foi possível ler ${rodadaJSON}`);
+  console.error(`[Rhenan] Não foi possível ler ${rodadaJSON}`);
   process.exit(1);
 }
 
@@ -1060,8 +1060,8 @@ function gerarHTMLRoadmap(pasta, L, idx) {
 fs.mkdirSync(pastaRodada, { recursive: true });
 const chrome = acharChrome();
 
-console.log(`[ProspectOS] Iniciando geração de Roadmaps (Padrão 3 Páginas A4)...`);
-if (chrome) console.log(`[ProspectOS] Motor de PDF ativado: ${chrome}`);
+console.log(`[Rhenan] Iniciando geração de Roadmaps (Padrão 3 Páginas A4)...`);
+if (chrome) console.log(`[Rhenan] Motor de PDF ativado: ${chrome}`);
 
 entradasLeads.forEach(([pasta, L], idx) => {
   const slug = L.slug || pasta;
@@ -1070,20 +1070,20 @@ entradasLeads.forEach(([pasta, L], idx) => {
   const outPdfPath = path.join(pastaRodada, `roadmap-${slug}.pdf`);
 
   fs.writeFileSync(outHtmlPath, html, 'utf8');
-  console.log(`[ProspectOS] [HTML] Gerado: ${outHtmlPath}`);
+  console.log(`[Rhenan] [HTML] Gerado: ${outHtmlPath}`);
 
   if (chrome) {
     try {
       const ok = pdfChrome(chrome, path.resolve(outHtmlPath), path.resolve(outPdfPath));
       if (ok) {
-        console.log(`[ProspectOS] [PDF]  Gerado: ${outPdfPath} (3 Páginas A4 Exatas)`);
+        console.log(`[Rhenan] [PDF]  Gerado: ${outPdfPath} (3 Páginas A4 Exatas)`);
       } else {
-        console.log(`[ProspectOS] [PDF]  Falha na geração do PDF para ${slug}`);
+        console.log(`[Rhenan] [PDF]  Falha na geração do PDF para ${slug}`);
       }
     } catch (e) {
-      console.error(`[ProspectOS] Erro gerando PDF para ${slug}:`, e.message);
+      console.error(`[Rhenan] Erro gerando PDF para ${slug}:`, e.message);
     }
   }
 });
 
-console.log(`[ProspectOS] Total de ${entradasLeads.length} roadmaps gerados em HTML e PDF.`);
+console.log(`[Rhenan] Total de ${entradasLeads.length} roadmaps gerados em HTML e PDF.`);

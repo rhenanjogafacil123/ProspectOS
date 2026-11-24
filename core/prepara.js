@@ -1,6 +1,6 @@
 // Confere o ambiente antes da rodada e diz o que falta, em vez de quebrar no meio.
 // Uso: node prepara.js [--porta 8080]
-// Também protege os leads: cria saidas/prospeccao/.gitignore pra telefone de terceiro não subir no /mazyos:salvar.
+// Também protege os leads: cria saidas/prospeccao/.gitignore pra telefone de terceiro não subir no /salvar.
 const fs = require('fs');
 const path = require('path');
 const { args, lerJSON, acharChrome, UA } = require('./comum');
@@ -47,11 +47,11 @@ function acharCofre(dir, nivel = 0) {
 
   const linha = (ok, nome, det) => console.log(`${ok ? 'ok  ' : 'FALTA'} ${nome}${det ? ': ' + det : ''}`);
   linha(versao >= 18, 'Node', `v${process.versions.node}${versao < 18 ? ' (precisa do 18 ou mais novo)' : ''}`);
-  linha(scraper, 'MazyOS Scraper', scraper ? `no ar na porta ${PORTA}` : 'desligado ou não instalado. Rode: node scraper.js abrir');
+  linha(scraper, 'Scraper Maps', scraper ? `no ar na porta ${PORTA}` : 'desligado ou não instalado. Rode: node scraper.js abrir');
   linha(reserva, 'Base da Receita', receita ? 'Minha Receita respondendo' : reserva ? 'só a BrasilAPI respondeu (consulta por CNPJ funciona, a busca por ramo não)' : 'fora do ar agora');
   linha(!!chrome, 'Chrome ou Edge', chrome || 'não achei: a rodada sai sem os prints. Instale o Chrome pra ter a imagem da prévia');
   linha(!!config, 'Seus dados da oferta', config ? `${config.remetente} · ${config.oferta} · ${config.preco}` : 'ainda não: pegar em _memoria/empresa.md ou perguntar uma vez e salvar em saidas/prospeccao/config.json');
-  console.log(`info  Memória do negócio: ${memoriaOk ? 'preenchida' : 'vazia (dá pra seguir, mas rode /mazyos:instalar depois)'}`);
+  console.log(`info  Memória do negócio: ${memoriaOk ? 'preenchida' : 'vazia (dá pra seguir, mas rode /instalar depois)'}`);
   console.log(`info  Cofre de Abordagens: ${cofre ? 'achei em ' + path.relative(raiz, cofre) : 'não está neste projeto (usa as mensagens base da skill)'}`);
   console.log(`info  Pasta das rodadas: ${path.relative(raiz, pasta)} (fora do git)`);
   console.log(`info  Sistema: ${process.platform}`);

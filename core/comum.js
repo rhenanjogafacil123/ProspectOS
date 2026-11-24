@@ -28,7 +28,7 @@ const digits = s => String(s || '').replace(/\D/g, '');
 const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const slug = s => norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const UA = { 'User-Agent': 'Mozilla/5.0 (mazyos-prospecta-maps)' };
+const UA = { 'User-Agent': 'Mozilla/5.0 (rhenan-prospeccao)' };
 
 // Celular BR: DDD + 9 + 8 dígitos. Fixo não recebe WhatsApp.
 function telBR(fone) {

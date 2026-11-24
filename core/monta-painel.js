@@ -1,4 +1,4 @@
-// ProspectOS — Montador do Painel Interativo da Rodada (Cockpit WhatsApp, Ligação & Ficha CNPJ)
+// Rhenan — Montador do Painel Interativo da Rodada (Cockpit WhatsApp, Ligação & Ficha CNPJ)
 const fs = require('fs');
 const path = require('path');
 const { args, lerJSON, gravarJSON, esc, telBR, formataTel, formataCNPJ, formataMoeda } = require('./comum');
@@ -13,7 +13,7 @@ if (!rodadaJSON || !pastaRodada) {
 
 const cfg = lerJSON(rodadaJSON);
 if (!cfg) {
-  console.error(`[ProspectOS] Não foi possível ler ${rodadaJSON}`);
+  console.error(`[Rhenan] Não foi possível ler ${rodadaJSON}`);
   process.exit(1);
 }
 
@@ -617,12 +617,12 @@ Faz sentido eu te mandar o link aqui pra você dar uma olhada?`;
     }
 
     function atualizarStatus(cardId, status) {
-      localStorage.setItem('prospectos_' + cardId, status);
+      localStorage.setItem('rhenan_' + cardId, status);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.card').forEach(card => {
-        const salvo = localStorage.getItem('prospectos_' + card.id);
+        const salvo = localStorage.getItem('rhenan_' + card.id);
         if (salvo) {
           const sel = card.querySelector('.crm-select');
           if (sel) sel.value = salvo;
@@ -639,7 +639,7 @@ function montar() {
   const arqPainel = path.join(pastaRodada, 'index.html');
   fs.mkdirSync(pastaRodada, { recursive: true });
   fs.writeFileSync(arqPainel, html, 'utf-8');
-  console.log(`[ProspectOS] Painel Interativo com Ficha CNPJ gerado com sucesso em: ${arqPainel}`);
+  console.log(`[Rhenan] Painel Interativo com Ficha CNPJ gerado com sucesso em: ${arqPainel}`);
 }
 
 montar();

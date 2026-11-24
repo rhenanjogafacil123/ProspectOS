@@ -1,4 +1,4 @@
-// ProspectOS — Gerador Rápido de Prévias Locais dos Leads
+// Rhenan — Gerador Rápido de Prévias Locais dos Leads
 const fs = require('fs');
 const path = require('path');
 const { lerJSON, esc } = require('./comum');
@@ -98,7 +98,7 @@ leadsEntries.forEach(([pasta, L]) => {
   fs.writeFileSync(path.join(destDir, 'print-desktop.svg'), svgMockup);
   // Também salvar como print-desktop.png (ou manter como fallback)
   fs.writeFileSync(path.join(destDir, 'print-desktop.png'), svgMockup);
-  console.log(`[ProspectOS] Prévia compilada para ${L.empresa} em ${destDir}`);
+  console.log(`[Rhenan] Prévia compilada para ${L.empresa} em ${destDir}`);
 });
 
-console.log('[ProspectOS] Todas as prévias geradas.');
+console.log('[Rhenan] Todas as prévias geradas.');

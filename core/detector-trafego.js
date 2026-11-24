@@ -1,4 +1,4 @@
-// ProspectOS — Detector de Tráfego Pago & Diagnóstico de Presença Digital
+// Rhenan — Detector de Tráfego Pago & Diagnóstico de Presença Digital
 const fs = require('fs');
 const path = require('path');
 const { args, lerJSON, gravarJSON, sleep, norm, UA } = require('./comum');
@@ -64,7 +64,7 @@ function gerarDiagnosticoGeral(empresa, googleAds, metaAds) {
 }
 
 async function analisar() {
-  console.log(`[ProspectOS] Auditando presença de Tráfego Pago e Redes para ${empresas.length} empresas...`);
+  console.log(`[Rhenan] Auditando presença de Tráfego Pago e Redes para ${empresas.length} empresas...`);
   const enriquecidos = [];
 
   for (let i = 0; i < empresas.length; i++) {
@@ -95,7 +95,7 @@ async function analisar() {
     empresas: enriquecidos
   });
 
-  console.log(`\n[ProspectOS] Auditoria de Tráfego concluída com sucesso em: ${outPath}`);
+  console.log(`\n[Rhenan] Auditoria de Tráfego concluída com sucesso em: ${outPath}`);
 }
 
 analisar();

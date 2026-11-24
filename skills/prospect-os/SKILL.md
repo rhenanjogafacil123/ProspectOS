@@ -1,5 +1,5 @@
 ---
-name: prospect-os
+name: prospeccao
 version: 1.0.0
 description: >
   Sistema Operacional de Prospecção B2B de Alta Conversão. Executa varredura profunda no Google Maps,
@@ -8,9 +8,9 @@ description: >
   WhatsApp, modo Ligação (Cold Call) e Roadmap de Implantação 360º.
 ---
 
-# /prospect-os · Máquina de Prospecção B2B & Fechamento de Alto Ticket
+# /prospeccao · Máquina de Prospecção B2B & Fechamento de Alto Ticket
 
-O **ProspectOS** é o motor de crescimento comercial para prestadores de serviço, agências e consultorias B2B.
+O sistema do **Rhenan** é o motor de crescimento comercial para prestadores de serviço, agências e consultorias B2B.
 
 ## O que a skill faz automaticamente:
 
@@ -29,7 +29,7 @@ O **ProspectOS** é o motor de crescimento comercial para prestadores de serviç
 ## Como acionar:
 
 - *"prospecta [N] [nicho] em [cidade]"* (ex: *prospecta 5 oficinas mecanicas em campinas*)
-- *"/prospect-os --nicho 'clínicas odontológicas' --cidade 'Curitiba' --quantidade 10"*
+- *"/prospeccao --nicho 'clínicas odontológicas' --cidade 'Curitiba' --quantidade 10"*
 
 ---
 

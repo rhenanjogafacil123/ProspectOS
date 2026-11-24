@@ -1,6 +1,6 @@
-# ProspectOS — Diretrizes de Operação do Assistente
+# Rhenan — Diretrizes de Operação do Assistente
 
-> Sistema operacional independente de prospecção comercial B2B, inteligência de dados e geração de Roadmaps/Propostas da Teixo Performance.
+> Sistema operacional independente de prospecção comercial B2B, inteligência de dados e geração de Roadmaps/Propostas do Rhenan.
 
 ---
 

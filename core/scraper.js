@@ -1,10 +1,10 @@
 // Índice: acharInstalado · instalar · abrir · geocodificar · buscar
-// Instala, abre e usa o MazyOS Scraper pela API, no Windows, no Mac e no Linux.
+// Instala, abre e usa o Scraper Maps pela API, no Windows, no Mac e no Linux.
 // Uso:
 //   node scraper.js abrir [--porta 8080] [--pasta <onde está instalado>]
 //   node scraper.js buscar --nicho "marcenaria" --cidade "Curitiba" --bairros "Batel,Centro" --saida final.csv
 //                          [--raio 20000] [--lat -25.4 --lon -49.2] [--porta 8080]
-// O scraper fica em ~/mazyos-scraper, fora do projeto, pra um executável de 60 MB não subir no /mazyos:salvar.
+// O scraper fica em ~/maps-scraper, fora do projeto, pra um executável de 60 MB não subir no /salvar.
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -15,24 +15,24 @@ const opt = args();
 const comando = opt._[0];
 const PORTA = opt.porta || 8080;
 const API = `http://localhost:${PORTA}/api/v1/jobs`;
-const REPO = 'https://github.com/mazzeoia/mazyos-scraper.git';
+const REPO = 'https://github.com/mazzeoia/maps-scraper.git';
 const ehWin = process.platform === 'win32';
-const EXE = ehWin ? 'mazyos-scraper.exe' : 'mazyos-scraper';
+const EXE = ehWin ? 'maps-scraper.exe' : 'maps-scraper';
 
 const noAr = async () => {
   try { return (await fetch(API, { signal: AbortSignal.timeout(3000) })).ok; } catch { return false; }
 };
 
 function acharInstalado() {
-  const lugares = [opt.pasta, process.env.MAZYOS_SCRAPER, path.join(os.homedir(), 'mazyos-scraper'),
-    path.join(process.cwd(), 'ferramentas', 'mazyos-scraper'), path.join(process.cwd(), 'ferramentas', 'google-maps-scraper')].filter(Boolean);
+  const lugares = [opt.pasta, process.env.MAZYOS_SCRAPER, path.join(os.homedir(), 'maps-scraper'),
+    path.join(process.cwd(), 'ferramentas', 'maps-scraper'), path.join(process.cwd(), 'ferramentas', 'google-maps-scraper')].filter(Boolean);
   return lugares.find(d => fs.existsSync(path.join(d, EXE))) || null;
 }
 
 function instalar() {
-  const destino = opt.pasta || path.join(os.homedir(), 'mazyos-scraper');
+  const destino = opt.pasta || path.join(os.homedir(), 'maps-scraper');
   if (!fs.existsSync(destino)) {
-    console.log(`Baixando o MazyOS Scraper em ${destino}...`);
+    console.log(`Baixando o Scraper Maps em ${destino}...`);
     const g = spawnSync('git', ['-c', 'core.longpaths=true', 'clone', '--depth', '1', REPO, destino], { stdio: 'inherit' });
     if (g.status !== 0) throw new Error('Não consegui baixar. Confira se o git está instalado: https://git-scm.com');
   }
@@ -47,9 +47,9 @@ function instalar() {
 }
 
 async function abrir() {
-  if (await noAr()) { console.log(`MazyOS Scraper já está no ar em http://localhost:${PORTA}`); return; }
+  if (await noAr()) { console.log(`Scraper Maps já está no ar em http://localhost:${PORTA}`); return; }
   const dir = acharInstalado() || instalar();
-  if (await noAr()) { console.log(`MazyOS Scraper no ar em http://localhost:${PORTA}`); return; }
+  if (await noAr()) { console.log(`Scraper Maps no ar em http://localhost:${PORTA}`); return; }
   const filho = spawn(path.join(dir, EXE), ['-web', '-addr', `:${PORTA}`, '-c', '4', '-data-folder', 'webdata'], {
     cwd: dir, detached: true, stdio: 'ignore', windowsHide: true, env: { ...process.env, DISABLE_TELEMETRY: '1' }
   });
@@ -57,7 +57,7 @@ async function abrir() {
   filho.unref();
   for (let i = 0; i < 40; i++) {
     await sleep(1500);
-    if (await noAr()) { console.log(`MazyOS Scraper no ar em http://localhost:${PORTA}`); return; }
+    if (await noAr()) { console.log(`Scraper Maps no ar em http://localhost:${PORTA}`); return; }
   }
   throw new Error(`O scraper não respondeu na porta ${PORTA}. Se ela estiver ocupada, rode de novo com --porta 8090.`);
 }

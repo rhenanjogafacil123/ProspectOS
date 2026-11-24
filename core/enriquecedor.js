@@ -1,4 +1,4 @@
-// ProspectOS — Enriquecedor de Inteligência B2B Multi-Fonte (Padrão Abacus AI / Mazzeo)
+// Rhenan — Enriquecedor de Inteligência B2B Multi-Fonte (Padrão Inteligência Comercial)
 // Executa o levantamento completo logo de cara:
 // 1. Receita Federal (CNPJ, Razão Social, Sócios, Fundação, Capital)
 // 2. Contatos Diretos (E-mail corporativo, Telefone celular WhatsApp, Telefone fixo)
@@ -21,7 +21,7 @@ if (!inPath) {
 const arquivoSaida = outPath || inPath;
 const dados = lerJSON(inPath);
 if (!dados) {
-  console.error(`[ProspectOS] Não foi possível ler ${inPath}`);
+  console.error(`[Rhenan] Não foi possível ler ${inPath}`);
   process.exit(1);
 }
 
@@ -30,7 +30,7 @@ const entradas = Array.isArray(leadsObj)
   ? leadsObj.map((l, i) => [l.slug || `lead-${i+1}`, l])
   : Object.entries(leadsObj);
 
-console.log(`[ProspectOS] Iniciando Enriquecimento Multi-Fonte de ${entradas.length} empresas (Padrão Abacus AI)...`);
+console.log(`[Rhenan] Iniciando Enriquecimento Multi-Fonte de ${entradas.length} empresas (Padrão Inteligência Comercial)...`);
 
 entradas.forEach(([key, lead], idx) => {
   const nome = lead.empresa || lead.title || 'Empresa';
@@ -91,4 +91,4 @@ if (dados.leads) {
   gravarJSON(arquivoSaida, Object.fromEntries(entradas));
 }
 
-console.log(`\n[ProspectOS] Enriquecimento concluído com sucesso em: ${arquivoSaida}`);
+console.log(`\n[Rhenan] Enriquecimento concluído com sucesso em: ${arquivoSaida}`);

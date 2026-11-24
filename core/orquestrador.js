@@ -1,4 +1,4 @@
-// ProspectOS — Orquestrador Geral da Rodada de Prospecção
+// Rhenan — Orquestrador Geral da Rodada de Prospecção
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
@@ -11,7 +11,7 @@ const cidade = opt.cidade;
 if (!nicho || !cidade) {
   console.log(`
 ==================================================================
-                 PROSPECTOS — MÁQUINA DE VENDAS B2B               
+                 RHENAN — INTELIGÊNCIA COMERCIAL & PROSPECÇÃO               
 ==================================================================
 Uso:
   node core/orquestrador.js --nicho "oficinas mecanicas" --cidade "Campinas"
@@ -30,7 +30,7 @@ fs.mkdirSync(pastaRodada, { recursive: true });
 
 console.log(`
 ==================================================================
-🚀 INICIANDO RODADA DE PROSPECÇÃO NO PROSPECTOS
+🚀 INICIANDO RODADA DE PROSPECÇÃO COM RHENAN
 ==================================================================
 Nicho:       ${nicho}
 Cidade:      ${cidade}

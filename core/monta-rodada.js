@@ -1,4 +1,4 @@
-// ProspectOS — Montador da Rodada (Fiel 100% à Identidade Visual do MazyOS + Upgrades de CNPJ, Tráfego e Ligação)
+// Rhenan — Montador da Rodada (Fiel 100% à Identidade Visual do Rhenan + Upgrades de CNPJ, Tráfego e Ligação)
 const fs = require('fs');
 const path = require('path');
 const { args, lerJSON, gravarJSON, esc, telBR } = require('./comum');
@@ -79,7 +79,7 @@ function montarPrevia() {
   }
 }
 
-// CSS 100% IDÊNTICO AO MAZZEO OS
+// CSS 100% LIMPO E PROFISSIONAL
 const CSS = `
   :root { --bg:#000; --card:#0d0d0d; --linha:rgba(255,255,255,.1); --texto:#fff; --suave:#a0a0a0; --fraco:#6a6a6a; }
   * { box-sizing:border-box; margin:0; padding:0; }
@@ -292,7 +292,7 @@ ${blocoCaiu}
 `;
   if (/[—–]/.test(html)) throw new Error('travessão no painel: troque no rodada.json');
   fs.writeFileSync(path.join(rodada, 'index.html'), html);
-  // Também grava na raiz de ProspectOS para deploy direto na Vercel!
+  // Também grava na raiz do projeto para deploy direto na Vercel!
   fs.writeFileSync(path.join(__dirname, '..', 'index.html'), html);
 }
 

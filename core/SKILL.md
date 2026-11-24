@@ -3,17 +3,17 @@ name: prospecta-maps
 version: 2.1.1
 description: >
   Prospecta o cliente, gera uma demonstração do site e a proposta. A partir de um nicho e uma cidade,
-  busca empresas no Google Maps pelo MazyOS Scraper, filtra por nota, avaliações, ausência de site
+  busca empresas no Google Maps pelo Scraper Maps, filtra por nota, avaliações, ausência de site
   e celular na ficha, confere o CNPJ de cada uma nas bases públicas da Receita, monta um site de
   prévia por lead e entrega um painel com as abordagens, uma planilha e um arquivo pronto pra
   passar a um bot de WhatsApp como o Grok Bot. Quando um lead pede, gera a proposta dele em PDF.
-  Não precisa de chave de API nem de conta paga. Acione quando o usuário disser "/mazyos:prospecta-maps",
+  Não precisa de chave de API nem de conta paga. Acione quando o usuário disser "/prospectar",
   "pega leads de [nicho] em [cidade]", "acha [N] empresas sem site", "prospecta [nicho]", "qual
   nicho eu prospecto", "qualifica essa planilha de leads", "faz a proposta da [empresa]", "o lead
   pediu proposta" ou pedir uma rodada de prospecção a partir do Google Maps.
 ---
 
-# /mazyos:prospecta-maps · prospecta o cliente, gera uma demonstração do site e a proposta
+# /prospectar · prospecta o cliente, gera uma demonstração do site e a proposta
 
 Funciona em Windows, Mac e Linux. Quem usa muitas vezes não é programador: fale em português simples, rode você os comandos e explique só o que a pessoa precisa decidir.
 
@@ -84,7 +84,7 @@ Escolha de 8 a 20 bairros onde o nicho se concentra (polo industrial pra transpo
 node $S/scraper.js buscar --nicho "marcenaria" --cidade "Curitiba" --bairros "Batel,Centro,Água Verde" --saida $R/final.csv
 ```
 
-Instala o scraper em `~/mazyos-scraper` na primeira vez e abre ele sozinho. Rode em segundo plano: cerca de 2 minutos por termo, e a primeira busca baixa um navegador de 150 MB. No máximo uma rodada grande por dia: volume alto faz o Google bloquear.
+Instala o scraper em `~/maps-scraper` na primeira vez e abre ele sozinho. Rode em segundo plano: cerca de 2 minutos por termo, e a primeira busca baixa um navegador de 150 MB. No máximo uma rodada grande por dia: volume alto faz o Google bloquear.
 
 **Se o scraper não instalar ou o Google bloquear:** não trave. Peça uma planilha de empresas de qualquer origem (o "Baixar planilha" do próprio scraper, ou outra ferramenta) e vá pro Passo 3. Precisa ter ao menos nome e telefone.
 
@@ -193,7 +193,7 @@ npx netlify-cli deploy --prod --dir saidas/prospeccao/_previas
 
 Precisa de conta gratuita no Netlify (`npx netlify-cli login`). Sem terminal: arrastar a pasta em `app.netlify.com/drop`. Grave o endereço em `base` no `config.json` e no `rodada.json`, rode o `monta-rodada.js` de novo (agora a M2 sai com link) e abra 2 links pra conferir. Se a pessoa usa outra hospedagem, a pasta é estática e serve em qualquer uma.
 
-**Pra passar ao Grok Bot ou outro bot:** indique o `para-o-bot.md` e a pasta da rodada, que têm as regras, a sequência e os prints. Avise sempre: envio automático pode restringir a conta no WhatsApp, Instagram e LinkedIn, e o risco fica com quem usa. O bot é ferramenta à parte, paga na xAI, e não vem com o MazyOS.
+**Pra passar ao Grok Bot ou outro bot:** indique o `para-o-bot.md` e a pasta da rodada, que têm as regras, a sequência e os prints. Avise sempre: envio automático pode restringir a conta no WhatsApp, Instagram e LinkedIn, e o risco fica com quem usa. O bot é ferramenta à parte, paga na xAI, e não vem com o Rhenan.
 
 ### Passo 10 · Auto-auditoria
 

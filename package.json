@@ -1,7 +1,7 @@
 {
-  "name": "prospect-os",
+  "name": "rhenan-prospeccao",
   "version": "1.0.0",
-  "description": "ProspectOS — O Sistema Operacional de Prospecção B2B de Alta Conversão",
+  "description": "Rhenan — Sistema de Inteligência Comercial e Prospecção B2B",
   "main": "core/orquestrador.js",
   "type": "commonjs",
   "scripts": {
@@ -25,6 +25,6 @@
     "roadmap",
     "whatsapp"
   ],
-  "author": "Teixo / ProspectOS",
+  "author": "Rhenan",
   "license": "MIT"
 }
