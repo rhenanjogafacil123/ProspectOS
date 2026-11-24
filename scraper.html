@@ -168,12 +168,16 @@
                     <div class="board-meta" id="boardMeta"></div>
                 </div>
                 <div class="board-actions">
+                    <div class="chips" id="viewModes" style="margin-right:auto">
+                        <button type="button" class="on" data-v="table">📊 Tabela Cadastral (Abacus)</button>
+                        <button type="button" data-v="doc">📑 Auditoria Consolidada (Dossiê)</button>
+                    </div>
                     <button type="button" class="ghost" id="copyPhones">Copiar telefones</button>
                     <button type="button" class="primary small" id="download">Baixar planilha</button>
                 </div>
             </div>
             <div class="stats" id="stats"></div>
-            <div class="board-tools">
+            <div class="board-tools" id="boardTools">
                 <div class="chips" id="filters">
                     <button type="button" data-f="all" class="on">Todas</button>
                     <button type="button" data-f="nosite">Sem site</button>
@@ -188,7 +192,7 @@
                     <input id="filterText" type="text" placeholder="Filtrar por nome, bairro ou tráfego">
                 </label>
             </div>
-            <div class="table-wrap">
+            <div class="table-wrap" id="tableWrap">
                 <table>
                     <thead>
                         <tr>
@@ -207,8 +211,26 @@
                     <tbody id="rows"></tbody>
                 </table>
             </div>
+            <div class="doc-wrap" id="docWrap" hidden>
+                <div class="doc-paper" id="docPaper"></div>
+            </div>
         </div>
     </main>
+
+    <!-- Drawer / Modal de Raio-X Abacus -->
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="drawer" id="leadDrawer" aria-hidden="true">
+        <div class="drawer-head">
+            <div>
+                <div class="tag dark" id="dBadge">Raio-X Abacus</div>
+                <h2 id="dTitle" style="margin:6px 0 2px;font-size:18px;font-weight:700"></h2>
+                <div id="dSub" style="font-size:12px;color:#64748b"></div>
+            </div>
+            <button type="button" class="drawer-close" id="drawerClose">&times;</button>
+        </div>
+        <div class="drawer-body" id="dBody"></div>
+        <div class="drawer-actions-foot" id="dFoot"></div>
+    </aside>
 
     <div class="toast" id="toast"></div>
 
