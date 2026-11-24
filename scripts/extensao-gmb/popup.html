@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Teixo GMB — Avaliações</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      margin: 0;
+      width: 360px;
+      background: #F8FAFC;
+      background-image: 
+        radial-gradient(ellipse 100% 50% at 50% -10%, #FFFFFF 0%, rgba(248, 250, 252, 0.8) 100%),
+        radial-gradient(circle at 100% 100%, #F1F5F9 0%, transparent 50%);
+      color: #0F172A;
+      padding: 16px;
+      font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      user-select: none;
+      overflow-x: hidden;
+    }
+
+    /* Topbar Apple Keynote Style */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 13px;
+      padding-bottom: 11px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #000000;
+      margin: 0;
+    }
+    .gloss-pill {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      background: linear-gradient(180deg, #2A2D35 0%, #0F1115 100%);
+      color: #FFFFFF;
+      box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.45),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.5),
+        0 2px 6px rgba(0, 0, 0, 0.15);
+      border: 1px solid #1E2129;
+    }
+
+    /* Pílula de Status */
+    .badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: #64748B;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+    .badge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #94A3B8;
+      transition: all 0.2s ease;
+    }
+    .badge.active {
+      background: #F0FDF4;
+      border-color: #86EFAC;
+      color: #15803D;
+      box-shadow: 0 1px 4px rgba(34, 197, 94, 0.15);
+    }
+    .badge.active::before {
+      background: #22C55E;
+      box-shadow: 0 0 6px #22C55E;
+    }
+
+    /* Segmented Control iOS Tabs */
+    .segmented-control {
+      background: #EEF2F6;
+      border-radius: 12px;
+      padding: 3.5px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      margin-bottom: 13px;
+      border: 1px solid #E2E8F0;
+    }
+    .segment-btn {
+      background: transparent;
+      border: none;
+      border-radius: 9px;
+      padding: 7px 12px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .segment-btn:hover:not(.active) {
+      color: #0F172A;
+    }
+    .segment-btn.active {
+      background: #FFFFFF;
+      color: #000000;
+      font-weight: 700;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 
+        0 2px 8px rgba(15, 23, 42, 0.08),
+        0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    /* Tab Panels */
+    .tab-panel {
+      display: none;
+    }
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Grid de Widgets em Cerâmica Branca Apple */
+    .glass-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-bottom: 12px;
+    }
+    .glass-tile {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 15px;
+      padding: 11px 12px;
+      box-shadow: 
+        0 1px 3px rgba(15, 23, 42, 0.02),
+        0 4px 12px rgba(15, 23, 42, 0.03),
+        inset 0 1px 0 #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .glass-tile:hover {
+      border-color: #CBD5E1;
+      box-shadow: 
+        0 4px 14px rgba(15, 23, 42, 0.05),
+        inset 0 1px 0 #FFFFFF;
+    }
+    .tile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tile-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #64748B;
+    }
+    .tile-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      background: linear-gradient(180deg, #242730 0%, #0B0D11 100%);
+      border: 1px solid #1E2128;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    .tile-icon svg {
+      width: 12px;
+      height: 12px;
+    }
+    .tile-val {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Botões de Ação */
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+    button.btn-action {
+      border: none;
+      border-radius: 13px;
+      padding: 10.5px 16px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      width: 100%;
+      text-align: center;
+    }
+    button.btn-action:active {
+      transform: scale(0.985);
+    }
+    button.btn-action:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Botão Primário: Cápsula Líquida do Print */
+    .btn-primary {
+      background: linear-gradient(180deg, #242731 0%, #090B0E 100%);
+      color: #FFFFFF;
+      border: 1px solid #1C1F26;
+      box-shadow: 
+        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.6),
+        0 6px 18px -2px rgba(15, 23, 42, 0.25);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(180deg, #303440 0%, #121419 100%);
+      box-shadow: 
+        inset 0 1.5px 2px rgba(255, 255, 255, 0.5),
+        0 8px 22px -2px rgba(15, 23, 42, 0.35);
+    }
+
+    /* Botão Secundário */
+    .btn-secondary {
+      background: #FFFFFF;
+      color: #0F172A;
+      border: 1px solid #E2E8F0;
+      box-shadow: 
+        0 1px 3px rgba(15, 23, 42, 0.04),
+        inset 0 1px 0 #FFFFFF;
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+    }
+
+    /* Botão Parar */
+    .btn-stop {
+      background: #FEF2F2;
+      color: #B91C1C;
+      border: 1px solid #FECACA;
+      display: none;
+    }
+    .btn-stop:hover:not(:disabled) {
+      background: #FEE2E2;
+      border-color: #FCA5A5;
+    }
+
+    /* Console de Execução & Logs */
+    .status-box {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 15px;
+      padding: 12px 13px;
+      box-shadow: 
+        0 1px 3px rgba(15, 23, 42, 0.02),
+        0 4px 14px rgba(15, 23, 42, 0.03);
+    }
+    .status-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .status-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+    }
+    .status-text {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #0F172A;
+      margin-bottom: 7px;
+      line-height: 1.35;
+    }
+    .logs-wrapper {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 8px 10px;
+    }
+    .logs {
+      max-height: 95px;
+      overflow-y: auto;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Mono", monospace;
+      font-size: 10px;
+      color: #475569;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .logs:empty::before {
+      content: "Aguardando início do ciclo...";
+      color: #94A3B8;
+      font-style: italic;
+    }
+    .logs::-webkit-scrollbar {
+      width: 4px;
+    }
+    .logs::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .logs::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    .logs::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    /* ABA DE CONFIGURAÇÕES */
+    .privacy-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 13px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+    .privacy-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .privacy-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.01em;
+    }
+    .privacy-desc {
+      font-size: 9.5px;
+      color: #64748B;
+    }
+
+    /* Switch iOS */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 36px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #CBD5E1;
+      transition: .2s;
+      border-radius: 20px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .2s;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+    }
+    input:checked + .slider {
+      background: linear-gradient(180deg, #242731 0%, #090B0E 100%);
+    }
+    input:checked + .slider:before {
+      transform: translateX(16px);
+    }
+
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 15px;
+      padding: 13px 14px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+      margin-bottom: 12px;
+    }
+    .form-group {
+      margin-bottom: 11px;
+      position: relative;
+    }
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    label.field-label {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #64748B;
+      margin-bottom: 5px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 9px 34px 9px 11px;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12.5px;
+      background: #F8FAFC;
+      color: #0F172A;
+      transition: all 0.15s ease;
+    }
+    input[type="text"]::placeholder, input[type="password"]::placeholder {
+      color: #94A3B8;
+    }
+    input[type="text"]:focus, input[type="password"]:focus {
+      background: #FFFFFF;
+      outline: none;
+      border-color: #000000;
+      box-shadow: 0 0 0 1px #000000;
+    }
+
+    .btn-toggle-eye {
+      position: absolute;
+      right: 6px;
+      background: transparent;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+      color: #94A3B8;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s ease;
+    }
+    .btn-toggle-eye:hover {
+      color: #000000;
+    }
+    .btn-toggle-eye svg {
+      width: 15px;
+      height: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand-wrap">
+      <h1 class="brand-title">Teixo</h1>
+      <span class="gloss-pill">GMB • IA</span>
+    </div>
+    <span id="stateBadge" class="badge">Parado</span>
+  </div>
+
+  <!-- iOS Segmented Control Tabs -->
+  <div class="segmented-control">
+    <button type="button" class="segment-btn active" data-tab="tab-operacao">
+      Operação
+    </button>
+    <button type="button" class="segment-btn" data-tab="tab-config">
+      Configurações
+    </button>
+  </div>
+
+  <!-- ABA 1: OPERAÇÃO (100% LIMPA E SEGURA PARA O VÍDEO) -->
+  <div id="tab-operacao" class="tab-panel active">
+    <!-- Grid 1 Linha com 2 Widgets (Empresa e Google) -->
+    <div class="glass-grid">
+      <div class="glass-tile">
+        <div class="tile-header">
+          <span class="tile-label">Empresa</span>
+          <div class="tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v14M21 7v14M6 11h4M6 15h4M14 11h4M14 15h4M9 21v-4h6v4M3 7l9-4 9 4"/></svg>
+          </div>
+        </div>
+        <div class="tile-val" id="dispBusiness">••••••••••••</div>
+      </div>
+
+      <div class="glass-tile">
+        <div class="tile-header">
+          <span class="tile-label">Google</span>
+          <div class="tile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+        </div>
+        <div class="tile-val" id="dispAuth">Conectado</div>
+      </div>
+    </div>
+
+    <!-- Ações / Disparos -->
+    <div class="actions">
+      <button id="btnNewTab" class="btn-action btn-primary">
+        Abrir nova aba e responder
+      </button>
+      <button id="btnCurrentTab" class="btn-action btn-secondary">
+        Responder na aba atual
+      </button>
+      <button id="btnStop" class="btn-action btn-stop">
+        Parar robô
+      </button>
+    </div>
+
+    <!-- Status & Logs Console -->
+    <div class="status-box">
+      <div class="status-header">
+        <span class="status-label">Terminal de Execução</span>
+      </div>
+      <div id="statusText" class="status-text">Pronto para iniciar.</div>
+      <div class="logs-wrapper">
+        <div id="logsBox" class="logs"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABA 2: CONFIGURAÇÕES (PARÂMETROS ESSENCIAIS) -->
+  <div id="tab-config" class="tab-panel">
+    <div class="privacy-box">
+      <div class="privacy-info">
+        <span class="privacy-title">Modo Gravação</span>
+        <span class="privacy-desc">Mascarar campos ao gravar a tela</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="stealthToggle" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="card">
+      <div class="form-group">
+        <label class="field-label" for="businessName">Nome da empresa no Google</label>
+        <div class="input-wrapper">
+          <input id="businessName" type="password" placeholder="Ex: Pizza do Juca" />
+          <button type="button" class="btn-toggle-eye" data-target="businessName" title="Ver / Ocultar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="authInput">Conta Google (índice 0, 1, 6 ou e-mail)</label>
+        <div class="input-wrapper">
+          <input id="authInput" type="password" placeholder="Ex: 1 ou seu-email@gmail.com" />
+          <button type="button" class="btn-toggle-eye" data-target="authInput" title="Ver / Ocultar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="geminiKey">Gemini API Key (opcional)</label>
+        <div class="input-wrapper">
+          <input id="geminiKey" type="password" placeholder="Se vazio, usa inteligência padrão" />
+          <button type="button" class="btn-toggle-eye" data-target="geminiKey" title="Ver / Ocultar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

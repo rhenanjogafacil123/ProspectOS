@@ -1,0 +1,14 @@
+{
+  "name": "teixo-whatsapp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Envio 1 a 1 de abordagens de prospecção pelo WhatsApp, com pareamento por QR code",
+  "scripts": {
+    "enviar": "node enviar.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.16",
+    "pino": "^9.5.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
