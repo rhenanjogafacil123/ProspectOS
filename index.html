@@ -4,10 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>ProspectOS · Cockpit & Scraper Maps (MazyOS Engine)</title>
-  <!-- Leaflet para o mapa do Scraper -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <title>ProspectOS · Cockpit &amp; Scraper Maps (MazyOS Engine)</title>
   <style>
     :root {
       --bg: #000000;
@@ -199,7 +196,7 @@
       </div>
       <div class="nav-tabs">
         <button class="tab-btn active" onclick="mudarAba('cockpit')">Cockpit da Rodada</button>
-        <button class="tab-btn" onclick="mudarAba('scraper')">Scraper Google Maps</button>
+        <button class="tab-btn" onclick="mudarAba('scraper')">Scraper Google Maps (Localhost)</button>
         <button class="tab-btn" onclick="mudarAba('roadmaps')">Roadmaps 360º</button>
       </div>
     </div>
@@ -541,64 +538,9 @@ Pixel / Rastreamento: Não detectado</pre></div>
   </main>
 
 
-  <!-- ================= ABA 2: SCRAPER GOOGLE MAPS ================= -->
-  <main id="aba-scraper" class="tab-content">
-    <div class="wrap scraper-wrap">
-      <header style="margin-bottom: 32px; border-bottom: 1px solid var(--linha); padding-bottom: 24px;">
-        <span class="rotulo">Extração Automatizada · Google Maps &amp; Receita</span>
-        <h1 style="font-size: 36px; margin: 8px 0 12px;">Scraper Maps &amp; Auditoria CNPJ</h1>
-        <p class="sub" style="margin-bottom: 0;">Motor local do MazyOS Scraper integrado. Dispara buscas em malha fina, filtra celulares ativos e audita dados cadastrais.</p>
-      </header>
-
-      <div class="scraper-grid">
-        <!-- Formulário do Scraper -->
-        <div class="scraper-form">
-          <div class="campo-grupo">
-            <label>Nicho / Termo de Busca</label>
-            <input type="text" id="scrap-nicho" value="Oficinas Mecânicas" placeholder="Ex: Marcenaria, Dentista, Hamburgueria">
-          </div>
-          <div class="campo-grupo">
-            <label>Cidade / Estado</label>
-            <input type="text" id="scrap-cidade" value="Campinas - SP" placeholder="Ex: Campinas - SP, Rio de Janeiro - RJ">
-          </div>
-          <div class="campo-grupo">
-            <label>Limite de Leads</label>
-            <select id="scrap-limite">
-              <option value="5">5 leads (Rodada Rápida)</option>
-              <option value="10">10 leads</option>
-              <option value="20" selected>20 leads (Recomendado)</option>
-              <option value="50">50 leads (Escala)</option>
-            </select>
-          </div>
-
-          <div class="checks-grupo">
-            <label><input type="checkbox" id="chk-celular" checked> Apenas empresas com celular (WhatsApp)</label>
-            <label><input type="checkbox" id="chk-sem-site" checked> Filtrar quem NÃO tem site na ficha</label>
-            <label><input type="checkbox" id="chk-cnpj" checked> Auditar CNPJ na Receita Federal (QSA + anos)</label>
-            <label><input type="checkbox" id="chk-trafego" checked> Auditar campanhas de tráfego Google / Meta</label>
-          </div>
-
-          <button type="button" class="btn-executar" onclick="rodarScraperSimulado()">
-            Iniciar Extração no Scraper
-          </button>
-
-          <div class="status-motor">
-            <span class="status-dot"></span>
-            <span>Motor Local: <b>mazyos-scraper (Porta 8080)</b></span>
-          </div>
-        </div>
-
-        <!-- Visão do Mapa e Terminal -->
-        <div>
-          <div id="mapa-scraper"></div>
-          <div class="terminal-scraper" id="terminal-log">
-            <p><b>[SISTEMA]</b> ProspectOS conectado ao motor MazyOS Scraper.</p>
-            <p><b>[STATUS]</b> Porta 8080 pronta para requisições de grid scraping.</p>
-            <p><b>[ÚLTIMA EXTRAÇÃO]</b> Campinas - SP · 5 empresas qualificadas e promovidas para o Cockpit.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- ================= ABA 2: SCRAPER GOOGLE MAPS (100% FIEL AO LOCALHOST:8080) ================= -->
+  <main id="aba-scraper" class="tab-content" style="height: calc(100vh - 56px); margin: 0; padding: 0; overflow: hidden;">
+    <iframe src="scraper.html" id="frame-scraper" style="width: 100%; height: 100%; border: none; display: block;" title="MazyOS Scraper Google Maps"></iframe>
   </main>
 
 
@@ -675,15 +617,12 @@ Pixel / Rastreamento: Não detectado</pre></div>
   <script>
     // Gerenciador de Abas
     function mudarAba(nome) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+      document.querySelectorAll('.tab-content').forEach(function (c) { c.classList.remove('active'); });
 
-      event.target.classList.add('active');
-      document.getElementById('aba-' + nome).classList.add('active');
-
-      if (nome === 'scraper' && !window.mapaIniciado) {
-        iniciarMapa();
-      }
+      if (event && event.target) event.target.classList.add('active');
+      var abaEl = document.getElementById('aba-' + nome);
+      if (abaEl) abaEl.classList.add('active');
     }
 
     // Placar Interativo e LocalStorage dos Leads
@@ -739,56 +678,7 @@ Pixel / Rastreamento: Não detectado</pre></div>
       }
     });
 
-    // Inicialização do Mapa Leaflet na aba Scraper
-    function iniciarMapa() {
-      window.mapaIniciado = true;
-      setTimeout(function() {
-        var map = L.map('mapa-scraper').setView([-22.9056, -47.0608], 12);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap'
-        }).addTo(map);
-
-        var pontos = [
-          { nome: "Mecânica Vasconcelos", lat: -22.915, lon: -47.050, nota: "4.8 (395)" },
-          { nome: "Autracam Oficina Mecânica", lat: -22.928, lon: -47.085, nota: "4.8 (187)" },
-          { nome: "Centro Automotivo Barão", lat: -22.825, lon: -47.080, nota: "4.7 (240)" },
-          { nome: "Oficina e Auto Elétrica Cambuí", lat: -22.898, lon: -47.051, nota: "4.9 (152)" },
-          { nome: "Stop Car Centro Automotivo", lat: -22.885, lon: -47.055, nota: "4.8 (215)" }
-        ];
-
-        pontos.forEach(function(p) {
-          L.circleMarker([p.lat, p.lon], {
-            radius: 7,
-            fillColor: "#ffffff",
-            color: "#000000",
-            weight: 2,
-            opacity: 1,
-            fillOpacity: 1
-          }).addTo(map).bindPopup("<b>" + p.nome + "</b><br>★ " + p.nota);
-        });
-      }, 200);
-    }
-
-    // Simulação do Scraper no Terminal
-    function rodarScraperSimulado() {
-      var nicho = document.getElementById('scrap-nicho').value;
-      var cidade = document.getElementById('scrap-cidade').value;
-      var log = document.getElementById('terminal-log');
-      log.innerHTML += '<p><b>[INICIANDO]</b> Disparando extração para "' + nicho + '" em ' + cidade + '...</p>';
-      log.scrollTop = log.scrollHeight;
-      setTimeout(function() {
-        log.innerHTML += '<p><b>[SCRAPER]</b> 600 estabelecimentos mapeados no grid...</p>';
-        log.scrollTop = log.scrollHeight;
-      }, 700);
-      setTimeout(function() {
-        log.innerHTML += '<p><b>[FILTRO]</b> 48 empresas com celular e sem site...</p>';
-        log.scrollTop = log.scrollHeight;
-      }, 1400);
-      setTimeout(function() {
-        log.innerHTML += '<p><b>[RECEITA]</b> CNPJ validado: 5 empresas com sócios e tempo ativo > 6 anos!</p>';
-        log.scrollTop = log.scrollHeight;
-      }, 2100);
-    }
+    // Fim dos scripts do Cockpit
   </script>
 </body>
 </html>
