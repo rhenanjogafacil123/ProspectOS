@@ -5,7 +5,7 @@
 ---
 
 ## 1. Sistema de Prospecção do Rhenan
-Este é o sistema operacional de prospecção ativa B2B, inteligência comercial e fechamento de clientes de alto ticket do Rhenan. Ele opera de forma 100% autônoma e independente em `C:\Users\rhena\Downloads\Rhenan`.
+Este é o sistema operacional de prospecção ativa B2B, inteligência comercial e fechamento de clientes de alto ticket do Rhenan. Ele opera de forma 100% autônoma e independente em `C:\Users\rhena\Downloads\ProspectOS`.
 
 - **Responsável Comercial & Estratégico:** Rhenan (`(21) 97315-2056` · WhatsApp: `https://wa.me/5521973152056`)
 - **Base Operacional:** Rio de Janeiro / RJ (atuação em todo o Brasil)
