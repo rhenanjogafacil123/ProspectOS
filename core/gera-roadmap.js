@@ -799,7 +799,10 @@ function gerarHTMLRoadmap(pasta, L, idx) {
               </div>
               <div class="item-num">
                 <div class="num-val">84%</div>
-                <p>dos motoristas com urgência mecânica <strong>ligam para os 3 primeiros do mapa</strong>. Sem site e sem anúncio, sua oficina fica invisível na hora da dor.</p>
+                <p>dos motoristas com urgência mecânica <strong>ligam para os 3 primeiros do mapa</strong> (seguindo métricas oficiais do Google). Sem site e sem anúncio, sua oficina fica invisível na hora da dor.</p>
+                <div style="margin-top:5px;font-size:9px;color:#64748b;display:flex;align-items:center;gap:3px;">
+                  <span>📊</span> <a href="https://www.thinkwithgoogle.com/consumer-insights/consumer-journey/how-mobile-search-connects-consumers-to-stores/" target="_blank" style="color:#2563eb;text-decoration:underline;font-weight:600;">Estudo oficial: Think with Google ↗</a>
+                </div>
               </div>
               <div class="item-num">
                 <div class="num-val">R$ 0</div>
