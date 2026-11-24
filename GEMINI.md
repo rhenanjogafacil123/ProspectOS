@@ -14,7 +14,13 @@
 
 ## 2. Regras Operacionais Inegociáveis
 
-1. **Padrão Estrito de 3 Páginas A4 nos Roadmaps:** Todo roadmap gerado em HTML/PDF deve obrigatoriamente caber em **exatas 3 páginas A4**, sem quebras de página aleatórias nem páginas vazias (*zero spillover*). O motor de PDF deve sempre validar o número de páginas geradas.
+1. **Axioma da Varredura Multi-Fonte (Nunca Confiar Apenas no Google Maps):** O Google Maps é apenas o ponto de partida (a semente inicial), nunca a verdade absoluta sobre a empresa. Se o Maps diz "sem site", "sem telefone" ou "sem rede social", é obrigatório investigar além:
+   - Buscar o Instagram da empresa na internet e checar se o site ou WhatsApp está na **Bio**.
+   - Analisar as últimas 4 a 5 postagens do Instagram para diagnosticar se está ativo ou inativo.
+   - Buscar o CNPJ na base pública da Receita Federal pelo nome + cidade para identificar sócios reais, tempo de mercado e capital social.
+   - Auditar o histórico de tráfego (Meta Ad Library, tags e pixels legados) para saber se a empresa já rodou tráfego no passado e pausou.
+   - Auditar as avaliações do GMB para contar quantas estão sem resposta e se está abaixo do limiar de 100 avaliações.
+2. **Padrão Estrito de 3 Páginas A4 nos Roadmaps:** Todo roadmap gerado em HTML/PDF deve obrigatoriamente caber em **exatas 3 páginas A4**, sem quebras de página aleatórias nem páginas vazias (*zero spillover*). O motor de PDF deve sempre validar o número de páginas geradas.
 2. **Identidade Visual Protege (GBR / Teixo):** Cabeçalho preto `#09090b`, listra zebrada de emergência (*hazard stripes*), tipografia *Bebas Neue* para títulos condensados de impacto, simulação realista do Google Maps e tabela comparativa *Sem ou Com o Rhenan*.
 3. **Telefone e Contato Padrão:** O contato do especialista é sempre Rhenan: `(21) 97315-2056` (link WhatsApp: `https://wa.me/5521973152056`).
 4. **Inteligência de Tráfego & Redes Sociais:**

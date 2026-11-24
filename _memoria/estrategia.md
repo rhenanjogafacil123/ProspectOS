@@ -4,7 +4,31 @@
 
 ---
 
-## 1. O Funil de Qualificação
+## 1. O Princípio da Varredura Multi-Fonte (Além do Google Maps)
+
+> **Lição Fundamental:** Nem sempre as informações do cliente vão estar no Google Maps. O Maps é apenas a semente inicial. A obrigação do ProspectOS é cruzar fontes ativamente para encontrar o panorama real da empresa:
+
+1. **A Queda da Falsa Ausência de Site:**
+   - Se o Maps não tem site cadastrado, **não significa que a empresa não tem site**.
+   - O scraper e o agente devem pesquisar `"{empresa} {cidade}"` no Google / web.
+   - O scraper deve encontrar o Instagram da empresa e **entrar no perfil para inspecionar o link na Bio**. Se o site estiver na bio, ele é indexado e auditado (velocidade, responsividade, se tem pixel ou se é ultrapassado).
+2. **Diagnóstico de Atividade do Instagram:**
+   - Se o Instagram estiver listado no Maps, ótimo. Se não estiver, busca na web pelo perfil real.
+   - Ao acessar o perfil, inspeciona a data das últimas 4 a 5 postagens:
+     - Postou recentemente (últimos 15-30 dias) → `Ativo`.
+     - Último post com mais de 45-60 dias → `Inativo` (*"Instagram parado: eu sei reativar com rotina de bastidores e prova social"*).
+3. **Auditoria de Avaliações & Respostas do GMB:**
+   - Se tiver menos de 100 avaliações → Alerta de fragilidade orgânica.
+   - Verificar a taxa de resposta da gerência (ex: *12 de 38 respondidas*). As avaliações ignoradas são usadas como argumento imediato de dor e cura.
+4. **Histórico de Tráfego Pago & Traqueamento:**
+   - Buscar na Biblioteca de Anúncios da Meta e rastrear tags/pixels no site (se existir).
+   - Se a empresa **já fez tráfego no passado e pausou**: cliente de altíssimo valor que já entende a importância, provavelmente decepcionado com agências que só cobravam mensalidade sem trazer ligações. Abordagem com o case de R$ 300 gerando 230 contatos.
+5. **Varredura CNPJ na Receita Federal:**
+   - Cruzar razão social e nome fantasia para obter data de abertura exata, tempo de mercado, sócios administradores e capital social.
+
+---
+
+## 2. O Funil de Qualificação
 Toda lista de prospecção deve passar por este funil de 4 filtros:
 1. **Filtro Maps:** Nota acima de 4.0, celular verificado na ficha, sem site próprio oficial.
 2. **Filtro CNPJ (Receita Federal):** Situação ATIVA, mais de 3 anos de fundação, excluindo MEI (foco em ME e EPP com faturamento real).
