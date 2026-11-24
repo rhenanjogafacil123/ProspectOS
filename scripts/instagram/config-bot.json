@@ -1,0 +1,27 @@
+{
+  "nome_bot": "Rhenan Direct Automation",
+  "webhook_verify_token": "teixo_instagram_secret_token_2026",
+  "porta": 4005,
+  "gatilhos_comentario": [
+    {
+      "palavras_chave": ["quero", "link", "proposta", "site", "cardapio", "delivery", "eu quero"],
+      "resposta_publica_comentario": "Te mandei todos os detalhes agora no direct! 🚀 Dá uma olhada na sua caixa de mensagens.",
+      "resposta_privada_direct": "Fala! Vi que você comentou no post da Rhenan.\n\nAqui está o link direto para você conferir: https://rhenan.com.br\n\nSe quiser falar direto com o Rhenan no WhatsApp: https://wa.me/5521999999999"
+    }
+  ],
+  "gatilhos_direct": [
+    {
+      "palavras_chave": ["preco", "preço", "quanto custa", "valor", "orçamento", "orcamento"],
+      "resposta": "Nossos projetos são estruturados sob medida para o seu modelo (delivery, comércio local ou serviço). Você pode ver nossos modelos e falar direto pelo WhatsApp: https://rhenan.com.br"
+    },
+    {
+      "palavras_chave": ["cardapio", "cardápio", "delivery"],
+      "resposta": "Nosso sistema de delivery próprio tem cardápio digital, Checkout Transparente e painel de cozinha sem taxas por pedido. Veja a demonstração em https://rhenan.com.br/delivery"
+    },
+    {
+      "palavras_chave": ["site", "landing page", "biosite"],
+      "resposta": "Criamos biosites e páginas de alta conversão ultra velozes com painel administrativo fácil. Veja demonstrações aqui: https://rhenan.com.br"
+    }
+  ],
+  "resposta_padrao_direct": "Olá! Sou o assistente automático da Rhenan. Recebemos sua mensagem e vamos te responder em instantes.\n\nSe for urgente, você pode falar direto conosco no WhatsApp: https://wa.me/5521999999999"
+}

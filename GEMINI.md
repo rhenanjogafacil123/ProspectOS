@@ -21,14 +21,25 @@
    - Auditar o histórico de tráfego (Meta Ad Library, tags e pixels legados) para saber se a empresa já rodou tráfego no passado e pausou.
    - Auditar as avaliações do GMB para contar quantas estão sem resposta e se está abaixo do limiar de 100 avaliações.
 2. **Padrão Estrito de 3 Páginas A4 nos Roadmaps:** Todo roadmap gerado em HTML/PDF deve obrigatoriamente caber em **exatas 3 páginas A4**, sem quebras de página aleatórias nem páginas vazias (*zero spillover*). O motor de PDF deve sempre validar o número de páginas geradas.
-2. **Identidade Visual Protege (GBR / Protege):** Cabeçalho preto `#09090b`, listra zebrada de emergência (*hazard stripes*), tipografia *Bebas Neue* para títulos condensados de impacto, simulação realista do Google Maps e tabela comparativa *Sem ou Com o Rhenan*.
-3. **Telefone e Contato Padrão:** O contato do especialista é sempre Rhenan: `(21) 97315-2056` (link WhatsApp: `https://wa.me/5521973152056`).
-4. **Inteligência de Tráfego & Redes Sociais:**
+3. **Identidade Visual Protege (GBR / Protege):** Cabeçalho preto `#09090b`, listra zebrada de emergência (*hazard stripes*), tipografia *Bebas Neue* para títulos condensados de impacto, simulação realista do Google Maps e tabela comparativa *Sem ou Com o Rhenan*.
+4. **Telefone e Contato Padrão:** O contato do especialista é sempre Rhenan: `(21) 97315-2056` (link WhatsApp: `https://wa.me/5521973152056`).
+5. **Inteligência de Tráfego & Redes Sociais:**
    - Detectar se o cliente já fez tráfego no passado (pixel/histórico) ou nunca fez.
    - Detectar presença e atividade do Instagram (ativo vs inativo pelas últimas postagens).
    - Verificar link de site na Bio do Instagram caso o site não conste no Google Maps.
    - Auditar total de avaliações do GMB (< 100 é considerado alerta) e contagem de respostas pendentes (ex: 12/38 respondidas).
    - Plaquinha NFC de Balcão entregue presencialmente no Rio de Janeiro e via Sedex em outras regiões.
-5. **Execução Síncrona e Rápida:** Comandos de terminal devem rodar de forma síncrona, liberando o prompt imediatamente sem travar a interface.
-6. **Zero Screenshots Desnecessários:** Não acionar navegadores headless para prints a menos que solicitado ou necessário para a geração do PDF/print de entrega.
-7. **Deploy Automático:** Ao concluir lotes de roadmaps ou melhorias na interface, efetuar commit e deploy na Vercel (`https://prospect-os-fawn.vercel.app`).
+6. **Padrão de Fechamento & Propostas (Método One-Pager / 3-Page A4):** Seguir rigorosamente `propostas/PADRAO_PROPOSTAS_E_ROADMAPS.md` (ancoragem, reason why, escassez real 48h-72h, entrada + parcelas, CTA 1-clique WhatsApp e fine print de blindagem).
+7. **Isolamento de Clientes Fechados:** Ao fechar um novo cliente, usar `/novo-projeto` para criar pasta isolada em `clientes/<Nome>/` (mantendo `_memoria/` leve e exclusiva para regras globais).
+8. **Vigilância Contábil e Fiscal Ativa:** Ao tratar de recebimentos, PIX, notas fiscais ou contratos, atuar preventivamente como `/contador` (combate à confusão patrimonial CPF vs CNPJ, teto MEI, E-Financeira, NFS-e).
+9. **Execução Síncrona e Rápida:** Comandos de terminal devem rodar de forma síncrona, liberando o prompt imediatamente sem travar a interface.
+10. **Zero Screenshots Desnecessários:** Não acionar navegadores headless para prints a menos que solicitado ou necessário para a geração do PDF/print de entrega.
+11. **Deploy Automático:** Ao concluir lotes de roadmaps ou melhorias na interface, efetuar commit e deploy na Vercel (`https://prospect-os-fawn.vercel.app`).
+
+---
+
+## 3. Aprendizado Contínuo e Manutenção do Contexto
+
+- **Aprender com Correções:** Quando o usuário der instrução duradoura ("sempre...", "prefiro assim...", "não faça mais isso..."), perguntar: *"Quer que eu salve isso pra não precisar repetir?"*. Se sim, salvar uma linha clara no arquivo correto (`_memoria/empresa.md`, `_memoria/preferencias.md`, `_memoria/estrategia.md` ou neste `GEMINI.md`).
+- **Manter Contexto Atualizado:** Ao concluir tarefa com impacto duradouro, perguntar se atualiza a memória ou rodar `/atualizar` para regenerar `_memoria/resumo.md`.
+- **Criação de Novas Skills:** Se concluir tarefa repetível sem skill existente, perguntar: *"Isso pode virar uma skill pra próxima vez. Quer que eu crie?"*.
