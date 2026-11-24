@@ -538,7 +538,7 @@
         renderBoard();
     }
 
-    // ---------- Painel / Board (Tabela de Leads) ----------
+    // ---------- Painel / Board (Tabela de Leads com Inteligência) ----------
     function filterPlaces() {
         var txt = $('filterText') ? $('filterText').value.toLowerCase().trim() : '';
         return state.places.filter(function (p) {
@@ -546,8 +546,16 @@
             if (state.filter === 'social' && siteKind(p.website) !== 'social') return false;
             if (state.filter === 'whats' && !whatsapp(p.phone)) return false;
             if (state.filter === 'email' && !p.emails) return false;
+            if (state.filter === 'trafego') {
+                var tr = (p.trafego || p.google_ads || '').toLowerCase();
+                if (tr.indexOf('ativo') === -1 && tr.indexOf('ja_fez') === -1 && tr.indexOf('já fez') === -1) return false;
+            }
+            if (state.filter === 'instainativo' && p.status_instagram !== 'inativo') return false;
+            if (state.filter === 'poucasreviews' && (Number(p.review_count) || 0) >= 100) return false;
+            if (state.filter === 'semresposta' && !(p.gmb_avaliacoes_respondidas || '').includes('sem resposta')) return false;
+
             if (txt) {
-                var haystack = (p.title + ' ' + (p.borough || '') + ' ' + (p.category || '')).toLowerCase();
+                var haystack = (p.title + ' ' + (p.borough || '') + ' ' + (p.category || '') + ' ' + (p.trafego || '')).toLowerCase();
                 if (haystack.indexOf(txt) === -1) return false;
             }
             return true;
@@ -569,15 +577,15 @@
         // Atualiza estatísticas do cabeçalho
         var semSite = state.places.filter(function (p) { return siteKind(p.website) === 'none'; }).length;
         var comWhats = state.places.filter(function (p) { return Boolean(whatsapp(p.phone)); }).length;
-        var soSocial = state.places.filter(function (p) { return siteKind(p.website) === 'social'; }).length;
-        var comEmail = state.places.filter(function (p) { return Boolean(p.emails); }).length;
+        var poucasRev = state.places.filter(function (p) { return (Number(p.review_count) || 0) < 100; }).length;
+        var instaInativo = state.places.filter(function (p) { return p.status_instagram === 'inativo'; }).length;
 
         var statsHtml = [
             '<div class="stat"><div class="stat-n">' + state.places.length + '</div><div class="stat-l">Total de empresas</div></div>',
             '<div class="stat"><div class="stat-n">' + semSite + '</div><div class="stat-l">Sem site oficial</div></div>',
             '<div class="stat"><div class="stat-n">' + comWhats + '</div><div class="stat-l">Com WhatsApp</div></div>',
-            '<div class="stat"><div class="stat-n">' + soSocial + '</div><div class="stat-l">Apenas rede social</div></div>',
-            '<div class="stat"><div class="stat-n">' + comEmail + '</div><div class="stat-l">Com e-mail</div></div>'
+            '<div class="stat"><div class="stat-n">' + poucasRev + '</div><div class="stat-l">&lt; 100 Avaliações</div></div>',
+            '<div class="stat"><div class="stat-n">' + instaInativo + '</div><div class="stat-l">Instagram Inativo</div></div>'
         ].join('');
         $('stats').innerHTML = statsHtml;
 
@@ -585,7 +593,7 @@
         var filtered = filterPlaces();
         var tbody = $('rows');
         if (!filtered.length) {
-            tbody.innerHTML = '<tr><td colspan="6" class="t-empty">Nenhuma empresa encontrada para este filtro.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8" class="t-empty">Nenhuma empresa encontrada para este filtro.</td></tr>';
             return;
         }
 
@@ -593,25 +601,57 @@
             var wa = whatsapp(p.phone);
             var siteBadge = '';
             if (!p.website) {
-                siteBadge = '<span class="tag dark">Sem site</span>';
+                if (p.site_na_bio) {
+                    siteBadge = '<span class="tag">Na Bio do Insta</span> <a class="t-site" href="' + esc(p.site_na_bio) + '" target="_blank">' + esc(domain(p.site_na_bio)) + '</a>';
+                } else {
+                    siteBadge = '<span class="tag dark">Sem site</span>';
+                }
             } else if (siteKind(p.website) === 'social') {
                 siteBadge = '<span class="tag">Rede social</span> <a class="t-site" href="' + esc(p.website) + '" target="_blank">' + esc(domain(p.website)) + '</a>';
             } else {
                 siteBadge = '<a class="t-site" href="' + esc(p.website) + '" target="_blank">' + esc(domain(p.website)) + '</a>';
             }
 
+            // Status de Tráfego e Pixel
+            var trafegoHtml = '<span class="tag dark">Sem tráfego</span>';
+            if (p.trafego === 'ativo' || (p.google_ads && p.google_ads.includes('Ativo'))) {
+                trafegoHtml = '<span class="tag" style="background:#16a34a;color:#fff">Tráfego Ativo</span>';
+            } else if (p.trafego === 'ja_fez' || p.pixel_detectado) {
+                trafegoHtml = '<span class="tag" style="background:#d97706;color:#fff">Já fez tráfego</span>';
+            }
+
+            // Instagram
+            var instaHtml = '<span style="color:#888;font-size:11px">Sem Insta</span>';
+            if (p.instagram) {
+                var stInsta = p.status_instagram === 'ativo' 
+                    ? '<span style="color:#16a34a;font-weight:600">Ativo</span>' 
+                    : '<span style="color:#dc2626;font-weight:600">Inativo</span>';
+                instaHtml = '<a class="t-site" href="' + esc(p.instagram) + '" target="_blank">Instagram</a> (' + stInsta + ')';
+            }
+
+            // Reviews & Respostas
+            var gmbRespInfo = p.gmb_avaliacoes_respondidas 
+                ? '<div style="font-size:10px;color:#888;margin-top:2px">' + esc(p.gmb_avaliacoes_respondidas) + '</div>' 
+                : '';
+
             var acoes = [];
             if (wa) acoes.push('<a class="tag" target="_blank" href="https://wa.me/' + wa + '">WhatsApp</a>');
-            if (p.roadmap) acoes.push('<a class="tag" style="background:#0a0a0a;color:#fff" target="_blank" href="' + esc(p.roadmap) + '">Roadmap</a>');
+            if (p.roadmap) {
+                acoes.push('<a class="tag" style="background:#0a0a0a;color:#fff" target="_blank" href="' + esc(p.roadmap) + '">Roadmap</a>');
+                var pdfUrl = p.roadmap.replace('.html', '.pdf');
+                acoes.push('<a class="tag" style="background:#dc2626;color:#fff" target="_blank" href="' + esc(pdfUrl) + '">PDF</a>');
+            }
             if (p.previa) acoes.push('<a class="tag" target="_blank" href="' + esc(p.previa) + '">Prévia</a>');
 
             return '<tr>' +
                 '<td><div class="t-name">' + esc(p.title) + '</div><div class="t-cat">' + esc(p.category || 'Empresa local') + '</div></td>' +
                 '<td>' + esc(p.borough || 'Centro') + '</td>' +
-                '<td class="num">★ ' + rating(p.review_rating) + ' <span style="color:#888;font-size:11px">(' + int(p.review_count) + ')</span></td>' +
+                '<td class="num">★ ' + rating(p.review_rating) + ' <span style="color:#888;font-size:11px">(' + int(p.review_count) + ')</span>' + gmbRespInfo + '</td>' +
                 '<td><span class="mono">' + esc(p.phone || 'Sem telefone') + '</span></td>' +
                 '<td>' + siteBadge + '</td>' +
-                '<td><div style="display:flex;gap:6px;flex-wrap:wrap">' + acoes.join('') + '</div></td>' +
+                '<td>' + trafegoHtml + '</td>' +
+                '<td>' + instaHtml + '</td>' +
+                '<td><div style="display:flex;gap:4px;flex-wrap:wrap">' + acoes.join('') + '</div></td>' +
                 '</tr>';
         }).join('');
     }

@@ -6,1221 +6,980 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Roadmap & Proposta Comercial · Mecânica Vasconcelos</title>
   <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
 
   :root {
-    --bg-page: #f8fafc;
-    --dark-bg: #09090b;
-    --dark-card: #111827;
     --vermelho: #dc2626;
-    --vermelho-hover: #b91c1c;
-    --borda-clara: #e2e8f0;
-    --texto-escuro: #0f172a;
-    --texto-suave: #64748b;
-    --texto-cinza: #94a3b8;
+    --vermelho-bg: #fef2f2;
+    --vermelho-borda: #fca5a5;
+    --dark: #09090b;
+    --dark-card: #18181b;
+    --cinza-texto: #475569;
+    --cinza-sub: #64748b;
+    --borda: #e2e8f0;
     --verde: #16a34a;
-    --mono: 'JetBrains Mono', Consolas, monospace;
-    --display: 'Bebas Neue', Impact, sans-serif;
-    --sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-display: 'Bebas Neue', Impact, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', Consolas, monospace;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg-page);
-    color: var(--texto-escuro);
-    font-family: var(--sans);
-    line-height: 1.5;
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    color: #0f172a;
+    background: #0e0e11;
     -webkit-font-smoothing: antialiased;
   }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px;
+  /* BARRA FIXA DE AÇÕES NO TOPO DA TELA */
+  .toolbar-fixa {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(14, 14, 17, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #cbd5e1;
+    font-size: 13px;
   }
-
-  /* BARRA DE AVISO / PRINT */
-  .toolbar-topo {
-    background: #18181b;
-    color: #a1a1aa;
+  .toolbar-acoes {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn-tb {
+    padding: 6px 14px;
+    border-radius: 6px;
     font-size: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .toolbar-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .toolbar-btn {
-    background: rgba(255,255,255,0.1);
-    color: #fff;
-    border: none;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
+    text-decoration: none;
     cursor: pointer;
-    font-family: var(--sans);
-    transition: background 0.15s;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.15s, opacity 0.15s;
   }
-  .toolbar-btn:hover { background: rgba(255,255,255,0.2); }
+  .btn-tb:hover { transform: translateY(-1px); }
+  .btn-tb-pdf { background: var(--vermelho); color: #fff; }
+  .btn-tb-print { background: #27272a; color: #fff; border: 1px solid #3f3f46; }
+  .btn-tb-zap { background: #22c55e; color: #000; }
 
-  /* HEADER ESCURO DA PROPOSTA PROTEGE */
-  .header-proposta {
-    background: var(--dark-bg);
-    color: #ffffff;
-    padding: 40px 0 36px;
+  /* CONTAINER DAS FOLHAS A4 */
+  .deck-container {
+    padding: 24px 0 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
   }
-  .header-meta {
+
+  /* ESTRUTURA ESTRITA DE FOLHA A4 (210mm x 297mm) */
+  .folha-a4 {
+    width: 210mm;
+    height: 297mm;
+    max-height: 297mm;
+    min-height: 297mm;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* CABEÇALHO ESCURO */
+  .head-escuro {
+    background: var(--dark);
+    color: #ffffff;
+    padding: 20px 24px 16px;
+  }
+  .head-mini {
+    background: var(--dark);
+    color: #ffffff;
+    padding: 10px 24px 8px;
+  }
+  .head-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
-    font-size: 11px;
+    font-family: var(--font-mono);
+    font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-family: var(--mono);
     color: #a1a1aa;
+    margin-bottom: 8px;
   }
-  .header-logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 14px;
-    letter-spacing: 0.05em;
-  }
-  .header-logo span {
-    color: var(--vermelho);
-  }
-  .header-tags {
-    font-size: 11px;
+  .head-logo strong { color: #fff; }
+  .head-logo span { color: var(--vermelho); }
+  .head-tags {
+    font-size: 10px;
     letter-spacing: 0.14em;
+    font-weight: 800;
     color: var(--vermelho);
-    font-weight: 700;
-    margin-bottom: 12px;
     text-transform: uppercase;
+    margin-bottom: 6px;
   }
-  .header-proposta h1 {
-    font-family: var(--display);
-    font-size: clamp(38px, 6vw, 56px);
+  .head-titulo-lead {
+    font-family: var(--font-display);
+    font-size: 40px;
     line-height: 0.95;
     letter-spacing: 0.02em;
-    font-weight: 400;
-    margin-bottom: 16px;
-    color: #ffffff;
     text-transform: uppercase;
+    margin-bottom: 6px;
+    color: #fff;
   }
-  .header-lead-desc {
-    font-size: 16px;
+  .head-lead-desc {
+    font-size: 12.5px;
     color: #cbd5e1;
-    max-width: 720px;
-    line-height: 1.5;
+    line-height: 1.4;
   }
 
-  /* LISTRA ZEBRADA DE EMERGÊNCIA (HAZARD STRIPES) */
+  /* FAIXA ZEBRADA DE EMERGÊNCIA (HAZARD) */
   .hazard-band {
-    height: 10px;
+    height: 8px;
     width: 100%;
     background: repeating-linear-gradient(
       -45deg,
       #dc2626,
-      #dc2626 12px,
-      #09090b 12px,
-      #09090b 24px
+      #dc2626 10px,
+      #09090b 10px,
+      #09090b 20px
     );
   }
 
-  /* CONTEÚDO PRINCIPAL */
-  .conteudo {
-    padding: 44px 0 70px;
+  /* CORPO DA FOLHA */
+  .folha-corpo {
+    padding: 16px 24px 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
   }
 
-  .secao {
-    margin-bottom: 56px;
-  }
-
-  .secao-titulo {
-    font-family: var(--display);
-    font-size: clamp(30px, 4.5vw, 40px);
-    letter-spacing: 0.02em;
+  .titulo-secao {
+    font-family: var(--font-display);
+    font-size: 26px;
     line-height: 1;
-    margin-bottom: 12px;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
-    color: var(--texto-escuro);
+    color: #0f172a;
+    margin-bottom: 4px;
   }
-  .secao-titulo .destaque {
-    color: var(--vermelho);
-  }
-  .secao-sub {
-    font-size: 15px;
-    color: var(--texto-suave);
-    margin-bottom: 24px;
-    line-height: 1.5;
+  .titulo-secao .destaque { color: var(--vermelho); }
+  .sub-secao {
+    font-size: 12px;
+    color: var(--cinza-sub);
+    line-height: 1.4;
+    margin-bottom: 8px;
   }
 
-  /* PÁGINA 1: O ESPELHO & GOOGLE MAPS MOCKUP */
+  /* PÁGINA 1: GRID ESPELHO */
   .grid-espelho {
     display: grid;
     grid-template-columns: 1.25fr 1fr;
-    gap: 24px;
+    gap: 14px;
     align-items: start;
-    margin-bottom: 24px;
   }
-
-  /* CARD GOOGLE MAPS SIMULADO */
   .card-maps {
     background: #ffffff;
-    border: 1px solid var(--borda-clara);
-    border-radius: 12px;
-    box-shadow: 0 4px 16px -2px rgba(0,0,0,0.06);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     overflow: hidden;
   }
-  .card-maps-header {
+  .card-maps-head {
     background: #f8fafc;
-    border-bottom: 1px solid var(--borda-clara);
-    padding: 12px 16px;
+    border-bottom: 1px solid var(--borda);
+    padding: 8px 12px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    font-weight: 500;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
     color: #475569;
-  }
-  .card-maps-header svg {
-    flex-shrink: 0;
-    color: #94a3b8;
-  }
-  .maps-lista {
-    padding: 4px 0;
   }
   .maps-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
+    padding: 8px 12px;
     border-bottom: 1px solid #f1f5f9;
-    font-size: 13px;
+    font-size: 11.5px;
   }
-  .maps-item:last-child {
-    border-bottom: none;
+  .maps-item:last-child { border-bottom: none; }
+  .maps-item-nome { font-weight: 700; color: #1e293b; }
+  .maps-item-sub { font-size: 10px; color: #64748b; }
+  .maps-item-stars { font-weight: 700; color: #d97706; text-align: right; font-size: 11px; }
+  .maps-item-reviews { font-size: 10px; color: #64748b; font-weight: 400; }
+
+  .maps-item.alerta-ausente {
+    background: #fef2f2;
+    border-top: 1.5px dashed var(--vermelho-borda);
+    border-bottom: 1.5px dashed var(--vermelho-borda);
   }
-  .maps-item-nome {
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 2px;
-  }
-  .maps-item-cat {
-    font-size: 11px;
-    color: #64748b;
-  }
-  .maps-item-stars {
-    text-align: right;
-    font-size: 12px;
-    font-weight: 600;
-    color: #d97706;
-    white-space: nowrap;
-  }
-  .maps-item-reviews {
-    font-size: 11px;
-    font-weight: 400;
-    color: #64748b;
+  .maps-item.alerta-ausente .maps-item-nome { color: var(--vermelho); font-weight: 800; }
+  .tag-nao-aparece {
+    background: #fee2e2;
+    color: var(--vermelho);
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
   }
 
-  /* PROSPECT DESTACADO COMO NÃO APARECE */
-  .maps-item.prospect-ausente {
-    background: #fef2f2;
-    border-top: 2px dashed #fca5a5;
-    border-bottom: 2px dashed #fca5a5;
-    margin: 4px 0;
-    padding: 14px 16px;
+  .col-nums {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
-  .maps-item.prospect-ausente .maps-item-nome {
-    color: var(--vermelho);
+  .item-num {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 10px 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+  }
+  .num-val {
+    font-family: var(--font-display);
+    font-size: 36px;
+    line-height: 0.9;
+    color: #0f172a;
+    margin-bottom: 4px;
+  }
+  .item-num.red .num-val { color: var(--vermelho); }
+  .item-num p {
+    font-size: 11px;
+    color: var(--cinza-sub);
+    line-height: 1.35;
+  }
+
+  .callout-box {
+    background: #f8fafc;
+    border-left: 4px solid var(--vermelho);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 1.45;
+    color: #1e293b;
+    border-top: 1px solid var(--borda);
+    border-right: 1px solid var(--borda);
+    border-bottom: 1px solid var(--borda);
+  }
+  .callout-box strong { color: var(--vermelho); }
+
+  /* PÁGINA 2: ALUGUEL DIGITAL & DOIS CAMINHOS */
+  .box-aluguel {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .grid-aluguel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .card-aluguel {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .card-aluguel.on {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+  }
+  .card-aluguel h4 {
+    font-size: 12px;
     font-weight: 700;
+    margin-bottom: 4px;
   }
-  .badge-alerta {
+  .card-aluguel p {
+    font-size: 11px;
+    color: var(--cinza-sub);
+    line-height: 1.35;
+  }
+
+  .tb-caminhos {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 11px;
+    background: #ffffff;
+  }
+  .tb-caminhos th {
+    padding: 6px 12px;
+    font-weight: 800;
+    text-align: left;
+    font-size: 10.5px;
+    text-transform: uppercase;
+  }
+  .tb-caminhos th.th-sem { background: #fef2f2; color: #991b1b; width: 48%; }
+  .tb-caminhos th.th-com { background: #f0fdf4; color: #166534; width: 52%; }
+  .tb-caminhos td {
+    padding: 6px 12px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: top;
+    line-height: 1.35;
+  }
+  .tb-caminhos tr:last-child td { border-bottom: none; }
+  .td-sem { color: #64748b; border-right: 1px solid #f1f5f9; }
+  .td-com { color: #1e293b; font-weight: 500; }
+
+  /* DORES 01 A 04 */
+  .grid-dores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .card-dor {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    padding: 8px 12px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .num-dor {
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1;
+    color: var(--vermelho);
+    flex-shrink: 0;
+  }
+  .card-dor h5 { font-size: 11.5px; font-weight: 700; margin-bottom: 2px; }
+  .card-dor p { font-size: 10.5px; color: var(--cinza-sub); line-height: 1.35; }
+
+  /* GRID PRETO O QUE EU VOU FAZER */
+  .grid-preto {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .card-preto {
+    background: var(--dark);
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 10px 12px;
+    border: 1px solid #27272a;
+  }
+  .card-preto .num-pt {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--vermelho);
+    margin-bottom: 3px;
+  }
+  .card-preto h5 {
+    font-size: 11.5px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #fff;
+  }
+  .card-preto p {
+    font-size: 10px;
+    color: #a1a1aa;
+    line-height: 1.35;
+  }
+
+  /* PÁGINA 3: PLANOS BÁSICO VS PREMIUM RECOMENDADO */
+  .grid-planos {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 14px;
+    align-items: stretch;
+  }
+  .card-plano {
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-plano.prem {
+    background: var(--dark);
+    color: #ffffff;
+    border: 2px solid var(--vermelho);
+    position: relative;
+    box-shadow: 0 4px 18px rgba(220, 38, 38, 0.2);
+  }
+  .badge-rec {
+    position: absolute;
+    top: -10px;
+    right: 18px;
+    background: var(--vermelho);
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 9999px;
+  }
+  .plano-cat {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cinza-sub);
+    margin-bottom: 4px;
+  }
+  .card-plano.prem .plano-cat { color: #a1a1aa; }
+  .plano-preco-box .val {
+    font-family: var(--font-display);
+    font-size: 42px;
+    line-height: 0.9;
+    color: #0f172a;
+  }
+  .card-plano.prem .plano-preco-box .val { color: #ffffff; }
+  .plano-preco-box .val small { font-size: 14px; font-family: var(--font-sans); color: var(--cinza-sub); }
+  .card-plano.prem .plano-preco-box .val small { color: #94a3b8; }
+
+  .pill-ancora {
     display: inline-block;
     background: #fee2e2;
     color: var(--vermelho);
     font-size: 10px;
     font-weight: 700;
     padding: 2px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    border-radius: 9999px;
     margin-top: 4px;
   }
-  .status-nao-aparece {
-    color: var(--vermelho);
-    font-weight: 700;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .maps-footer-note {
-    background: #f8fafc;
-    border-top: 1px solid var(--borda-clara);
-    padding: 8px 16px;
-    font-size: 11px;
-    color: #94a3b8;
-    font-family: var(--mono);
-  }
-
-  /* BLOCO DE NÚMEROS DE IMPACTO */
-  .col-numeros {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .item-numero {
-    background: #ffffff;
-    border: 1px solid var(--borda-clara);
-    border-radius: 12px;
-    padding: 16px 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-  }
-  .item-numero .num-grande {
-    font-family: var(--display);
-    font-size: 46px;
-    line-height: 0.9;
-    color: var(--texto-escuro);
-    margin-bottom: 6px;
-  }
-  .item-numero.destaque-vermelho .num-grande {
-    color: var(--vermelho);
-  }
-  .item-numero p {
-    font-size: 13px;
-    color: var(--texto-suave);
-    line-height: 1.45;
-  }
-
-  /* CALLOUT COM BORDA VERMELHA */
-  .callout-perda {
-    background: #ffffff;
-    border-left: 5px solid var(--vermelho);
-    border-radius: 0 12px 12px 0;
-    padding: 20px 24px;
-    border-top: 1px solid var(--borda-clara);
-    border-right: 1px solid var(--borda-clara);
-    border-bottom: 1px solid var(--borda-clara);
-    font-size: 15px;
-    line-height: 1.55;
-    color: #1e293b;
-    margin-top: 16px;
-  }
-  .callout-perda strong {
-    color: var(--vermelho);
-  }
-
-  /* JOGADA PSICOLÓGICA: O ALUGUEL DIGITAL */
-  .box-aluguel {
-    background: #ffffff;
-    border: 1px solid var(--borda-clara);
-    border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 24px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
-  }
-  .box-aluguel-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top: 1px solid #f1f5f9;
-  }
-  .aluguel-card {
-    background: #f8fafc;
-    border-radius: 8px;
-    padding: 18px;
-    border: 1px solid #e2e8f0;
-  }
-  .aluguel-card.online {
-    background: #f0fdf4;
-    border-color: #bbf7d0;
-  }
-  .aluguel-card h4 {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .aluguel-card p {
-    font-size: 13px;
-    color: var(--texto-suave);
-    line-height: 1.5;
-  }
-
-  /* ANTES E DEPOIS / SEM VS COM RHENAN */
-  .tabela-caminhos {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border: 1px solid var(--borda-clara);
-    border-radius: 12px;
-    overflow: hidden;
-    background: #ffffff;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-  }
-  .tabela-caminhos th {
-    padding: 16px 20px;
-    font-size: 13px;
-    font-weight: 700;
-    text-align: left;
-    border-bottom: 1px solid var(--borda-clara);
-  }
-  .tabela-caminhos th.th-sem {
-    background: #fef2f2;
-    color: #991b1b;
-    width: 48%;
-  }
-  .tabela-caminhos th.th-com {
-    background: #f0fdf4;
-    color: #166534;
-    width: 52%;
-  }
-  .tabela-caminhos td {
-    padding: 14px 20px;
-    font-size: 13px;
-    border-bottom: 1px solid #f1f5f9;
-    vertical-align: top;
-    line-height: 1.5;
-  }
-  .tabela-caminhos tr:last-child td {
-    border-bottom: none;
-  }
-  .td-sem {
-    background: #ffffff;
-    color: #64748b;
-    border-right: 1px solid #f1f5f9;
-  }
-  .td-sem span {
-    color: var(--vermelho);
-    font-weight: 600;
-    margin-right: 4px;
-  }
-  .td-com {
-    background: #fafdfb;
-    color: #1e293b;
-    font-weight: 500;
-  }
-  .td-com span {
-    color: var(--verde);
-    font-weight: 700;
-    margin-right: 4px;
-  }
-
-  /* PÁGINA 2: DORES QUE CUSTAM CONTRATO (CARDS BRANCOS COM NÚMERO VERMELHO) */
-  .grid-dores {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 32px;
-  }
-  .card-dor-item {
-    background: #ffffff;
-    border: 1px solid var(--borda-clara);
-    border-radius: 10px;
-    padding: 18px 22px;
-    display: flex;
-    align-items: flex-start;
-    gap: 18px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-  }
-  .num-dor {
-    font-family: var(--display);
-    font-size: 28px;
-    line-height: 1;
-    color: var(--vermelho);
-    flex-shrink: 0;
-    width: 28px;
-  }
-  .dor-conteudo h4 {
-    font-size: 15px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 4px;
-  }
-  .dor-conteudo p {
-    font-size: 13px;
-    color: var(--texto-suave);
-    line-height: 1.5;
-  }
-
-  /* GRID PRETO: O QUE EU VOU FAZER */
-  .grid-entregas-black {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 14px;
-  }
-  .card-entrega-black {
-    background: var(--dark-bg);
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 22px;
-    border: 1px solid #27272a;
-  }
-  .num-entrega {
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--vermelho);
-    margin-bottom: 8px;
-  }
-  .card-entrega-black h4 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #ffffff;
-  }
-  .card-entrega-black p {
-    font-size: 13px;
-    color: #a1a1aa;
-    line-height: 1.45;
-  }
-
-  .strip-resumo {
-    background: #ffffff;
-    border: 1px solid var(--borda-clara);
-    border-radius: 8px;
-    padding: 14px 20px;
-    margin-top: 16px;
-    font-size: 13px;
-    color: #334155;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .strip-resumo span {
-    color: var(--vermelho);
-    font-weight: 700;
-  }
-
-  /* PÁGINA 3: ESCOLHA O SEU PLANO (BÁSICO VS PREMIUM RECOMENDADO) */
-  .planos-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.08fr;
-    gap: 20px;
-    align-items: stretch;
-    margin-bottom: 24px;
-  }
-  .card-plano {
-    background: #ffffff;
-    border: 1px solid var(--borda-clara);
-    border-radius: 14px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-  }
-  .card-plano.plano-premium {
-    background: var(--dark-bg);
-    color: #ffffff;
-    border: 2px solid var(--vermelho);
-    box-shadow: 0 10px 30px -5px rgba(220, 38, 38, 0.25);
-    position: relative;
-  }
-  .tag-recomendado {
-    position: absolute;
-    top: -12px;
-    right: 24px;
-    background: var(--vermelho);
-    color: #ffffff;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 9999px;
-  }
-  .plano-categoria {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--texto-suave);
-    margin-bottom: 6px;
-  }
-  .plano-premium .plano-categoria {
-    color: #a1a1aa;
-  }
-  .plano-preco-bloco {
-    margin-bottom: 20px;
-  }
-  .plano-preco-bloco .valor {
-    font-family: var(--display);
-    font-size: 52px;
-    line-height: 0.9;
-    letter-spacing: -0.01em;
-    color: var(--texto-escuro);
-  }
-  .plano-premium .plano-preco-bloco .valor {
-    color: #ffffff;
-  }
-  .plano-preco-bloco .valor small {
-    font-size: 18px;
-    font-family: var(--sans);
-    font-weight: 500;
-    color: var(--texto-suave);
-  }
-  .plano-premium .plano-preco-bloco .valor small {
-    color: #94a3b8;
-  }
-
-  .ancoragem-pill {
-    display: inline-block;
-    background: #fee2e2;
-    color: var(--vermelho);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 9999px;
-    margin-top: 8px;
-  }
-  .plano-premium .ancoragem-pill {
+  .card-plano.prem .pill-ancora {
     background: rgba(220, 38, 38, 0.25);
     border: 1px solid var(--vermelho);
     color: #fca5a5;
   }
 
-  .plano-condicao {
-    font-size: 12px;
-    color: var(--texto-suave);
-    margin-top: 10px;
-    line-height: 1.45;
-    padding-top: 10px;
+  .plano-cond {
+    font-size: 10.5px;
+    color: var(--cinza-sub);
+    margin-top: 8px;
+    padding-top: 8px;
     border-top: 1px solid #f1f5f9;
+    line-height: 1.35;
   }
-  .plano-premium .plano-condicao {
+  .card-plano.prem .plano-cond {
     color: #cbd5e1;
     border-top-color: #27272a;
   }
-  .plano-condicao strong {
-    color: var(--texto-escuro);
-  }
-  .plano-premium .plano-condicao strong {
-    color: #ffffff;
-  }
+  .plano-cond strong { color: #0f172a; }
+  .card-plano.prem .plano-cond strong { color: #ffffff; }
 
-  .plano-features {
+  .lista-feat {
     list-style: none;
-    margin: 22px 0;
+    margin: 12px 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-size: 13px;
+    gap: 6px;
+    font-size: 11px;
   }
-  .plano-features li {
+  .lista-feat li {
     display: flex;
-    align-items: flex-start;
-    gap: 8px;
+    gap: 6px;
+    align-items: center;
+  }
+  .lista-feat li.ck { color: #1e293b; }
+  .card-plano.prem .lista-feat li.ck { color: #f1f5f9; }
+  .lista-feat li.ck::before { content: '✓'; color: var(--verde); font-weight: 800; }
+  .lista-feat li.un { color: #94a3b8; text-decoration: line-through; }
+  .lista-feat li.un::before { content: '✕'; color: #cbd5e1; }
+
+  .aviso-verba-ads {
+    background: #ffffff;
+    border-left: 3px solid #0f172a;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 10.5px;
+    color: #334155;
+    border-top: 1px solid var(--borda);
+    border-right: 1px solid var(--borda);
+    border-bottom: 1px solid var(--borda);
     line-height: 1.4;
   }
-  .plano-features li.check { color: #1e293b; }
-  .plano-premium .plano-features li.check { color: #f1f5f9; }
-  .plano-features li.check svg { color: var(--verde); flex-shrink: 0; margin-top: 2px; }
-  .plano-features li.cross { color: #94a3b8; text-decoration: line-through; }
-  .plano-features li.cross svg { color: #cbd5e1; flex-shrink: 0; margin-top: 2px; }
 
-  /* CAIXA DE TRANSPARÊNCIA DA VERBA DE ADS */
-  .aviso-verba {
-    background: #ffffff;
-    border: 1px solid var(--borda-clara);
-    border-left: 4px solid #0f172a;
-    border-radius: 8px;
-    padding: 14px 18px;
-    font-size: 13px;
-    color: #334155;
-    margin-bottom: 32px;
-    line-height: 1.5;
-  }
-  .aviso-verba strong {
-    color: #0f172a;
-  }
-
-  /* COMO A GENTE COMEÇA (3 CARDS COM TOPO VERMELHO) */
+  /* COMO COMEÇAR */
   .grid-comeco {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 36px;
+    gap: 10px;
   }
-  .card-comeco {
+  .card-com {
     background: #ffffff;
-    border: 1px solid var(--borda-clara);
-    border-top: 4px solid var(--vermelho);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    border: 1px solid var(--borda);
+    border-top: 3px solid var(--vermelho);
+    border-radius: 6px;
+    padding: 10px 12px;
   }
-  .num-comeco {
-    font-family: var(--display);
-    font-size: 32px;
+  .num-com {
+    font-family: var(--font-display);
+    font-size: 24px;
     line-height: 1;
     color: var(--vermelho);
-    margin-bottom: 6px;
+    margin-bottom: 2px;
   }
-  .card-comeco h4 {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: var(--texto-escuro);
-  }
-  .card-comeco p {
-    font-size: 12px;
-    color: var(--texto-suave);
-    line-height: 1.45;
-  }
+  .card-com h5 { font-size: 11.5px; font-weight: 700; margin-bottom: 2px; }
+  .card-com p { font-size: 10px; color: var(--cinza-sub); line-height: 1.35; }
 
-  /* CTA FINAL PRETO DE ALTA CONVERSÃO */
-  .banner-cta-final {
-    background: var(--dark-bg);
+  /* CTA FINAL PRETO */
+  .cta-final-box {
+    background: var(--dark);
     color: #ffffff;
-    border-radius: 12px;
-    padding: 32px;
+    border-radius: 8px;
+    padding: 16px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 24px;
-    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+    gap: 16px;
   }
-  .cta-textos h3 {
-    font-family: var(--display);
-    font-size: clamp(26px, 3.8vw, 36px);
+  .cta-text h4 {
+    font-family: var(--font-display);
+    font-size: 26px;
     line-height: 1;
     letter-spacing: 0.02em;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     color: #ffffff;
   }
-  .cta-textos p {
-    font-size: 13px;
+  .cta-text p {
+    font-size: 11px;
     color: #94a3b8;
-    line-height: 1.4;
+    line-height: 1.35;
   }
-  .btn-fechado-pill {
+  .btn-fechado {
     background: #ffffff;
     color: #09090b;
-    padding: 14px 28px;
+    padding: 10px 20px;
     border-radius: 9999px;
     text-decoration: none;
     font-weight: 800;
-    font-size: 14px;
+    text-align: center;
     white-space: nowrap;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-    transition: transform 0.15s, background 0.15s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     flex-shrink: 0;
   }
-  .btn-fechado-pill:hover {
-    transform: translateY(-2px);
-    background: #f1f5f9;
-  }
-  .btn-fechado-pill span.sub-btn {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--vermelho);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-  .btn-fechado-pill span.zap-num {
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-  }
+  .btn-fechado .sub-tt { font-size: 9px; font-weight: 700; color: var(--vermelho); letter-spacing: 0.05em; text-transform: uppercase; }
+  .btn-fechado .zap-tt { font-size: 13px; font-weight: 800; letter-spacing: 0.02em; }
 
-  /* RODAPÉ */
-  footer.proposta-footer {
-    padding: 32px 0 60px;
-    border-top: 1px solid var(--borda-clara);
-    margin-top: 48px;
-    font-size: 12px;
+  /* RODAPÉ DISCRETO */
+  .folha-footer {
+    padding: 6px 24px 10px;
+    border-top: 1px solid var(--borda);
+    font-size: 10px;
     color: #94a3b8;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  footer.proposta-footer a {
-    color: var(--texto-suave);
-    text-decoration: none;
+    background: #ffffff;
   }
 
-  /* AJUSTES RESPONSIVOS */
-  @media (max-width: 768px) {
-    .grid-espelho { grid-template-columns: 1fr; }
-    .box-aluguel-grid { grid-template-columns: 1fr; }
-    .planos-grid { grid-template-columns: 1fr; }
-    .grid-comeco { grid-template-columns: 1fr; }
-    .banner-cta-final { flex-direction: column; text-align: center; }
-    .btn-fechado-pill { width: 100%; }
-    footer.proposta-footer { flex-direction: column; gap: 10px; text-align: center; }
-  }
-
-  /* MODO IMPRESSÃO / PDF PERFEITO */
+  /* REGRAS ESTRITAS DE IMPRESSÃO / PDF A4 (EXATAS 3 PÁGINAS) */
   @media print {
-    body { background: #fff; }
-    .toolbar-topo { display: none; }
-    .secao { page-break-inside: avoid; }
-    .header-proposta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .hazard-band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .card-plano.plano-premium { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .card-entrega-black { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .banner-cta-final { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      background: #ffffff !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .toolbar-fixa { display: none !important; }
+    .deck-container {
+      padding: 0 !important;
+      gap: 0 !important;
+    }
+    .folha-a4 {
+      width: 210mm !important;
+      height: 297mm !important;
+      max-height: 297mm !important;
+      min-height: 297mm !important;
+      page-break-after: always !important;
+      break-after: page !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      box-shadow: none !important;
+      overflow: hidden !important;
+      margin: 0 !important;
+    }
+    .folha-a4:last-child {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+  }
+
+  @media screen and (max-width: 820px) {
+    .folha-a4 {
+      width: 100%;
+      height: auto;
+      min-height: unset;
+      max-height: unset;
+    }
+    .grid-espelho { grid-template-columns: 1fr; }
+    .grid-aluguel { grid-template-columns: 1fr; }
+    .grid-dores { grid-template-columns: 1fr; }
+    .grid-preto { grid-template-columns: 1fr; }
+    .grid-planos { grid-template-columns: 1fr; }
+    .grid-comeco { grid-template-columns: 1fr; }
+    .cta-final-box { flex-direction: column; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-  <!-- BARRA DE AVISO / IMPRESSÃO EM PDF -->
-  <aside class="toolbar-topo">
-    <div class="container toolbar-inner">
-      <span>ProspectOS · Diagnóstico Clínico & Proposta Comercial</span>
-      <button class="toolbar-btn" onclick="window.print()">Salvar como PDF / Imprimir</button>
+  <!-- BARRA SUPERIOR FIXA -->
+  <aside class="toolbar-fixa">
+    <div>
+      <strong>ProspectOS</strong> · Proposta &amp; Roadmap de <strong>Mecânica Vasconcelos</strong>
+    </div>
+    <div class="toolbar-acoes">
+      <a href="roadmap-01-mecanica-vasconcelos.pdf" download class="btn-tb btn-tb-pdf">📥 Baixar PDF Oficial</a>
+      <button onclick="window.print()" class="btn-tb btn-tb-print">🖨️ Imprimir / Salvar PDF</button>
+      <a href="https://wa.me/5521973152056?text=Oi%20Rhenan%2C%20vi%20o%20Roadmap%20%26%20Proposta%20da%20Mec%C3%A2nica%20Vasconcelos%20e%20quero%20aprovar%20o%20Plano%20Premium!" target="_blank" rel="noopener" class="btn-tb btn-tb-zap">💬 WhatsApp ((21) 97315-2056)</a>
     </div>
   </aside>
 
-  <!-- PÁGINA 1: CABEÇALHO ESCURO IDENTIDADE PROPOSTA PROTEGE -->
-  <header class="header-proposta">
-    <div class="container">
-      <div class="header-meta">
-        <div class="header-logo">
-          <strong>TEIXO<span>OS</span></strong> · PROSPECT
-        </div>
-        <div>PROPOSTA &amp; ROADMAP · 24 DE NOVEMBRO DE 2026</div>
-      </div>
-      <div class="header-tags">SITE DE ALTA CONVERSÃO · GOOGLE ADS · GOOGLE MEU NEGÓCIO · PLAQUINHA NFC DE BALCÃO</div>
-      <h1>Mecânica Vasconcelos</h1>
-      <p class="header-lead-desc">
-        Para <strong>Carlos</strong>, Ponte Preta, Campinas. Um ecossistema completo para a <strong>Mecânica Vasconcelos</strong> ser encontrada por quem já está procurando mecânica e socorro urgente na região.
-      </p>
-    </div>
-  </header>
+  <div class="deck-container">
 
-  <!-- LISTRA ZEBRADA DE EMERGÊNCIA (HAZARD STRIPES) -->
-  <div class="hazard-band"></div>
+    <!-- ================= FOLHA 1 / 3: O QUE VOCÊ ESTÁ PERDENDO HOJE ================= -->
+    <section class="folha-a4" id="pagina-1">
+      <div>
+        <header class="head-escuro">
+          <div class="head-meta">
+            <div class="head-logo"><strong>TEIXO<span>OS</span></strong> · PROSPECT</div>
+            <div>PROPOSTA &amp; ROADMAP · 24 DE NOVEMBRO DE 2026</div>
+          </div>
+          <div class="head-tags">SITE DE ALTA CONVERSÃO · GOOGLE ADS · GOOGLE MEU NEGÓCIO · PLAQUINHA NFC DE BALCÃO</div>
+          <h1 class="head-titulo-lead">Mecânica Vasconcelos</h1>
+          <p class="head-lead-desc">
+            Para <strong>Carlos</strong>, Ponte Preta, Campinas. O ecossistema completo para a Mecânica Vasconcelos ser encontrada por quem precisa de conserto urgente agora.
+          </p>
+        </header>
+        <div class="hazard-band"></div>
 
-  <main class="conteudo">
-    <div class="container">
+        <div class="folha-corpo">
+          <div>
+            <h2 class="titulo-secao">Carlos, O QUE VOCÊ ESTÁ <span class="destaque">PERDENDO HOJE</span></h2>
+            <p class="sub-secao">
+              No dia 23 de novembro procurei “oficina mecânica Ponte Preta Campinas” no Google Maps. Apareceram diversas oficinas da região. A <strong>Mecânica Vasconcelos</strong> não estava entre as primeiras que capturam as ligações de urgência.
+            </p>
+          </div>
 
-      <!-- ================= PÁGINA 1: O QUE VOCÊ ESTÁ PERDENDO HOJE ================= -->
-      <section class="secao">
-        <h2 class="secao-titulo">Carlos, O QUE VOCÊ ESTÁ <span class="destaque">PERDENDO HOJE</span></h2>
-        <p class="secao-sub">
-          No dia 23 de novembro procurei “oficina mecânica Ponte Preta Campinas” no Google Maps. Apareceram diversas oficinas da região. A <strong>Mecânica Vasconcelos</strong> não estava entre as primeiras que capturam as ligações de urgência.
-        </p>
-
-        <div class="grid-espelho">
-          <!-- CARD GOOGLE MAPS SIMULADO -->
-          <div class="card-maps">
-            <div class="card-maps-header">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              <span>oficina mecanica ponte preta campinas</span>
-            </div>
-            <div class="maps-lista">
+          <div class="grid-espelho">
+            <!-- SIMULADOR MAPS -->
+            <div class="card-maps">
+              <div class="card-maps-head">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <span>oficina mecanica ponte preta campinas</span>
+              </div>
               <div class="maps-item">
                 <div>
-                  <div class="maps-item-nome">Centro Automotivo Líder Ponte Preta</div>
-                  <div class="maps-item-cat">Oficina mecânica · Aberto agora</div>
+                  <div class="maps-item-nome">Centro Automotivo Líder</div>
+                  <div class="maps-item-sub">Oficina mecânica · Aberto agora</div>
                 </div>
-                <div class="maps-item-stars">
-                  ★ 4,9
-                  <div class="maps-item-reviews">409 avaliações</div>
-                </div>
+                <div class="maps-item-stars">★ 4,9<div class="maps-item-reviews">409 avaliações</div></div>
               </div>
               <div class="maps-item">
                 <div>
                   <div class="maps-item-nome">Mecânica &amp; Auto Elétrica Express</div>
-                  <div class="maps-item-cat">Freios, suspensão e motor</div>
+                  <div class="maps-item-sub">Freios, suspensão e motor</div>
                 </div>
-                <div class="maps-item-stars">
-                  ★ 4,8
-                  <div class="maps-item-reviews">182 avaliações</div>
-                </div>
+                <div class="maps-item-stars">★ 4,8<div class="maps-item-reviews">182 avaliações</div></div>
               </div>
               <div class="maps-item">
                 <div>
                   <div class="maps-item-nome">Bosch Car Service Campinas</div>
-                  <div class="maps-item-cat">Injeção eletrônica e socorro</div>
+                  <div class="maps-item-sub">Injeção e socorro rápido</div>
                 </div>
-                <div class="maps-item-stars">
-                  ★ 4,7
-                  <div class="maps-item-reviews">144 avaliações</div>
-                </div>
+                <div class="maps-item-stars">★ 4,7<div class="maps-item-reviews">144 avaliações</div></div>
               </div>
-              <!-- PROSPECT AUSENTE -->
-              <div class="maps-item prospect-ausente">
+              <div class="maps-item alerta-ausente">
                 <div>
                   <div class="maps-item-nome">🔴 Mecânica Vasconcelos</div>
-                  <span class="badge-alerta">SEM SITE PRÓPRIO · INVISÍVEL NO TOPO</span>
+                  <span class="tag-nao-aparece">SEM SITE PRÓPRIO · INVISÍVEL NO TOPO</span>
                 </div>
-                <div class="status-nao-aparece">
-                  não aparece
+                <div style="color:var(--vermelho);font-weight:800;font-size:11px;text-transform:uppercase;">não aparece</div>
+              </div>
+            </div>
+
+            <!-- NÚMEROS DE IMPACTO -->
+            <div class="col-nums">
+              <div class="item-num red">
+                <div class="num-val">395</div>
+                <p><strong>avaliações reais</strong> é o seu ativo construído com nota <strong>4,8</strong>. Mas está travado porque quem pesquisa no celular não acha site rápido nem botão direto.</p>
+              </div>
+              <div class="item-num">
+                <div class="num-val">84%</div>
+                <p>dos motoristas com urgência mecânica <strong>ligam para os 3 primeiros do mapa</strong>. Sem site e sem anúncio, sua oficina fica invisível na hora da dor.</p>
+              </div>
+              <div class="item-num">
+                <div class="num-val">R$ 0</div>
+                <p>investidos em anúncios próprios hoje: enquanto concorrentes captam motoristas com a carteira na mão, você depende 100% da sorte da indicação.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout-box">
+            <strong>A conta é simples:</strong> Hoje o cliente novo só chega até a <strong>Mecânica Vasconcelos</strong> por indicação antiga ou se passar na frente da porta. Cada mês sem site e sem presença no Google Maps é um mês de revisões, troca de freios, suspensão e serviços pesados fechados com outra empresa que apareceu primeiro.
+          </div>
+        </div>
+      </div>
+
+      <footer class="folha-footer">
+        <div>ProspectOS · Design e Performance Web</div>
+        <div>Página 1 / 3</div>
+      </footer>
+    </section>
+
+
+    <!-- ================= FOLHA 2 / 3: ALUGUEL DIGITAL, DOIS CAMINHOS & DORES ================= -->
+    <section class="folha-a4" id="pagina-2">
+      <div>
+        <header class="head-mini">
+          <div class="head-meta">
+            <div class="head-logo"><strong>TEIXO<span>OS</span></strong> · PROSPECT</div>
+            <div>MECÂNICA VASCONCELOS · DIAGNÓSTICO &amp; ENTREGAS</div>
+          </div>
+        </header>
+        <div class="hazard-band"></div>
+
+        <div class="folha-corpo">
+          <!-- ALUGUEL DIGITAL -->
+          <div>
+            <h3 class="titulo-secao">ALUGUEL DIGITAL: <span class="destaque">A ESQUINA MAIS VALIOSA DA CIDADE</span></h3>
+            <div class="box-aluguel">
+              <p style="font-size:11.5px;color:#1e293b;line-height:1.45;">
+                Você já paga caro no ponto físico (aluguel, IPTU, água, luz e fachada) para quem passa na sua calçada. <strong>Mas hoje, a avenida mais movimentada de Campinas é a tela do celular do motorista.</strong>
+              </p>
+              <div class="grid-aluguel">
+                <div class="card-aluguel">
+                  <h4>🏢 Ponto Físico (Rua)</h4>
+                  <p>Poucas centenas de carros/dia. A maioria não precisa de conserto. Custo fixo alto todo mês faça chuva ou faça sol.</p>
+                </div>
+                <div class="card-aluguel on">
+                  <h4 style="color:#166534;">📱 Aluguel Digital (Google Maps)</h4>
+                  <p>Milhares de motoristas todo mês com a carteira na mão precisando de socorro agora. Retorno direto em ligações no balcão.</p>
                 </div>
               </div>
             </div>
-            <div class="maps-footer-note">
-              Busca realizada no Google Maps via celular em 23/11/2026.
-            </div>
           </div>
 
-          <!-- BLOCO DE NÚMEROS DE IMPACTO PSICOLÓGICO -->
-          <div class="col-numeros">
-            <div class="item-numero destaque-vermelho">
-              <div class="num-grande">395</div>
-              <p><strong>avaliações reais</strong> é o ativo precioso que você já construiu com nota <strong>4,8</strong>. Mas esse ativo está travado porque quem pesquisa no celular não encontra botão direto de WhatsApp nem site rápido.</p>
-            </div>
-            <div class="item-numero">
-              <div class="num-grande">84%</div>
-              <p>dos motoristas com barulho ou pane no carro <strong>pesquisam no celular e ligam para quem aparece nos 3 primeiros lugares do mapa</strong>. Quem não tem site e tráfego fica invisível no momento da dor.</p>
-            </div>
-            <div class="item-numero">
-              <div class="num-grande">R$ 0</div>
-              <p>investidos em anúncios próprios hoje: enquanto oficinas patrocinadas pagam para interceptar clientes que passariam na sua porta, você depende 100% da sorte do boca a boca.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout-perda">
-          <strong>A conta é simples:</strong> Hoje o cliente novo só chega até a <strong>Mecânica Vasconcelos</strong> por indicação antiga ou se passar na frente da oficina. Cada mês sem site e sem presença no Google Maps é um mês de revisões, troca de freios, suspensão e serviços de alto ticket fechados com outra empresa que apareceu primeiro.
-        </div>
-      </section>
-
-
-      <!-- ================= JOGADA PSICOLÓGICA: O ALUGUEL DIGITAL ================= -->
-      <section class="secao">
-        <h2 class="secao-titulo">ALUGUEL DIGITAL: <span class="destaque">A ESQUINA MAIS VALIOSA DA CIDADE</span></h2>
-        <p class="secao-sub">
-          Aumente o nível de consciência sobre onde os motoristas de Campinas realmente estão olhando quando o carro quebra.
-        </p>
-
-        <div class="box-aluguel">
-          <p style="font-size: 15px; color: #1e293b; line-height: 1.6;">
-            Você já paga caro pelo ponto físico da sua oficina: aluguel, IPTU, água, luz e fachada para ser visto apenas por quem passa na sua rua. 
-            <strong>Mas hoje, a avenida mais movimentada de Campinas é a tela do celular do motorista.</strong>
-          </p>
-
-          <div class="box-aluguel-grid">
-            <div class="aluguel-card">
-              <h4>🏢 O Ponto Físico (Rua / Calçada)</h4>
-              <p>Visto por algumas centenas de carros por dia. A maioria não precisa de conserto naquele momento. Custo fixo alto todo mês, faça chuva ou faça sol.</p>
-            </div>
-            <div class="aluguel-card online">
-              <h4 style="color: #166534;">📱 O Aluguel Digital (Google &amp; Maps)</h4>
-              <p>Visto por <strong>milhares de motoristas todo mês com a carteira na mão precisando de socorro ou revisão agora</strong>. Custa uma fração do ponto físico e gera retorno em chamadas diretas.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ================= JOGADA PSICOLÓGICA: OS DOIS CAMINHOS (SEM OU COM RHENAN) ================= -->
-      <section class="secao">
-        <h2 class="secao-titulo">OS DOIS CAMINHOS: <span class="destaque">SEM OU COM O RHENAN</span></h2>
-        <p class="secao-sub">
-          O que acontece com a <strong>Mecânica Vasconcelos</strong> nos próximos 90 dias dependendo da sua decisão hoje.
-        </p>
-
-        <table class="tabela-caminhos">
-          <thead>
-            <tr>
-              <th class="th-sem">🔴 SEM AÇÃO (Hoje sem o Rhenan)</th>
-              <th class="th-com">🟢 COM O RHENAN (Ecossistema Ativo)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="td-sem"><span>❌</span> <strong>Busca no Google:</strong> Continua invisível no Map Pack; concorrentes e redes dominam a primeira página.</td>
-              <td class="td-com"><span>✅</span> <strong>Topo do Google Maps:</strong> Ficha otimizada competindo diretamente pelo topo em Campinas.</td>
-            </tr>
-            <tr>
-              <td class="td-sem"><span>❌</span> <strong>Busca urgente:</strong> Motorista com barulho no freio ou carro fervendo liga para o concorrente patrocinado.</td>
-              <td class="td-com"><span>✅</span> <strong>Máquina de Chamadas:</strong> Botão LIGAR no anúncio direto pro WhatsApp ou balcão da Mecânica Vasconcelos.</td>
-            </tr>
-            <tr>
-              <td class="td-sem"><span>❌</span> <strong>Site Oficial:</strong> Sem site próprio. Parece oficina antiga quando alguém pesquisa o nome da empresa.</td>
-              <td class="td-com"><span>✅</span> <strong>Site Ultrarrápido (&lt; 1.2s):</strong> Página profissional de alta conversão adaptada para celulares com catálogo de serviços.</td>
-            </tr>
-            <tr>
-              <td class="td-sem"><span>❌</span> <strong>Avaliações no Balcão:</strong> Clientes satisfeitos vão embora em silêncio. Menos de 2% avaliam sozinhos.</td>
-              <td class="td-com"><span>✅</span> <strong>Plaquinha NFC de Balcão:</strong> O motorista encosta o celular ao pagar e avalia em 5 segundos (meta 100+ novas avaliações).</td>
-            </tr>
-            <tr>
-              <td class="td-sem"><span>❌</span> <strong>Resultado em 90 dias:</strong> Mesma dependência do boca a boca oscilante e perdendo clientes novos.</td>
-              <td class="td-com"><span>✅</span> <strong>Resultado em 90 dias:</strong> A oficina mais lembrada, procurada e confiável de Ponte Preta.</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-
-      <!-- ================= PÁGINA 2: CADA MÊS SEM APARECER CUSTA CLIENTE ================= -->
-      <section class="secao">
-        <h2 class="secao-titulo">CADA MÊS SEM APARECER <span class="destaque">CUSTA CLIENTES</span></h2>
-        <p class="secao-sub">
-          As 4 hemorragias de faturamento que ocorrem em silêncio na sua oficina.
-        </p>
-
-        <div class="grid-dores">
-          <div class="card-dor-item">
-            <div class="num-dor">01</div>
-            <div class="dor-conteudo">
-              <h4>Quem recebe sua indicação encontra outra oficina</h4>
-              <p>Quando um cliente elogia você para um amigo, a primeira coisa que esse amigo faz é digitar seu nome no Google. Sem um site oficial verificado, anúncios de centros automotivos vizinhos roubam a atenção dele e sua indicação se perde no caminho.</p>
-            </div>
+          <!-- DOIS CAMINHOS -->
+          <div>
+            <h3 class="titulo-secao" style="font-size:22px;">OS DOIS CAMINHOS: <span class="destaque">SEM OU COM O RHENAN</span></h3>
+            <table class="tb-caminhos">
+              <thead>
+                <tr>
+                  <th class="th-sem">🔴 SEM AÇÃO (Sem o Rhenan)</th>
+                  <th class="th-com">🟢 COM O RHENAN (Ecossistema Ativo)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-sem">❌ Invisível no Map Pack do Google; concorrentes dominam a primeira página.</td>
+                  <td class="td-com">✅ Topo do Google Maps: Ficha otimizada disputando as primeiras posições.</td>
+                </tr>
+                <tr>
+                  <td class="td-sem">❌ Busca urgente: motorista com pane liga pro concorrente patrocinado.</td>
+                  <td class="td-com">✅ Botão LIGAR direto pro WhatsApp ou balcão da oficina no Google Ads.</td>
+                </tr>
+                <tr>
+                  <td class="td-sem">❌ Sem site próprio: parece oficina antiga quando pesquisam o nome.</td>
+                  <td class="td-com">✅ Site Ultrarrápido (&lt; 1.2s) adaptado para celular com catálogo de serviços.</td>
+                </tr>
+                <tr>
+                  <td class="td-sem">❌ Clientes felizes saem do balcão sem avaliar (menos de 2% avaliam sozinhos).</td>
+                  <td class="td-com">✅ Plaquinha NFC no balcão: o motorista aproxima o celular e avalia em 5 segundos.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <div class="card-dor-item">
-            <div class="num-dor">02</div>
-            <div class="dor-conteudo">
-              <h4>Mecânica e emergências se compram com pressa</h4>
-              <p>Quem precisa de socorro, troca de pastilha ou revisão pra viajar pesquisa no celular, chama duas ou três oficinas no WhatsApp e fecha com quem responde primeiro. Sem canal direto, a pressa do cliente vira dinheiro no caixa do concorrente.</p>
-            </div>
-          </div>
-
-          <div class="card-dor-item">
-            <div class="num-dor">03</div>
-            <div class="dor-conteudo">
-              <h4>Clientes satisfeitos saem do balcão sem avaliar no Google</h4>
-              <p>Sua equipe faz um conserto impecável, o cliente agradece e vai embora. Mais de 98% dos motoristas esquecem de entrar no Google depois. Sem a Plaquinha NFC instalada no balcão, você perde a chance de acumular dezenas de 5 estrelas todo mês.</p>
-            </div>
-          </div>
-
-          <div class="card-dor-item">
-            <div class="num-dor">04</div>
-            <div class="dor-conteudo">
-              <h4>O espaço digital de Ponte Preta está disputado</h4>
-              <p>Você tem mais de 10 anos e 6 meses ativa, tradição e nota excelente. Mas quem ocupar o topo da busca de Campinas primeiro vai reter todos os motoristas novos que se mudam para o bairro.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ================= PÁGINA 2: O QUE EU VOU FAZER ================= -->
-      <section class="secao">
-        <h2 class="secao-titulo">O QUE EU <span class="destaque">VOU FAZER</span></h2>
-        <p class="secao-sub">
-          O plano de ação técnica executado diretamente por mim para blindar sua presença digital.
-        </p>
-
-        <div class="grid-entregas-black">
-          <div class="card-entrega-black">
-            <div class="num-entrega">01</div>
-            <h4>Google Meu Negócio Turbinado</h4>
-            <p>Perfil otimizado com categorias precisas, atributos de oficina, fotos de serviços e resposta padronizada a todas as avaliações. Coloca a empresa no radar do Google Maps.</p>
-          </div>
-
-          <div class="card-entrega-black">
-            <div class="num-entrega">02</div>
-            <h4>Site Profissional de Alta Conversão</h4>
-            <p>Carregamento ultrarrápido em menos de 1.2 segundos no celular. Cardápio claro de serviços (motor, freios, suspensão, elétrica) com botão direto pro seu WhatsApp.</p>
-          </div>
-
-          <div class="card-entrega-black">
-            <div class="num-entrega">03</div>
-            <h4>Plaquinha NFC de Balcão (Física)</h4>
-            <p>Display físico de acrílico entregue no balcão da oficina com chip NFC de aproximação e QR Code. O cliente encosta o celular ao pagar e avalia no Google em 5 segundos.</p>
-          </div>
-
-          <div class="card-entrega-black">
-            <div class="num-entrega">04</div>
-            <h4>Google Ads no Topo da Busca</h4>
-            <p>Seus anúncios no topo do Google para quem pesquisa oficinas mecânicas em Campinas e bairros vizinhos, com botão de LIGAR para capturar urgências.</p>
-          </div>
-
-          <div class="card-entrega-black">
-            <div class="num-entrega">05</div>
-            <h4>Bloqueio Cirúrgico de Desperdício</h4>
-            <p>Instalação de lista negativa de termos ("grátis", "vagas de emprego", marcas incompatíveis) para garantir que 100% da verba vá para clientes reais.</p>
-          </div>
-
-          <div class="card-entrega-black">
-            <div class="num-entrega">06</div>
-            <h4>Relatório Executivo Semanal</h4>
-            <p>Você recebe no WhatsApp um resumo direto: quantas pessoas viram sua oficina, quantas clicaram no site e quantas chamaram para fazer orçamento.</p>
-          </div>
-        </div>
-
-        <div class="strip-resumo">
-          <span>■ GESTÃO TRANSPARENTE:</span> Você acompanha cada etapa sem complicação técnica e sem perder tempo da sua oficina.
-        </div>
-      </section>
-
-
-      <!-- ================= PÁGINA 3: ESCOLHA O SEU PLANO (BÁSICO VS PREMIUM RECOMENDADO) ================= -->
-      <section class="secao">
-        <h2 class="secao-titulo">ESCOLHA O <span class="destaque">SEU PLANO</span></h2>
-        <p class="secao-sub">
-          O site de alta conversão sai por R$ 600 na implantação dentro de qualquer plano (separado custaria R$ 2.500). Entra só no 1º mês. Do 2º mês em diante você mantém apenas a gestão de crescimento.
-        </p>
-
-        <div class="planos-grid">
-          <!-- PLANO BÁSICO -->
-          <div class="card-plano">
-            <div>
-              <div class="plano-categoria">ESSENCIAL · FUNDAÇÃO &amp; MAPAS</div>
-              <div class="plano-preco-bloco">
-                <div class="valor">R$ 1.200<small>/mês</small></div>
-                <div class="ancoragem-pill">Ideal para estruturar a presença</div>
+          <!-- DORES -->
+          <div>
+            <h3 class="titulo-secao" style="font-size:20px;">CADA MÊS SEM APARECER <span class="destaque">CUSTA CLIENTES</span></h3>
+            <div class="grid-dores">
+              <div class="card-dor">
+                <div class="num-dor">01</div>
+                <div><h5>Quem recebe sua indicação encontra outro</h5><p>Sem site oficial verificado, anúncios de outras oficinas roubam quem procura seu nome.</p></div>
               </div>
-
-              <div class="plano-condicao">
-                <strong>1º mês, com o site e implantação: R$ 1.800</strong><br>
-                Entrada facilitada de R$ 900 e duas parcelas de R$ 450 a cada 15 dias.
+              <div class="card-dor">
+                <div class="num-dor">02</div>
+                <div><h5>Mecânica se compra com pressa</h5><p>Quem tem barulho no carro chama duas oficinas e fecha com quem responder primeiro no WhatsApp.</p></div>
               </div>
+              <div class="card-dor">
+                <div class="num-dor">03</div>
+                <div><h5>Avaliações perdidas no balcão</h5><p>Sua equipe faz um conserto excelente e o cliente vai embora. Sem a Plaquinha NFC, seu melhor ativo fica travado.</p></div>
+              </div>
+              <div class="card-dor">
+                <div class="num-dor">04</div>
+                <div><h5>Espaço digital disputado em Ponte Preta</h5><p>Centros automotivos de rede estão ocupando as buscas locais e retendo motoristas que se mudam pro bairro.</p></div>
+              </div>
+            </div>
+          </div>
 
-              <ul class="plano-features">
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Google Meu Negócio 100% Otimizado
-                </li>
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Site de Alta Conversão no ar
-                </li>
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Plaquinha NFC física de balcão inclusa
-                </li>
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Resumo mensal de resultados
-                </li>
-                <li class="cross">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                  Google Ads com botão LIGAR no topo
-                </li>
-                <li class="cross">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                  Gestão diária de leilão e negativas
-                </li>
-              </ul>
+          <!-- O QUE VOU FAZER -->
+          <div>
+            <h3 class="titulo-secao" style="font-size:20px;">O QUE EU <span class="destaque">VOU FAZER</span></h3>
+            <div class="grid-preto">
+              <div class="card-preto"><div class="num-pt">01</div><h5>Google Meu Negócio</h5><p>Categorias, fotos e respostas padronizadas a todas as avaliações pendentes.</p></div>
+              <div class="card-preto"><div class="num-pt">02</div><h5>Site Ultrarrápido (&lt;1.2s)</h5><p>Carregamento em celular, serviços (motor, freio, suspensão) e botão WhatsApp direto.</p></div>
+              <div class="card-preto"><div class="num-pt">03</div><h5>Plaquinha NFC de Balcão</h5><p>Display físico de acrílico com chip de aproximação. Avaliação em 5s ao pagar.</p></div>
+              <div class="card-preto"><div class="num-pt">04</div><h5>Google Ads no Topo</h5><p>Anúncios com botão LIGAR no raio da oficina para capturar quem precisa agora.</p></div>
+              <div class="card-preto"><div class="num-pt">05</div><h5>Bloqueio de Desperdício</h5><p>Negativação cirúrgica ("grátis", "emprego", curiosos) para cada real render clientes.</p></div>
+              <div class="card-preto"><div class="num-pt">06</div><h5>Resumo Semanal no WhatsApp</h5><p>Relatório direto de quantas pessoas viram, clicaram e chamaram para orçamento.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="folha-footer">
+        <div>ProspectOS · Design e Performance Web</div>
+        <div>Página 2 / 3</div>
+      </footer>
+    </section>
+
+
+    <!-- ================= FOLHA 3 / 3: PLANOS, COMO COMEÇAR & CTA FINAL ================= -->
+    <section class="folha-a4" id="pagina-3">
+      <div>
+        <header class="head-mini">
+          <div class="head-meta">
+            <div class="head-logo"><strong>TEIXO<span>OS</span></strong> · PROSPECT</div>
+            <div>MECÂNICA VASCONCELOS · INVESTIMENTO &amp; FECHAMENTO</div>
+          </div>
+        </header>
+        <div class="hazard-band"></div>
+
+        <div class="folha-corpo">
+          <div>
+            <h2 class="titulo-secao">ESCOLHA O <span class="destaque">SEU PLANO</span></h2>
+            <p class="sub-secao">
+              O site de alta conversão sai por R$ 600 na implantação dentro de qualquer plano (separado custaria R$ 2.500). Entra só no 1º mês. Do 2º mês em diante você mantém apenas a gestão de crescimento.
+            </p>
+          </div>
+
+          <!-- GRID PLANOS BÁSICO VS PREMIUM -->
+          <div class="grid-planos">
+            <!-- BÁSICO -->
+            <div class="card-plano">
+              <div>
+                <div class="plano-cat">ESSENCIAL · FUNDAÇÃO &amp; MAPAS</div>
+                <div class="plano-preco-box">
+                  <div class="val">R$ 1.200<small>/mês</small></div>
+                  <div class="pill-ancora">Ideal para estruturar a presença</div>
+                </div>
+                <div class="plano-cond">
+                  <strong>1º mês com site e implantação: R$ 1.800</strong><br>
+                  Entrada de R$ 900 e duas parcelas de R$ 450 a cada 15 dias.
+                </div>
+                <ul class="lista-feat">
+                  <li class="ck">Google Meu Negócio 100% Otimizado</li>
+                  <li class="ck">Site de Alta Conversão no ar</li>
+                  <li class="ck">Plaquinha NFC física de balcão inclusa</li>
+                  <li class="ck">Resumo mensal de resultados</li>
+                  <li class="un">Google Ads com botão LIGAR no topo</li>
+                  <li class="un">Gestão diária de leilão e negativas</li>
+                </ul>
+              </div>
+              <p style="font-size:10px;color:#64748b;margin-top:6px;">Para quem quer deixar a casa arrumada e começar a ser visto com respeito.</p>
             </div>
 
-            <p style="font-size: 12px; color: #64748b; margin-top: 14px;">Para quem quer deixar a casa arrumada e começar a ser visto com respeito.</p>
-          </div>
-
-          <!-- PLANO PREMIUM (RECOMENDADO) -->
-          <div class="card-plano plano-premium">
-            <span class="tag-recomendado">RECOMENDADO</span>
-            <div>
-              <div class="plano-categoria">COMPLETO · MÁQUINA DE CLIENTES</div>
-              <div class="plano-preco-bloco">
-                <div class="valor">R$ 2.000<small>/mês</small></div>
-                <div class="ancoragem-pill">Separado, esse plano daria R$ 4.800/mês</div>
+            <!-- PREMIUM RECOMENDADO -->
+            <div class="card-plano prem">
+              <span class="badge-rec">RECOMENDADO</span>
+              <div>
+                <div class="plano-cat">COMPLETO · MÁQUINA DE CLIENTES</div>
+                <div class="plano-preco-box">
+                  <div class="val">R$ 2.000<small>/mês</small></div>
+                  <div class="pill-ancora">Separado, esse plano daria R$ 4.800/mês</div>
+                </div>
+                <div class="plano-cond">
+                  <strong>1º mês com site e implantação: R$ 2.600</strong><br>
+                  Entrada de R$ 1.100 e duas parcelas de R$ 750 a cada 15 dias.
+                </div>
+                <ul class="lista-feat">
+                  <li class="ck"><strong>Google Ads no Topo:</strong> Anúncios pra quem tem urgência</li>
+                  <li class="ck"><strong>Site de Alta Conversão</strong> com botão direto de WhatsApp</li>
+                  <li class="ck"><strong>Google Meu Negócio Turbinado</strong> com fotos e respostas</li>
+                  <li class="ck"><strong>Plaquinha NFC Física de Balcão</strong> (avaliação em 5s)</li>
+                  <li class="ck"><strong>Gestão diária de leilão</strong> de lances e negativação</li>
+                  <li class="ck"><strong>Resumo semanal no WhatsApp</strong> de cliques e contatos</li>
+                  <li class="ck"><strong>Raio de Exclusividade</strong> no bairro</li>
+                </ul>
               </div>
-
-              <div class="plano-condicao">
-                <strong>1º mês, com o site e implantação: R$ 2.600</strong><br>
-                Entrada de R$ 1.100 e duas parcelas de R$ 750 a cada 15 dias.
-              </div>
-
-              <ul class="plano-features">
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <strong>Google Ads no Topo:</strong> Anúncios para quem precisa agora
-                </li>
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <strong>Site de Alta Conversão</strong> com botão direto de WhatsApp
-                </li>
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <strong>Google Meu Negócio Turbinado</strong> com fotos e respostas
-                </li>
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <strong>Plaquinha NFC Física de Balcão</strong> (avaliação em 5s)
-                </li>
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <strong>Gestão diária do leilão</strong> de lances e negativação
-                </li>
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <strong>Resumo semanal no WhatsApp</strong> de cliques e contatos
-                </li>
-                <li class="check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <strong>Raio de Proteção &amp; Exclusividade</strong> no bairro
-                </li>
-              </ul>
+              <p style="font-size:10px;color:#a1a1aa;margin-top:6px;">O ecossistema completo para colocar a oficina na frente de quem precisa de conserto urgente.</p>
             </div>
+          </div>
 
-            <p style="font-size: 12px; color: #a1a1aa; margin-top: 14px;">O ecossistema completo para colocar a oficina na frente de quem precisa de conserto urgente.</p>
+          <div class="aviso-verba-ads">
+            <strong>■ Verba dos anúncios no Google Ads:</strong> É à parte e vai direto pro Google no cartão corporativo da oficina. Não passa por mim. Para começar com tração recomendada: R$ 25 a R$ 35/dia nos horários de funcionamento da oficina.
+          </div>
+
+          <!-- COMO COMEÇAR -->
+          <div>
+            <h3 class="titulo-secao" style="font-size:22px;">COMO A GENTE <span class="destaque">COMEÇA</span></h3>
+            <div class="grid-comeco">
+              <div class="card-com">
+                <div class="num-com">1</div>
+                <h5>Google Meu Negócio</h5>
+                <p>Solicito acesso à ficha no Google e configuro categorias, fotos e respostas pendentes.</p>
+              </div>
+              <div class="card-com">
+                <div class="num-com">2</div>
+                <h5>Site &amp; Plaquinha NFC</h5>
+                <p>Publico o site rápido e despacho a plaquinha física com chip NFC pro seu balcão.</p>
+              </div>
+              <div class="card-com">
+                <div class="num-com">3</div>
+                <h5>Anúncios no Topo</h5>
+                <p>Ligo os anúncios no Google no raio da oficina. O telefone começa a tocar de clientes novos.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- BANNER FINAL CTA WHATSAPP -->
+          <div class="cta-final-box">
+            <div class="cta-text">
+              <h4>PRA COMEÇAR, RESPONDA “FECHADO” NO MEU WHATSAPP</h4>
+              <p>Fechando até <strong>Sexta-feira, 27/11 às 23h59</strong>, garanto a taxa de implantação reduzida do site e a entrega da Plaquinha NFC de Balcão.</p>
+            </div>
+            <a href="https://wa.me/5521973152056?text=Oi%20Rhenan%2C%20vi%20o%20Roadmap%20%26%20Proposta%20da%20Mec%C3%A2nica%20Vasconcelos%20e%20quero%20aprovar%20o%20Plano%20Premium!" target="_blank" rel="noopener" class="btn-fechado">
+              <span class="sub-tt">RHENAN · PROSPECTOS</span>
+              <span class="zap-tt">(21) 97315-2056</span>
+            </a>
           </div>
         </div>
+      </div>
 
-        <div class="aviso-verba">
-          <strong>■ Verba dos anúncios no Google Ads:</strong> É à parte e vai direto pro Google no cartão de crédito da sua oficina. Não passa por mim. Para começar com tração recomendada: R$ 25 a R$ 35 por dia nos horários de funcionamento da oficina.
-        </div>
-      </section>
+      <footer class="folha-footer">
+        <div>ProspectOS · Rhenan ((21) 97315-2056) · Rio de Janeiro / Campinas</div>
+        <div>Página 3 / 3</div>
+      </footer>
+    </section>
 
-
-      <!-- ================= PÁGINA 3: COMO A GENTE COMEÇA ================= -->
-      <section class="secao">
-        <h2 class="secao-titulo">COMO A GENTE <span class="destaque">COMEÇA</span></h2>
-        <p class="secao-sub">
-          Processo ágil em 3 passos para não travar a rotina da oficina.
-        </p>
-
-        <div class="grid-comeco">
-          <div class="card-comeco">
-            <div class="num-comeco">1</div>
-            <h4>Google Meu Negócio</h4>
-            <p>Solicito o acesso à ficha da oficina no Google e configuro todas as categorias, fotos e respostas às avaliações pendentes.</p>
-          </div>
-
-          <div class="card-comeco">
-            <div class="num-comeco">2</div>
-            <h4>Site &amp; Plaquinha NFC</h4>
-            <p>Monto o site com os serviços prioritários (freios, suspensão, motor) e despacho a plaquinha física de aproximação pro balcão.</p>
-          </div>
-
-          <div class="card-comeco">
-            <div class="num-comeco">3</div>
-            <h4>Anúncios no Topo</h4>
-            <p>Com o site pronto, ligo as campanhas no Google Ads na verba escolhida. O telefone da oficina começa a tocar de clientes novos.</p>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ================= CTA FINAL PRETO DE ALTA CONVERSÃO ================= -->
-      <section class="secao">
-        <div class="banner-cta-final">
-          <div class="cta-textos">
-            <h3>PRA COMEÇAR, RESPONDA “FECHADO” NO MEU WHATSAPP</h3>
-            <p>Fechando até <strong>Sexta-feira, 27/11 às 23h59</strong>, garanto a taxa de implantação reduzida do site e a entrega da Plaquinha NFC pro seu balcão.</p>
-          </div>
-          <a href="https://wa.me/5519991985402?text=Oi%20Rhenan%2C%20vi%20o%20Roadmap%20%26%20Proposta%20da%20Mec%C3%A2nica%20Vasconcelos%20no%20padr%C3%A3o%20Protege%20e%20quero%20fechar%20o%20Plano%20Premium!" target="_blank" rel="noopener" class="btn-fechado-pill">
-            <span class="sub-btn">Rhenan · TEIXO PERFORMANCE</span>
-            <span class="zap-num">(19) 99198-5402</span>
-          </a>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- RODAPÉ DISCRETO -->
-  <footer class="proposta-footer">
-    <div class="container" style="display:flex; justify-content:space-between; width:100%; align-items:center;">
-      <div>© 2026 ProspectOS · Teixo Traffic &amp; Performance · Campinas</div>
-      <div>Documento confidencial gerado exclusivamente para Mecânica Vasconcelos</div>
-    </div>
-  </footer>
+  </div>
 
 </body>
 </html>

@@ -177,13 +177,15 @@
                 <div class="chips" id="filters">
                     <button type="button" data-f="all" class="on">Todas</button>
                     <button type="button" data-f="nosite">Sem site</button>
-                    <button type="button" data-f="social">Só rede social</button>
-                    <button type="button" data-f="whats">WhatsApp</button>
-                    <button type="button" data-f="email">Com e-mail</button>
+                    <button type="button" data-f="trafego">Tráfego (Ativo / Já Fez)</button>
+                    <button type="button" data-f="instainativo">Instagram Inativo</button>
+                    <button type="button" data-f="poucasreviews">GMB &lt; 100 Avaliações</button>
+                    <button type="button" data-f="semresposta">Reviews s/ Resposta</button>
+                    <button type="button" data-f="whats">Com WhatsApp</button>
                 </div>
                 <label class="field slim">
                     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-                    <input id="filterText" type="text" placeholder="Filtrar por nome ou bairro">
+                    <input id="filterText" type="text" placeholder="Filtrar por nome, bairro ou tráfego">
                 </label>
             </div>
             <div class="table-wrap">
@@ -192,9 +194,11 @@
                         <tr>
                             <th>Empresa</th>
                             <th>Bairro</th>
-                            <th class="num">Nota</th>
-                            <th>Telefone</th>
-                            <th>Site</th>
+                            <th class="num">Nota &amp; Reviews</th>
+                            <th>Telefone / WhatsApp</th>
+                            <th>Site &amp; Origem</th>
+                            <th>Tráfego &amp; Pixel</th>
+                            <th>Instagram</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
