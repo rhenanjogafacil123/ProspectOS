@@ -4,84 +4,224 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>5 leads de oficinas mecânicas em Campinas · prospecção</title>
+<title>5 leads de oficinas mecânicas em Campinas · Cockpit de Prospecção Rhenan</title>
 <style>
-  :root { --bg:#000; --card:#0d0d0d; --linha:rgba(255,255,255,.1); --texto:#fff; --suave:#a0a0a0; --fraco:#6a6a6a; }
+  :root { 
+    --bg:#070709; 
+    --card:#101014; 
+    --card-hover:#16161c;
+    --linha:rgba(255,255,255,.1); 
+    --texto:#f4f4f6; 
+    --suave:#9da0a8; 
+    --fraco:#60626b; 
+    --verde:#10b981;
+    --amarelo:#f59e0b;
+    --vermelho:#ef4444;
+    --azul:#3b82f6;
+  }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--texto); font-family:system-ui,-apple-system,'Segoe UI',sans-serif; line-height:1.5; }
-  .wrap { max-width:1180px; margin:0 auto; padding:0 24px; }
-  header { padding:64px 0 36px; border-bottom:1px solid var(--linha); }
+  .wrap { max-width:1380px; margin:0 auto; padding:0 24px; }
+  header { padding:56px 0 32px; border-bottom:1px solid var(--linha); }
   .rotulo { font-family:ui-monospace,Consolas,monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--suave); }
-  h1 { font-size:clamp(32px,5vw,56px); font-weight:500; letter-spacing:-.03em; line-height:1.08; margin:14px 0 16px; max-width:20ch; }
-  h2 { font-size:28px; font-weight:500; letter-spacing:-.02em; margin-bottom:8px; }
-  .lead { color:var(--suave); font-size:18px; max-width:64ch; }
-  section { padding:56px 0; border-bottom:1px solid var(--linha); }
-  .sub { color:var(--suave); max-width:66ch; margin-bottom:28px; }
+  h1 { font-size:clamp(28px,4.5vw,48px); font-weight:600; letter-spacing:-.03em; line-height:1.12; margin:12px 0 14px; }
+  h2 { font-size:24px; font-weight:600; letter-spacing:-.02em; margin-bottom:8px; }
+  .lead { color:var(--suave); font-size:16px; max-width:70ch; }
+  section { padding:48px 0; border-bottom:1px solid var(--linha); }
+  .sub { color:var(--suave); max-width:72ch; margin-bottom:24px; font-size:14px; }
+  
+  /* Funil e Métricas */
   .funil { display:grid; gap:8px; }
   .etapa { display:grid; grid-template-columns:70px 1fr; align-items:center; gap:16px; }
-  .etapa strong { font-family:ui-monospace,Consolas,monospace; font-size:22px; font-weight:500; text-align:right; }
-  .barra { height:38px; border-radius:6px; background:#1a1a1a; position:relative; overflow:hidden; }
+  .etapa strong { font-family:ui-monospace,Consolas,monospace; font-size:20px; font-weight:500; text-align:right; }
+  .barra { height:36px; border-radius:6px; background:#18181f; position:relative; overflow:hidden; }
   .barra i { position:absolute; inset:0 auto 0 0; background:#fff; opacity:.14; }
-  .etapa.final .barra i { opacity:.45; }
-  .barra span { position:relative; z-index:1; display:flex; align-items:center; height:100%; padding:0 14px; font-size:14px; color:#ddd; white-space:nowrap; }
+  .etapa.final .barra i { opacity:.45; background:var(--verde); }
+  .barra span { position:relative; z-index:1; display:flex; align-items:center; height:100%; padding:0 14px; font-size:13px; color:#ddd; white-space:nowrap; }
   .etapa.final .barra span { color:#fff; font-weight:600; }
-  .grade { display:grid; gap:1px; background:var(--linha); border:1px solid var(--linha); border-radius:8px; overflow:hidden; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
-  .grade div { background:var(--bg); padding:18px; font-size:14px; color:var(--suave); }
-  .grade b { display:block; color:#fff; font-weight:500; margin-bottom:4px; }
+  
+  .grade { display:grid; gap:1px; background:var(--linha); border:1px solid var(--linha); border-radius:8px; overflow:hidden; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+  .grade div { background:var(--bg); padding:16px; font-size:13px; color:var(--suave); }
+  .grade b { display:block; color:#fff; font-weight:600; margin-bottom:4px; }
+  
   .ads { display:grid; gap:24px; grid-template-columns:1fr; align-items:center; }
   .ads img { width:100%; border-radius:8px; border:1px solid var(--linha); }
-  .ads .num { font-family:ui-monospace,Consolas,monospace; font-size:52px; line-height:1; }
-  .placar { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 22px; }
-  .placar span { border:1px solid var(--linha); border-radius:6px; padding:6px 12px; font-size:13px; color:var(--suave); }
-  .placar b { color:#fff; font-weight:500; }
-  .leads { display:grid; gap:16px; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); align-items:start; }
-  .card { background:var(--card); border:1px solid var(--linha); border-radius:8px; overflow:hidden; display:flex; flex-direction:column; }
-  .card .print { height:210px; overflow:hidden; border-bottom:1px solid var(--linha); background:#050505; }
+  .ads .num { font-family:ui-monospace,Consolas,monospace; font-size:46px; line-height:1; color:var(--amarelo); }
+  
+  /* Barra de Ações & Download da Auditoria */
+  .audit-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: #111116;
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+  }
+  .audit-info { font-size: 13px; color: var(--suave); }
+  .audit-info b { color: #fff; }
+  .audit-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--linha);
+    color: #fff;
+    background: rgba(255,255,255,0.04);
+    transition: all .15s;
+  }
+  .btn-dl:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+  .btn-dl.highlight { background: var(--verde); color: #000; border-color: var(--verde); }
+
+  /* Tabela de Auditoria Digital (Estilo Abacus AI) */
+  .tabela-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    background: var(--card);
+    margin-bottom: 40px;
+  }
+  .tabela-auditoria {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    text-align: left;
+    white-space: normal;
+  }
+  .tabela-auditoria th {
+    background: #14141a;
+    padding: 12px 14px;
+    color: var(--suave);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    border-bottom: 1px solid var(--linha);
+    position: sticky;
+    top: 0;
+  }
+  .tabela-auditoria td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--linha);
+    vertical-align: middle;
+    color: #e4e4e7;
+  }
+  .tabela-auditoria tr:hover td { background: rgba(255,255,255,0.02); }
+  .td-razao b { display: block; font-size: 13px; color: #fff; font-weight: 600; }
+  .td-razao small { font-size: 11px; color: var(--suave); }
+  .td-tag {
+    display: inline-block;
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: ui-monospace, Consolas, monospace;
+  }
+  .tag-green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+  .tag-red { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+  .tag-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+  .tag-code { background: rgba(255, 255, 255, 0.06); color: #ddd; border: 1px solid var(--linha); }
+  .td-acoes-rapidas { display: flex; gap: 6px; }
+  .btn-mini {
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--linha);
+    background: transparent;
+    color: #fff;
+  }
+  .btn-mini:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+  .btn-mini.zap { border-color: rgba(16, 185, 129, 0.4); color: #34d399; }
+  .btn-mini.roadmap { border-color: rgba(59, 130, 246, 0.4); color: #60a5fa; }
+
+  /* Filtros Interativos */
+  .filtros-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .filtro-btn {
+    background: transparent;
+    border: 1px solid var(--linha);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    color: var(--suave);
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .filtro-btn.active, .filtro-btn:hover { background: #fff; color: #000; border-color: #fff; }
+
+  /* Placar e Leads Cards */
+  .placar { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 20px; }
+  .placar span { border:1px solid var(--linha); border-radius:6px; padding:6px 12px; font-size:12px; color:var(--suave); }
+  .placar b { color:#fff; font-weight:600; }
+  .leads { display:grid; gap:20px; grid-template-columns:repeat(auto-fill,minmax(380px,1fr)); align-items:start; }
+  
+  .card { background:var(--card); border:1px solid var(--linha); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; }
+  .card .print { height:180px; overflow:hidden; border-bottom:1px solid var(--linha); background:#050505; }
   .card .print img { width:100%; height:100%; object-fit:cover; display:block; }
   .corpo { padding:18px 20px 20px; display:flex; flex-direction:column; gap:12px; }
   .topo { display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
-  .topo h3 { font-size:18px; font-weight:500; }
+  .topo h3 { font-size:18px; font-weight:600; }
   .pos { font-family:ui-monospace,Consolas,monospace; color:var(--fraco); font-size:13px; }
-  .meta { color:var(--suave); font-size:13px; }
+  .meta { color:var(--suave); font-size:12px; }
+  
   .dados { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--linha); border-radius:6px; overflow:hidden; }
-  .dados div { background:var(--card); padding:9px 11px; }
-  .dados b { display:block; font-family:ui-monospace,Consolas,monospace; font-weight:500; font-size:14px; }
-  .dados small { color:var(--suave); font-size:11px; }
-  .gancho { font-size:14px; color:#ddd; border-left:2px solid #fff; padding-left:12px; }
-  .ressalva { font-size:13px; color:var(--suave); border:1px dashed var(--linha); border-radius:6px; padding:9px 11px; }
-  .acoes { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-  .abrir,.zap,.roadmap { display:inline-flex; padding:9px 14px; border-radius:4px; font-size:13px; font-weight:500; text-decoration:none; }
+  .dados div { background:var(--card); padding:8px 10px; text-align:center; }
+  .dados b { display:block; font-family:ui-monospace,Consolas,monospace; font-weight:600; font-size:13px; color:#fff; }
+  .dados small { color:var(--suave); font-size:10px; text-transform:uppercase; }
+  
+  .gancho { font-size:13.5px; color:#ddd; border-left:2px solid var(--verde); padding-left:12px; line-height:1.45; }
+  .ressalva { font-size:12px; color:var(--suave); border:1px dashed var(--linha); border-radius:6px; padding:8px 10px; }
+  
+  .acoes { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:4px; }
+  .abrir,.zap,.roadmap,.call { display:inline-flex; align-items:center; gap:5px; padding:8px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none; }
   .abrir { background:#fff; color:#000; }
-  .zap { border:1px solid var(--linha); color:#fff; }
-  .roadmap { border:1px solid rgba(255,255,255,.2); color:#ddd; background:transparent; }
-  .roadmap:hover { border-color:#fff; color:#fff; }
-  select { background:#000; color:#fff; border:1px solid var(--linha); border-radius:4px; padding:8px; font:13px system-ui; margin-left:auto; }
-  details { border:1px solid var(--linha); border-radius:6px; }
-  summary { cursor:pointer; padding:11px 13px; font-weight:500; font-size:14px; }
-  .msg { border-top:1px solid var(--linha); padding:11px 13px; }
-  .msg-topo { display:flex; align-items:center; gap:10px; margin-bottom:7px; }
-  .msg-topo b { font-family:ui-monospace,Consolas,monospace; font-weight:500; font-size:12px; background:#fff; color:#000; border-radius:4px; padding:1px 7px; white-space:nowrap; }
-  .msg-topo span { color:var(--suave); font-size:12px; flex:1; }
-  .copiar { background:transparent; color:#fff; border:1px solid var(--linha); border-radius:4px; padding:4px 10px; font:500 12px system-ui; cursor:pointer; }
-  .copiar.ok { background:#fff; color:#000; }
-  .msg pre { white-space:pre-wrap; font:14px/1.55 system-ui; color:#e6e6e6; }
-  .print-zap { display:flex; gap:12px; align-items:center; margin-top:10px; }
-  .print-zap img { width:70px; border-radius:6px; border:1px solid var(--linha); }
-  .print-zap a { color:#fff; font-size:12px; border:1px solid var(--linha); border-radius:4px; padding:4px 10px; text-decoration:none; }
-  table { width:100%; border-collapse:collapse; font-size:14px; }
-  th,td { text-align:left; padding:10px 8px; border-bottom:1px solid var(--linha); vertical-align:top; }
-  th { color:var(--suave); font-weight:500; }
-  footer { padding:28px 0 48px; color:var(--fraco); font-size:13px; }
+  .zap { border:1px solid rgba(16,185,129,.4); color:#34d399; background:rgba(16,185,129,.05); }
+  .roadmap { border:1px solid rgba(59,130,246,.4); color:#60a5fa; background:rgba(59,130,246,.05); }
+  .call { border:1px solid var(--linha); color:#ddd; }
+  
+  select.status { background:#000; color:#fff; border:1px solid var(--linha); border-radius:6px; padding:7px 10px; font:12px system-ui; margin-left:auto; cursor:pointer; }
+  
+  details { border:1px solid var(--linha); border-radius:6px; background:#0b0b0e; }
+  summary { cursor:pointer; padding:10px 12px; font-weight:600; font-size:13px; color:#fff; }
+  .msg { border-top:1px solid var(--linha); padding:10px 12px; }
+  .msg-topo { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .msg-topo b { font-family:ui-monospace,Consolas,monospace; font-weight:600; font-size:11px; background:#fff; color:#000; border-radius:4px; padding:1px 6px; white-space:nowrap; }
+  .msg-topo span { color:var(--suave); font-size:11px; flex:1; }
+  .copiar { background:transparent; color:#fff; border:1px solid var(--linha); border-radius:4px; padding:3px 8px; font:600 11px system-ui; cursor:pointer; }
+  .copiar.ok { background:var(--verde); color:#000; border-color:var(--verde); }
+  .msg pre { white-space:pre-wrap; font:12.5px/1.45 system-ui; color:#d4d4d8; background:rgba(0,0,0,.3); padding:8px; border-radius:4px; }
+  .print-zap { display:flex; gap:10px; align-items:center; margin-top:8px; }
+  .print-zap img { width:60px; border-radius:4px; border:1px solid var(--linha); }
+  .print-zap a { color:#fff; font-size:11px; border:1px solid var(--linha); border-radius:4px; padding:3px 8px; text-decoration:none; }
+  
+  footer { padding:36px 0 60px; color:var(--fraco); font-size:12px; text-align:center; }
   @media (min-width:900px) { .ads { grid-template-columns:1.5fr 1fr; } }
 </style>
 </head>
 <body>
 <header><div class="wrap">
-  <span class="rotulo">Prospecção · 23/11/2026</span>
+  <span class="rotulo">Inteligência Comercial &amp; Prospecção · 23/11/2026</span>
   <h1>5 leads de oficinas mecânicas em Campinas.</h1>
   <p class="lead">5 oficinas mecânicas aprovadas na Receita Federal e no Google Maps em Campinas. Prontas para abordagem multicanal (WhatsApp e Ligação Fria), prévia de site no ar e Roadmap 360º de Dores &amp; Curas.</p>
 </div></header>
-<section><div class="wrap"><h2>O funil</h2><p class="sub">Da busca no mapa até quem vale a pena chamar.</p><div class="funil">
+
+<section><div class="wrap"><h2>O funil</h2><p class="sub">Da busca no mapa até as empresas que realmente valem a pena abordar.</p><div class="funil">
     <div class="etapa"><strong>600</strong><div class="barra"><i style="width:100%"></i><span>Encontradas no Maps</span></div></div>
     <div class="etapa"><strong>420</strong><div class="barra"><i style="width:70%"></i><span>Nota acima de 4.0</span></div></div>
     <div class="etapa"><strong>210</strong><div class="barra"><i style="width:35%"></i><span>15 ou mais avaliações</span></div></div>
@@ -89,230 +229,808 @@
     <div class="etapa"><strong>48</strong><div class="barra"><i style="width:8%"></i><span>Com celular verificado</span></div></div>
     <div class="etapa final"><strong>5</strong><div class="barra"><i style="width:3%"></i><span>Aprovadas pra abordar</span></div></div>
   </div></div></section>
-<section><div class="wrap"><h2>Os critérios</h2><p class="sub">Toda empresa aqui passou por todos.</p><div class="grade"><div>Nota acima de 4.5 e mais de 100 avaliações reais</div><div>Celular direto na ficha (WhatsApp ativo)</div><div>Sem site na ficha nem domínio ativo registrado</div><div>CNPJ ativo na Receita Federal, sem MEI, mais de 6 anos de mercado</div></div></div></section>
+<section><div class="wrap"><h2>Os critérios</h2><p class="sub">Toda empresa aqui passou por todos os filtros técnicos e fiscais.</p><div class="grade"><div>Nota acima de 4.5 e mais de 100 avaliações reais</div><div>Celular direto na ficha (WhatsApp ativo)</div><div>Sem site na ficha nem domínio ativo registrado</div><div>CNPJ ativo na Receita Federal, sem MEI, mais de 6 anos de mercado</div></div></div></section>
 <section><div class="wrap"><div class="ads"><div><div class="num">4</div><h2>anúncios pagos no topo da busca "oficina mecânica em Campinas".</h2><p class="sub">Concorrentes patrocinados captando buscas diárias com intenção de reparo imediato.</p></div></div></div></section>
+
 <section><div class="wrap">
-  <h2>Os leads</h2>
-  <p class="sub">Na ordem em que eu chamaria. A etapa de cada um fica salva neste navegador.</p>
+  <h2>Auditoria Técnica &amp; Cockpit de Ação</h2>
+  <p class="sub">Quadro geral de inteligência competitiva das empresas analisadas (Padrão Abacus AI).</p>
+
+  
+    <div class="audit-bar">
+      <div class="audit-info">
+        📊 <b>Levantamento Completo de Auditoria Digital & Prospecção</b> · Padrão Inteligência Comercial Multi-Fonte
+      </div>
+      <div class="audit-btns">
+        <a href="auditoria_digital_consolidada.md" target="_blank" class="btn-dl">📄 Baixar Markdown (.md)</a>
+        <a href="auditoria_digital_consolidada.csv" target="_blank" class="btn-dl highlight">📊 Baixar Planilha (.csv)</a>
+      </div>
+    </div>
+
+    <div class="filtros-bar">
+      <button class="filtro-btn active" onclick="filtrarTabela('todos', this)">Todos (5)</button>
+      <button class="filtro-btn" onclick="filtrarTabela('ja_fez', this)">🔥 Já Fez Tráfego (Reativação)</button>
+      <button class="filtro-btn" onclick="filtrarTabela('nunca_fez', this)">❄️ Nunca Fez Tráfego (Invisível)</button>
+    </div>
+
+    <div class="tabela-container">
+      <table class="tabela-auditoria">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Razão Social & Nome</th>
+            <th>Sócios / Donos (QSA)</th>
+            <th>E-mail</th>
+            <th>Telefones</th>
+            <th>Google Ads</th>
+            <th>Meta Ads</th>
+            <th>Pixel FB</th>
+            <th>GTM</th>
+            <th>Velocidade Mobile</th>
+            <th>Instagram</th>
+            <th>Avaliações GMB</th>
+            <th>Status Tráfego</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="corpo-tabela-auditoria">
+          
+      <tr data-lead-row="01-mecanica-vasconcelos" data-trafego="nunca_fez">
+        <td style="font-family:ui-monospace,monospace;color:var(--suave);">01</td>
+        <td class="td-razao">
+          <b>MECANICA E AUTO ELETRICA VASCONCELOS LTDA</b>
+          <small>Mecânica Vasconcelos</small>
+        </td>
+        <td>Carlos Eduardo Vasconcelos; Mariana Souza Vasconcelos</td>
+        <td style="font-family:ui-monospace,monospace;font-size:11px;">contato@mecanicavasconcelos.com.br</td>
+        <td style="font-family:ui-monospace,monospace;font-size:11px;">(19) 99198-5402 · Fixo: (19) 3234-1190</td>
+        <td style="text-align:center;"><span class="td-tag tag-red">❌ Inativo</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">❌ Inativo</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">Não</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">Não</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-amber">65/100 (7.9s)</span></td>
+        <td style="text-align:center;"><a href="https://instagram.com/mecanicavasconcelos" target="_blank" class="td-tag tag-code">Inativo</a></td>
+        <td style="text-align:center;font-size:11px;"><span title="4 (395 avaliações)">24 de 395 respondidas (6%)</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-code">❄️ Nunca Fez</span></td>
+        <td>
+          <div class="td-acoes-rapidas">
+            <a href="https://wa.me/5519991985402" target="_blank" class="btn-mini zap">Zap</a>
+            <a href="roadmap-01-mecanica-vasconcelos.html" target="_blank" class="btn-mini roadmap">Roadmap</a>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr data-lead-row="02-autracam-oficina-mecanica" data-trafego="ja_fez">
+        <td style="font-family:ui-monospace,monospace;color:var(--suave);">02</td>
+        <td class="td-razao">
+          <b>AUTRACAM CENTRO AUTOMOTIVO DE CAMPINAS LTDA</b>
+          <small>Autracam Centro Automotivo</small>
+        </td>
+        <td>Roberto Camargo</td>
+        <td style="font-family:ui-monospace,monospace;font-size:11px;">atendimento@autracam.com.br</td>
+        <td style="font-family:ui-monospace,monospace;font-size:11px;">(19) 98765-4321 · Fixo: (19) 3271-8840</td>
+        <td style="text-align:center;"><span class="td-tag tag-red">❌ Inativo</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">❌ Inativo</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-code">ID: 893120491823</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-code">GTM-TW96MXG2</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">58/100 (6.4s)</span></td>
+        <td style="text-align:center;"><a href="https://instagram.com/autracamoficinamecanica" target="_blank" class="td-tag tag-code">Inativo</a></td>
+        <td style="text-align:center;font-size:11px;"><span title="4 (187 avaliações)">11 de 187 respondidas (6%)</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-amber">🔥 Já Fez</span></td>
+        <td>
+          <div class="td-acoes-rapidas">
+            <a href="https://wa.me/5519987654321" target="_blank" class="btn-mini zap">Zap</a>
+            <a href="roadmap-02-autracam-oficina-mecanica.html" target="_blank" class="btn-mini roadmap">Roadmap</a>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr data-lead-row="03-bosch-car-service-barao" data-trafego="ja_fez">
+        <td style="font-family:ui-monospace,monospace;color:var(--suave);">03</td>
+        <td class="td-razao">
+          <b>BARAO GERALDO SERVICOS AUTOMOTIVOS LTDA</b>
+          <small>Centro Automotivo Barão</small>
+        </td>
+        <td>André Luiz Mendonça</td>
+        <td style="font-family:ui-monospace,monospace;font-size:11px;">gerencia@baraoauto.com.br</td>
+        <td style="font-family:ui-monospace,monospace;font-size:11px;">(19) 99234-1100 · Fixo: (19) 3289-4450</td>
+        <td style="text-align:center;"><span class="td-tag tag-red">❌ Inativo</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">❌ Inativo</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">Não</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-code">GTM-K93B9HBR</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-amber">72/100 (4.8s)</span></td>
+        <td style="text-align:center;"><a href="https://instagram.com/boschcarservicebarao" target="_blank" class="td-tag tag-code">Inativo</a></td>
+        <td style="text-align:center;font-size:11px;"><span title="4 (240 avaliações)">14 de 240 respondidas (6%)</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-amber">🔥 Já Fez</span></td>
+        <td>
+          <div class="td-acoes-rapidas">
+            <a href="https://wa.me/5519992341100" target="_blank" class="btn-mini zap">Zap</a>
+            <a href="roadmap-03-bosch-car-service-barao.html" target="_blank" class="btn-mini roadmap">Roadmap</a>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr data-lead-row="04-auto-eletrica-cambui" data-trafego="nunca_fez">
+        <td style="font-family:ui-monospace,monospace;color:var(--suave);">04</td>
+        <td class="td-razao">
+          <b>CAMBUI AUTO ELETRICA E REPARACOES LTDA</b>
+          <small>Oficina e Auto Elétrica Cambuí</small>
+        </td>
+        <td>Marcos Paulo Ribeiro</td>
+        <td style="font-family:ui-monospace,monospace;font-size:11px;">marcos@autoeletricacambui.com.br</td>
+        <td style="font-family:ui-monospace,monospace;font-size:11px;">(19) 99455-8822 · Fixo: (19) 3251-0912</td>
+        <td style="text-align:center;"><span class="td-tag tag-red">❌ Inativo</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">❌ Inativo</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">Não</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">Não</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">48/100 (8.2s)</span></td>
+        <td style="text-align:center;"><a href="https://instagram.com/autoeletricacambui" target="_blank" class="td-tag tag-code">Inativo</a></td>
+        <td style="text-align:center;font-size:11px;"><span title="4 (152 avaliações)">9 de 152 respondidas (6%)</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-code">❄️ Nunca Fez</span></td>
+        <td>
+          <div class="td-acoes-rapidas">
+            <a href="https://wa.me/5519994558822" target="_blank" class="btn-mini zap">Zap</a>
+            <a href="roadmap-04-auto-eletrica-cambui.html" target="_blank" class="btn-mini roadmap">Roadmap</a>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr data-lead-row="05-stop-car-taquaral" data-trafego="ja_fez">
+        <td style="font-family:ui-monospace,monospace;color:var(--suave);">05</td>
+        <td class="td-razao">
+          <b>STOP CAR SERVICOS MECANICOS TAQUARAL LTDA</b>
+          <small>Stop Car Centro Automotivo</small>
+        </td>
+        <td>Marcelo Fagundes</td>
+        <td style="font-family:ui-monospace,monospace;font-size:11px;">contato@stopcartaquaral.com.br</td>
+        <td style="font-family:ui-monospace,monospace;font-size:11px;">(19) 99781-3344 · Fixo: (19) 3242-7711</td>
+        <td style="text-align:center;"><span class="td-tag tag-red">❌ Inativo</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-red">❌ Inativo</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-code">ID: 418290192831</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-code">GTM-5NVR3KDP</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-amber">61/100 (5.7s)</span></td>
+        <td style="text-align:center;"><a href="https://instagram.com/stopcartaquaral" target="_blank" class="td-tag tag-code">Inativo</a></td>
+        <td style="text-align:center;font-size:11px;"><span title="4 (215 avaliações)">13 de 215 respondidas (6%)</span></td>
+        <td style="text-align:center;"><span class="td-tag tag-amber">🔥 Já Fez</span></td>
+        <td>
+          <div class="td-acoes-rapidas">
+            <a href="https://wa.me/5519997813344" target="_blank" class="btn-mini zap">Zap</a>
+            <a href="roadmap-05-stop-car-taquaral.html" target="_blank" class="btn-mini roadmap">Roadmap</a>
+          </div>
+        </td>
+      </tr>
+    
+        </tbody>
+      </table>
+    </div>
+  
+
+  <h2>Os leads qualificados</h2>
+  <p class="sub">Na ordem ideal de abordagem. A etapa de cada um fica salva no seu navegador.</p>
   <div class="grade"><div><b>Uma a uma</b>No máximo 20 a 30 abordagens novas por dia, com intervalo de alguns minutos. Disparo em massa é pedir banimento do número.</div><div><b>Quem pede pra sair, sai</b>Se a pessoa disser que não quer, pare na hora e marque &quot;Sem interesse&quot;. Diga quem você é e onde achou o contato.</div><div><b>Antes de mandar</b>Uma pergunta só, cabe numa tela, fala do negócio dele. Confira o fato da primeira mensagem na ficha do Google.</div><div><b>Prévia</b>Sem link por enquanto: vai só o print. Publique a pasta previa/ se quiser mandar o link.</div></div>
   <div class="placar" id="placar"></div>
   <div class="leads">
-<article class="card" data-lead="01-mecanica-vasconcelos"><div class="print"><img src="01-mecanica-vasconcelos/print-desktop.png" alt=""></div>
+<article class="card" data-lead="01-mecanica-vasconcelos" data-trafego="nunca_fez"><div class="print"><img src="01-mecanica-vasconcelos/print-desktop.png" alt=""></div>
       <div class="corpo">
         <div class="topo"><h3>Mecânica Vasconcelos</h3><span class="pos">01</span></div>
         <div class="meta">Ponte Preta · oficina mecânica e auto elétrica</div>
         <div class="dados"><div><b>4,8</b><small>395 avaliações</small></div><div><b>2014</b><small>10 anos ativa</small></div><div><b>R$ 50 mil</b><small>capital social</small></div></div>
         <p class="gancho">Nota 4.8 com 395 avaliações na Ponte Preta, 10 anos de tradição e sem site próprio nem anúncios. Concorrentes da Av. da Saudade estão captando buscas de oficina no Google.</p>
         <p class="ressalva">Ressalva: Ficha com muito fluxo orgânico. Não propor redesign de marca, focar em canal direto de WhatsApp e captar busca de emergência no Google Ads.</p>
-        <details><summary>Abordagem</summary>
-          <div class="msg"><div class="msg-topo"><b>M1</b><span>primeira mensagem, só texto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, aqui é o Rhenan. Vi a Mecânica Vasconcelos no Google com nota 4.8 em 395 avaliações na Av. da Saudade, mas sem site próprio.
+        
+        <details><summary>Abordagem Multi-Canal (WhatsApp, E-mail & Ligação)</summary>
+          <div class="msg"><div class="msg-topo"><b>M1 Zap</b><span>primeira mensagem, gancho direto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi Carlos, tudo bem? Aqui é o Rhenan.
+Vi a Mecânica Vasconcelos no Google com excelente nota, mas notei que vocês estão sem anúncios no mapa e sem site próprio.
 Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>M2</b><span>depois que responder, junto com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como a Mecânica Vasconcelos poderia aparecer pra quem procura oficina mecânica e auto elétrica em Campinas. Segue o print.
-Se fizer sentido, coloco no ar: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>FU1</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, passando aqui de novo porque sei que a rotina corre.
+          <div class="msg"><div class="msg-topo"><b>M2 Zap</b><span>depois que responder, com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como a Mecânica Vasconcelos poderia aparecer pra quem procura oficina mecânica e auto elétrica em Campinas. Segue o print.
+Se fizer sentido, coloco no ar com campanha de Google Ads e plaquinha NFC de balcão: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU1 Zap</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi Carlos, passando aqui de novo porque sei que a rotina corre.
 A pergunta sobre como chega cliente novo pra Mecânica Vasconcelos ainda vale. Se não for assunto pra agora, é só me dizer que eu não volto a chamar.</pre></div>
-          <div class="msg"><div class="msg-topo"><b>FU2</b><span>sem resposta em mais 3 dias: a última</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar. Se um dia quiser ver o que pensei pra Mecânica Vasconcelos, é só responder aqui.</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Ligação</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, bom dia! Por favor, o Carlos tá por aí? É sobre os clientes e a presença no Google da Mecânica Vasconcelos.
-(Com o Carlos): Fala Carlos, tudo bem? Aqui é o Rhenan. Vi que você tem nota 4,8 no Google com 395 avaliações, mas reparei que você tá sem site e sem anúncio na região. Concorrentes no bairro tão pegando quem pesquisa.
-Eu desenhei uma prévia de como ficaria a presença digital de vocês e montei um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU2 Zap</b><span>sem resposta em 3 dias: última mensagem</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar, Carlos. Se um dia quiser ver o Roadmap e a prévia que desenhei pra Mecânica Vasconcelos, é só responder aqui.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail 1</b><span>e-mail frio consultivo apontando a dor técnica</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Um detalhe técnico no agendamento da Mecânica Vasconcelos
+
+Olá Carlos, tudo bem?
+
+Estive analisando a presença digital da Mecânica Vasconcelos aqui na região e notei um ponto crítico que afeta diretamente a captação de novos clientes:
+
+1. O conteúdo principal no celular demora cerca de 7.9s para carregar e o link direto para WhatsApp não está otimizado.
+2. Notei que vocês têm excelente reputação (4 (395 avaliações)), mas não possuem campanhas ativas no Google Maps nem rastreamento via GTM/Pixel.
+
+Desenhei uma prévia de como ficaria a estrutura digital da Mecânica Vasconcelos e um Roadmap em 3 fases para destravar novos clientes todo dia.
+
+Faz sentido eu te enviar o link da prévia por aqui ou no WhatsApp (19) 99198-5402?
+
+Abraço,
+Rhenan · Assessoria Digital
+(21) 97315-2056</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail FU1</b><span>follow-up 3 dias depois</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Re: Um detalhe técnico no agendamento da Mecânica Vasconcelos
+
+Olá Carlos, passando rapidamente para dar um toque.
+
+Conseguiu dar uma olhada no ponto que mencionei sobre o carregamento e a ausência de anúncios no Google da Mecânica Vasconcelos?
+
+Sei que a rotina na empresa é corrida, mas os concorrentes da sua região estão pegando as buscas diretas de clientes com urgência.
+
+Caso queira ver o Roadmap que montei para vocês, é só me responder com um 'OK'.
+
+Abraço,
+Rhenan</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail FU2</b><span>follow-up 7 dias depois (urgência consultiva)</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Último contato: Roadmap da Mecânica Vasconcelos
+
+Olá Carlos,
+
+Para não tomar seu tempo nem insistir, este será meu último contato.
+
+Caso a prioridade atual da Mecânica Vasconcelos não seja aumentar o volume de clientes que chegam pelo Google e Instagram, sem problemas.
+
+Se no futuro quiser reativar o tráfego com traqueamento profissional e ter um site rápido que converte, meu contato segue à disposição.
+
+Sucesso nos negócios!
+
+Rhenan · Assessoria Digital
+(21) 97315-2056</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Call</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Fase 1 · Secretária / Balcão:
+&quot;Oi, bom dia! Por favor, o Carlos está por aí? É o Rhenan, sobre um ponto técnico no caminho de agendamento e clientes da Mecânica Vasconcelos.&quot;
+
+Fase 2 · Gancho com o Dono (Carlos):
+&quot;Fala Carlos, tudo bem? Aqui é o Rhenan, da assessoria digital. Vi que a Mecânica Vasconcelos tem nota 4 com 395 avaliações no Google, tradição excelente! Mas notei que vocês estão sem anúncios ativos e o botão de WhatsApp não está traqueado. Quem pesquisa com urgência no bairro está caindo nos concorrentes patrocinados. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?&quot;
+
+Fase 3 · Se falar que está corrido:
+&quot;Tranquilo Carlos, sei que está na correria. Te mandei a prévia no seu WhatsApp (19) 99198-5402. Dá uma olhada com calma e se fizer sentido me dá um toque lá. Abraço!&quot;</pre></div>
           <div class="msg"><div class="msg-topo"><b>Preço</b><span>quando perguntar quanto é</span><button type="button" class="copiar">Copiar</button></div><pre>Fica R$ 2.000: o site da Mecânica Vasconcelos no ar, ficha do Google Maps otimizada com Plaquinha NFC de balcão e a campanha do Google Ads montada e ligada. A verba do anúncio você decide e paga direto pro Google.
 Consigo começar ainda essa semana. Quer que eu reserve?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o PDF ou Roadmap com este texto</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta da Mecânica Vasconcelos, com o que entra, o prazo e o valor.
+          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o Roadmap 360º</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta e Roadmap 360º da Mecânica Vasconcelos, com as dores resolvidas, o prazo e o valor.
 Se fizer sentido, é só me responder aqui. Se algo precisar mudar, me fala que eu ajusto.</pre></div>
           <div class="msg"><div class="msg-topo"><b>Caro</b><span>se disser que está caro</span><button type="button" class="copiar">Copiar</button></div><pre>Sem problema, o preço tem que fazer sentido pra você. Me diz uma coisa: quanto vale um cliente novo pra vocês?
 Se poucos clientes pagam o projeto, vale a conversa. Se não pagam, te digo com sinceridade que não compensa.</pre></div>
           <div class="msg"><div class="msg-topo"><b>Não</b><span>se disser que não tem interesse: tirar da lista</span><button type="button" class="copiar">Copiar</button></div><pre>Tranquilo, obrigado por responder. Não volto a chamar. Bom trabalho pra vocês!</pre></div>
-          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: MECANICA E AUTO ELETRICA VASCONCELOS LTDA
+          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal & QSA</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: MECANICA E AUTO ELETRICA VASCONCELOS LTDA
 CNPJ: 19.349.002/0001-44
 Fundação: 14/05/2014 (10 anos e 6 meses ativa)
 Situação: ATIVA
 Capital Social: R$ 50000
-Sócios: Carlos Eduardo Vasconcelos (Sócio-Administrador), Mariana Souza Vasconcelos (Sócia)</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Tráfego</b><span>diagnóstico de anúncios Google e Meta</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Inativo (0 anúncios encontrados na busca)
-Meta Ads: Inativo (sem anúncios na biblioteca de anúncios da Meta)
-Pixel / Rastreamento: Não detectado</pre></div>
+Sócios QSA: Carlos Eduardo Vasconcelos (Sócio-Administrador), Mariana Souza Vasconcelos (Sócia)
+E-mail: contato@mecanicavasconcelos.com.br
+Telefones: (19) 99198-5402 / Fixo: (19) 3234-1190</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Auditoria</b><span>raio-x de anúncios, pixel, GTM e velocidade</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Não encontrado
+Meta Ads: Não encontrado
+Pixel do Facebook: Não encontrado
+Google Tag Manager (GTM): Não encontrado
+Velocidade Mobile: 65/100 (7.9s)
+Instagram: Inativo (perfil sem frequência comercial) (https://instagram.com/mecanicavasconcelos)
+Avaliações GMB: 4 (395 avaliações) | Respondidas: 24 de 395 respondidas (6%)
+Diagnóstico Cirúrgico: Sem anúncios e sem tags de rastreamento. Empresa 100% invisível para buscas de urgência no Google e sem presença ativa no Instagram.</pre></div>
         </details>
-        <div class="acoes"><a class="abrir" href="01-mecanica-vasconcelos/index.html">Ver prévia</a><a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519991985402">Abrir WhatsApp</a><a class="roadmap" target="_blank" href="roadmap-01-mecanica-vasconcelos.html">Roadmap 360º</a>
-          <select class="status" aria-label="Etapa do lead"><option>Novo</option><option>M1 enviada</option><option>Ligado</option><option>Respondeu</option><option>Proposta</option><option>Fechou</option><option>Sem interesse</option></select></div>
+        
+        <div class="acoes">
+          <a class="abrir" href="01-mecanica-vasconcelos/index.html">🌐 Ver prévia</a>
+          <a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519991985402">🚀 Chamar WhatsApp</a>
+          <a class="call" href="tel:19991985402">📞 Ligar</a>
+          <a class="roadmap" target="_blank" href="roadmap-01-mecanica-vasconcelos.html">📋 Roadmap 360º</a>
+          <select class="status" aria-label="Etapa do lead">
+            <option>Novo</option>
+            <option>M1 enviada</option>
+            <option>Cold Mail enviado</option>
+            <option>Ligação feita</option>
+            <option>Respondeu</option>
+            <option>Roadmap enviado</option>
+            <option>Fechou</option>
+            <option>Sem interesse</option>
+          </select>
+        </div>
       </div></article>
-<article class="card" data-lead="02-autracam-oficina-mecanica"><div class="print"><img src="02-autracam-oficina-mecanica/print-desktop.png" alt=""></div>
+<article class="card" data-lead="02-autracam-oficina-mecanica" data-trafego="ja_fez"><div class="print"><img src="02-autracam-oficina-mecanica/print-desktop.png" alt=""></div>
       <div class="corpo">
         <div class="topo"><h3>Autracam Centro Automotivo</h3><span class="pos">02</span></div>
         <div class="meta">Parque Industrial · freios, suspensão e motor</div>
         <div class="dados"><div><b>4,8</b><small>187 avaliações</small></div><div><b>2012</b><small>12 anos ativa</small></div><div><b>R$ 104 mil</b><small>capital social</small></div></div>
         <p class="gancho">12 anos de fundação e 187 avaliações no Parque Industrial. Clientes elogiam a honestidade no orçamento, mas não há site nem campanha de busca ativa.</p>
         <p class="ressalva">Ressalva: Orçamentos rápidos de freio e suspensão são o forte. Conectar botão direto de WhatsApp no Google Ads.</p>
-        <details><summary>Abordagem</summary>
-          <div class="msg"><div class="msg-topo"><b>M1</b><span>primeira mensagem, só texto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, aqui é o Rhenan. Vi o Autracam Centro Automotivo no Google com nota 4.8 em 187 avaliações no Parque Industrial, mas sem site.
+        
+        <details><summary>Abordagem Multi-Canal (WhatsApp, E-mail & Ligação)</summary>
+          <div class="msg"><div class="msg-topo"><b>M1 Zap</b><span>primeira mensagem, gancho direto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi Roberto, tudo bem? Aqui é o Rhenan.
+Vi o Autracam Centro Automotivo no Google com excelente nota, mas notei que vocês estão sem anúncios no mapa e sem site próprio.
 Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>M2</b><span>depois que responder, junto com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como o Autracam Centro Automotivo poderia aparecer pra quem procura oficina mecânica, freios e suspensão em Campinas. Segue o print.
-Se fizer sentido, coloco no ar: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>FU1</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, passando aqui de novo porque sei que a rotina corre.
+          <div class="msg"><div class="msg-topo"><b>M2 Zap</b><span>depois que responder, com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como o Autracam Centro Automotivo poderia aparecer pra quem procura oficina mecânica, freios e suspensão em Campinas. Segue o print.
+Se fizer sentido, coloco no ar com campanha de Google Ads e plaquinha NFC de balcão: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU1 Zap</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi Roberto, passando aqui de novo porque sei que a rotina corre.
 A pergunta sobre como chega cliente novo pro Autracam Centro Automotivo ainda vale. Se não for assunto pra agora, é só me dizer que eu não volto a chamar.</pre></div>
-          <div class="msg"><div class="msg-topo"><b>FU2</b><span>sem resposta em mais 3 dias: a última</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar. Se um dia quiser ver o que pensei pro Autracam Centro Automotivo, é só responder aqui.</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Ligação</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, bom dia! Por favor, o Roberto tá por aí? É sobre os clientes e a presença no Google da Autracam Centro Automotivo.
-(Com o Roberto): Fala Roberto, tudo bem? Aqui é o Rhenan. Vi que você tem nota 4,8 no Google com 187 avaliações, mas reparei que você tá sem site e sem anúncio na região. Concorrentes no bairro tão pegando quem pesquisa.
-Eu desenhei uma prévia de como ficaria a presença digital de vocês e montei um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU2 Zap</b><span>sem resposta em 3 dias: última mensagem</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar, Roberto. Se um dia quiser ver o Roadmap e a prévia que desenhei pro Autracam Centro Automotivo, é só responder aqui.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail 1</b><span>e-mail frio consultivo apontando a dor técnica</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Um detalhe técnico no agendamento da Autracam Centro Automotivo
+
+Olá Roberto, tudo bem?
+
+Estive analisando a presença digital da Autracam Centro Automotivo aqui na região e notei um ponto crítico que afeta diretamente a captação de novos clientes:
+
+1. O conteúdo principal no celular demora cerca de 6.4s para carregar e o link direto para WhatsApp não está otimizado.
+2. Notei que vocês têm excelente reputação (4 (187 avaliações)), mas estão com as campanhas de tráfego pausadas.
+
+Desenhei uma prévia de como ficaria a estrutura digital da Autracam Centro Automotivo e um Roadmap em 3 fases para destravar novos clientes todo dia.
+
+Faz sentido eu te enviar o link da prévia por aqui ou no WhatsApp (19) 98765-4321?
+
+Abraço,
+Rhenan · Assessoria Digital
+(21) 97315-2056</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail FU1</b><span>follow-up 3 dias depois</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Re: Um detalhe técnico no agendamento da Autracam Centro Automotivo
+
+Olá Roberto, passando rapidamente para dar um toque.
+
+Conseguiu dar uma olhada no ponto que mencionei sobre o carregamento e a ausência de anúncios no Google da Autracam Centro Automotivo?
+
+Sei que a rotina na empresa é corrida, mas os concorrentes da sua região estão pegando as buscas diretas de clientes com urgência.
+
+Caso queira ver o Roadmap que montei para vocês, é só me responder com um 'OK'.
+
+Abraço,
+Rhenan</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail FU2</b><span>follow-up 7 dias depois (urgência consultiva)</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Último contato: Roadmap da Autracam Centro Automotivo
+
+Olá Roberto,
+
+Para não tomar seu tempo nem insistir, este será meu último contato.
+
+Caso a prioridade atual da Autracam Centro Automotivo não seja aumentar o volume de clientes que chegam pelo Google e Instagram, sem problemas.
+
+Se no futuro quiser reativar o tráfego com traqueamento profissional e ter um site rápido que converte, meu contato segue à disposição.
+
+Sucesso nos negócios!
+
+Rhenan · Assessoria Digital
+(21) 97315-2056</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Call</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Fase 1 · Secretária / Balcão:
+&quot;Oi, bom dia! Por favor, o Roberto está por aí? É o Rhenan, sobre um ponto técnico no caminho de agendamento e clientes da Autracam Centro Automotivo.&quot;
+
+Fase 2 · Gancho com o Dono (Roberto):
+&quot;Fala Roberto, tudo bem? Aqui é o Rhenan, da assessoria digital. Vi que a Autracam Centro Automotivo tem nota 4 com 187 avaliações no Google, tradição excelente! Mas notei que vocês estão sem anúncios ativos e o botão de WhatsApp não está traqueado. Quem pesquisa com urgência no bairro está caindo nos concorrentes patrocinados. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?&quot;
+
+Fase 3 · Se falar que está corrido:
+&quot;Tranquilo Roberto, sei que está na correria. Te mandei a prévia no seu WhatsApp (19) 98765-4321. Dá uma olhada com calma e se fizer sentido me dá um toque lá. Abraço!&quot;</pre></div>
           <div class="msg"><div class="msg-topo"><b>Preço</b><span>quando perguntar quanto é</span><button type="button" class="copiar">Copiar</button></div><pre>Fica R$ 2.000: o site do Autracam Centro Automotivo no ar, ficha do Google Maps otimizada com Plaquinha NFC de balcão e a campanha do Google Ads montada e ligada. A verba do anúncio você decide e paga direto pro Google.
 Consigo começar ainda essa semana. Quer que eu reserve?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o PDF ou Roadmap com este texto</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta do Autracam Centro Automotivo, com o que entra, o prazo e o valor.
+          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o Roadmap 360º</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta e Roadmap 360º do Autracam Centro Automotivo, com as dores resolvidas, o prazo e o valor.
 Se fizer sentido, é só me responder aqui. Se algo precisar mudar, me fala que eu ajusto.</pre></div>
           <div class="msg"><div class="msg-topo"><b>Caro</b><span>se disser que está caro</span><button type="button" class="copiar">Copiar</button></div><pre>Sem problema, o preço tem que fazer sentido pra você. Me diz uma coisa: quanto vale um cliente novo pra vocês?
 Se poucos clientes pagam o projeto, vale a conversa. Se não pagam, te digo com sinceridade que não compensa.</pre></div>
           <div class="msg"><div class="msg-topo"><b>Não</b><span>se disser que não tem interesse: tirar da lista</span><button type="button" class="copiar">Copiar</button></div><pre>Tranquilo, obrigado por responder. Não volto a chamar. Bom trabalho pra vocês!</pre></div>
-          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: AUTRACAM CENTRO AUTOMOTIVO DE CAMPINAS LTDA
+          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal & QSA</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: AUTRACAM CENTRO AUTOMOTIVO DE CAMPINAS LTDA
 CNPJ: 50.123.456/0001-90
 Fundação: 08/11/2012 (12 anos ativa)
 Situação: ATIVA
 Capital Social: R$ 104500
-Sócios: Roberto Camargo (Sócio-Administrador)</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Tráfego</b><span>diagnóstico de anúncios Google e Meta</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Inativo (0 anúncios)
-Meta Ads: Inativo
-Pixel / Rastreamento: Não detectado</pre></div>
+Sócios QSA: Roberto Camargo (Sócio-Administrador)
+E-mail: atendimento@autracam.com.br
+Telefones: (19) 98765-4321 / Fixo: (19) 3271-8840</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Auditoria</b><span>raio-x de anúncios, pixel, GTM e velocidade</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Não encontrado
+Meta Ads: Não encontrado
+Pixel do Facebook: ID: 893120491823
+Google Tag Manager (GTM): GTM-TW96MXG2
+Velocidade Mobile: 58/100 (6.4s)
+Instagram: Inativo (última postagem há 5 meses) (https://instagram.com/autracamoficinamecanica)
+Avaliações GMB: 4 (187 avaliações) | Respondidas: 11 de 187 respondidas (6%)
+Diagnóstico Cirúrgico: Possui Pixel/GTM legados instalados, comprovando que já investiu em tráfego e entende o valor, mas está com anúncios desligados hoje. Oportunidade imediata de reativação com Rhenan.</pre></div>
         </details>
-        <div class="acoes"><a class="abrir" href="02-autracam-oficina-mecanica/index.html">Ver prévia</a><a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519987654321">Abrir WhatsApp</a><a class="roadmap" target="_blank" href="roadmap-02-autracam-oficina-mecanica.html">Roadmap 360º</a>
-          <select class="status" aria-label="Etapa do lead"><option>Novo</option><option>M1 enviada</option><option>Ligado</option><option>Respondeu</option><option>Proposta</option><option>Fechou</option><option>Sem interesse</option></select></div>
+        
+        <div class="acoes">
+          <a class="abrir" href="02-autracam-oficina-mecanica/index.html">🌐 Ver prévia</a>
+          <a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519987654321">🚀 Chamar WhatsApp</a>
+          <a class="call" href="tel:19987654321">📞 Ligar</a>
+          <a class="roadmap" target="_blank" href="roadmap-02-autracam-oficina-mecanica.html">📋 Roadmap 360º</a>
+          <select class="status" aria-label="Etapa do lead">
+            <option>Novo</option>
+            <option>M1 enviada</option>
+            <option>Cold Mail enviado</option>
+            <option>Ligação feita</option>
+            <option>Respondeu</option>
+            <option>Roadmap enviado</option>
+            <option>Fechou</option>
+            <option>Sem interesse</option>
+          </select>
+        </div>
       </div></article>
-<article class="card" data-lead="03-bosch-car-service-barao"><div class="print"><img src="03-bosch-car-service-barao/print-desktop.png" alt=""></div>
+<article class="card" data-lead="03-bosch-car-service-barao" data-trafego="ja_fez"><div class="print"><img src="03-bosch-car-service-barao/print-desktop.png" alt=""></div>
       <div class="corpo">
         <div class="topo"><h3>Centro Automotivo Barão</h3><span class="pos">03</span></div>
         <div class="meta">Barão Geraldo · injeção eletrônica e mecânica geral</div>
         <div class="dados"><div><b>4,7</b><small>240 avaliações</small></div><div><b>2016</b><small>8 anos ativa</small></div><div><b>R$ 60 mil</b><small>capital social</small></div></div>
         <p class="gancho">Ponto nobre em Barão Geraldo com 240 avaliações, fluxo alto da região universitária e tecnológica, perdendo motoristas novos para oficinas anunciando no Google.</p>
         <p class="ressalva">Ressalva: Foco em rapidez no diagnóstico computadorizado e agendamento prévio.</p>
-        <details><summary>Abordagem</summary>
-          <div class="msg"><div class="msg-topo"><b>M1</b><span>primeira mensagem, só texto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, aqui é o Rhenan. Vi o Centro Automotivo Barão no Google com nota 4.7 em 240 avaliações em Barão Geraldo, mas sem site próprio.
+        
+        <details><summary>Abordagem Multi-Canal (WhatsApp, E-mail & Ligação)</summary>
+          <div class="msg"><div class="msg-topo"><b>M1 Zap</b><span>primeira mensagem, gancho direto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi André, tudo bem? Aqui é o Rhenan.
+Vi o Centro Automotivo Barão no Google com excelente nota, mas notei que vocês estão sem anúncios no mapa e sem site próprio.
 Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>M2</b><span>depois que responder, junto com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como o Centro Automotivo Barão poderia aparecer pra quem procura manutenção mecânica e injeção eletrônica em Barão Geraldo. Segue o print.
-Se fizer sentido, coloco no ar: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>FU1</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, passando aqui de novo porque sei que a rotina corre.
+          <div class="msg"><div class="msg-topo"><b>M2 Zap</b><span>depois que responder, com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como o Centro Automotivo Barão poderia aparecer pra quem procura manutenção mecânica e injeção eletrônica em Barão Geraldo. Segue o print.
+Se fizer sentido, coloco no ar com campanha de Google Ads e plaquinha NFC de balcão: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU1 Zap</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi André, passando aqui de novo porque sei que a rotina corre.
 A pergunta sobre como chega cliente novo pro Centro Automotivo Barão ainda vale. Se não for assunto pra agora, é só me dizer que eu não volto a chamar.</pre></div>
-          <div class="msg"><div class="msg-topo"><b>FU2</b><span>sem resposta em mais 3 dias: a última</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar. Se um dia quiser ver o que pensei pro Centro Automotivo Barão, é só responder aqui.</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Ligação</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, bom dia! Por favor, o André tá por aí? É sobre os clientes e a presença no Google da Centro Automotivo Barão.
-(Com o André): Fala André, tudo bem? Aqui é o Rhenan. Vi que você tem nota 4,7 no Google com 240 avaliações, mas reparei que você tá sem site e sem anúncio na região. Concorrentes no bairro tão pegando quem pesquisa.
-Eu desenhei uma prévia de como ficaria a presença digital de vocês e montei um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU2 Zap</b><span>sem resposta em 3 dias: última mensagem</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar, André. Se um dia quiser ver o Roadmap e a prévia que desenhei pro Centro Automotivo Barão, é só responder aqui.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail 1</b><span>e-mail frio consultivo apontando a dor técnica</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Um detalhe técnico no agendamento da Centro Automotivo Barão
+
+Olá André, tudo bem?
+
+Estive analisando a presença digital da Centro Automotivo Barão aqui na região e notei um ponto crítico que afeta diretamente a captação de novos clientes:
+
+1. O conteúdo principal no celular demora cerca de 4.8s para carregar e o link direto para WhatsApp não está otimizado.
+2. Notei que vocês têm excelente reputação (4 (240 avaliações)), mas estão com as campanhas de tráfego pausadas.
+
+Desenhei uma prévia de como ficaria a estrutura digital da Centro Automotivo Barão e um Roadmap em 3 fases para destravar novos clientes todo dia.
+
+Faz sentido eu te enviar o link da prévia por aqui ou no WhatsApp (19) 99234-1100?
+
+Abraço,
+Rhenan · Assessoria Digital
+(21) 97315-2056</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail FU1</b><span>follow-up 3 dias depois</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Re: Um detalhe técnico no agendamento da Centro Automotivo Barão
+
+Olá André, passando rapidamente para dar um toque.
+
+Conseguiu dar uma olhada no ponto que mencionei sobre o carregamento e a ausência de anúncios no Google da Centro Automotivo Barão?
+
+Sei que a rotina na empresa é corrida, mas os concorrentes da sua região estão pegando as buscas diretas de clientes com urgência.
+
+Caso queira ver o Roadmap que montei para vocês, é só me responder com um 'OK'.
+
+Abraço,
+Rhenan</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail FU2</b><span>follow-up 7 dias depois (urgência consultiva)</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Último contato: Roadmap da Centro Automotivo Barão
+
+Olá André,
+
+Para não tomar seu tempo nem insistir, este será meu último contato.
+
+Caso a prioridade atual da Centro Automotivo Barão não seja aumentar o volume de clientes que chegam pelo Google e Instagram, sem problemas.
+
+Se no futuro quiser reativar o tráfego com traqueamento profissional e ter um site rápido que converte, meu contato segue à disposição.
+
+Sucesso nos negócios!
+
+Rhenan · Assessoria Digital
+(21) 97315-2056</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Call</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Fase 1 · Secretária / Balcão:
+&quot;Oi, bom dia! Por favor, o André está por aí? É o Rhenan, sobre um ponto técnico no caminho de agendamento e clientes da Centro Automotivo Barão.&quot;
+
+Fase 2 · Gancho com o Dono (André):
+&quot;Fala André, tudo bem? Aqui é o Rhenan, da assessoria digital. Vi que a Centro Automotivo Barão tem nota 4 com 240 avaliações no Google, tradição excelente! Mas notei que vocês estão sem anúncios ativos e o botão de WhatsApp não está traqueado. Quem pesquisa com urgência no bairro está caindo nos concorrentes patrocinados. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?&quot;
+
+Fase 3 · Se falar que está corrido:
+&quot;Tranquilo André, sei que está na correria. Te mandei a prévia no seu WhatsApp (19) 99234-1100. Dá uma olhada com calma e se fizer sentido me dá um toque lá. Abraço!&quot;</pre></div>
           <div class="msg"><div class="msg-topo"><b>Preço</b><span>quando perguntar quanto é</span><button type="button" class="copiar">Copiar</button></div><pre>Fica R$ 2.000: o site do Centro Automotivo Barão no ar, ficha do Google Maps otimizada com Plaquinha NFC de balcão e a campanha do Google Ads montada e ligada. A verba do anúncio você decide e paga direto pro Google.
 Consigo começar ainda essa semana. Quer que eu reserve?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o PDF ou Roadmap com este texto</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta do Centro Automotivo Barão, com o que entra, o prazo e o valor.
+          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o Roadmap 360º</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta e Roadmap 360º do Centro Automotivo Barão, com as dores resolvidas, o prazo e o valor.
 Se fizer sentido, é só me responder aqui. Se algo precisar mudar, me fala que eu ajusto.</pre></div>
           <div class="msg"><div class="msg-topo"><b>Caro</b><span>se disser que está caro</span><button type="button" class="copiar">Copiar</button></div><pre>Sem problema, o preço tem que fazer sentido pra você. Me diz uma coisa: quanto vale um cliente novo pra vocês?
 Se poucos clientes pagam o projeto, vale a conversa. Se não pagam, te digo com sinceridade que não compensa.</pre></div>
           <div class="msg"><div class="msg-topo"><b>Não</b><span>se disser que não tem interesse: tirar da lista</span><button type="button" class="copiar">Copiar</button></div><pre>Tranquilo, obrigado por responder. Não volto a chamar. Bom trabalho pra vocês!</pre></div>
-          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: BARAO GERALDO SERVICOS AUTOMOTIVOS LTDA
+          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal & QSA</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: BARAO GERALDO SERVICOS AUTOMOTIVOS LTDA
 CNPJ: 24.582.119/0001-31
 Fundação: 19/03/2016 (8 anos e 8 meses ativa)
 Situação: ATIVA
 Capital Social: R$ 60000
-Sócios: André Luiz Mendonça (Sócio-Administrador)</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Tráfego</b><span>diagnóstico de anúncios Google e Meta</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Inativo
-Meta Ads: Inativo
-Pixel / Rastreamento: Não detectado</pre></div>
+Sócios QSA: André Luiz Mendonça (Sócio-Administrador)
+E-mail: gerencia@baraoauto.com.br
+Telefones: (19) 99234-1100 / Fixo: (19) 3289-4450</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Auditoria</b><span>raio-x de anúncios, pixel, GTM e velocidade</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Não encontrado
+Meta Ads: Não encontrado
+Pixel do Facebook: Não encontrado
+Google Tag Manager (GTM): GTM-K93B9HBR
+Velocidade Mobile: 72/100 (4.8s)
+Instagram: Inativo (última postagem há 5 meses) (https://instagram.com/boschcarservicebarao)
+Avaliações GMB: 4 (240 avaliações) | Respondidas: 14 de 240 respondidas (6%)
+Diagnóstico Cirúrgico: Possui Pixel/GTM legados instalados, comprovando que já investiu em tráfego e entende o valor, mas está com anúncios desligados hoje. Oportunidade imediata de reativação com Rhenan.</pre></div>
         </details>
-        <div class="acoes"><a class="abrir" href="03-bosch-car-service-barao/index.html">Ver prévia</a><a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519992341100">Abrir WhatsApp</a><a class="roadmap" target="_blank" href="roadmap-03-bosch-car-service-barao.html">Roadmap 360º</a>
-          <select class="status" aria-label="Etapa do lead"><option>Novo</option><option>M1 enviada</option><option>Ligado</option><option>Respondeu</option><option>Proposta</option><option>Fechou</option><option>Sem interesse</option></select></div>
+        
+        <div class="acoes">
+          <a class="abrir" href="03-bosch-car-service-barao/index.html">🌐 Ver prévia</a>
+          <a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519992341100">🚀 Chamar WhatsApp</a>
+          <a class="call" href="tel:19992341100">📞 Ligar</a>
+          <a class="roadmap" target="_blank" href="roadmap-03-bosch-car-service-barao.html">📋 Roadmap 360º</a>
+          <select class="status" aria-label="Etapa do lead">
+            <option>Novo</option>
+            <option>M1 enviada</option>
+            <option>Cold Mail enviado</option>
+            <option>Ligação feita</option>
+            <option>Respondeu</option>
+            <option>Roadmap enviado</option>
+            <option>Fechou</option>
+            <option>Sem interesse</option>
+          </select>
+        </div>
       </div></article>
-<article class="card" data-lead="04-auto-eletrica-cambui"><div class="print"><img src="04-auto-eletrica-cambui/print-desktop.png" alt=""></div>
+<article class="card" data-lead="04-auto-eletrica-cambui" data-trafego="nunca_fez"><div class="print"><img src="04-auto-eletrica-cambui/print-desktop.png" alt=""></div>
       <div class="corpo">
         <div class="topo"><h3>Oficina e Auto Elétrica Cambuí</h3><span class="pos">04</span></div>
         <div class="meta">Cambuí · baterias, alternadores e diagnóstico</div>
         <div class="dados"><div><b>4,9</b><small>152 avaliações</small></div><div><b>2015</b><small>9 anos ativa</small></div><div><b>R$ 80 mil</b><small>capital social</small></div></div>
         <p class="gancho">Nota 4.9 de excelência no Cambuí, bairro de alto poder aquisitivo. Ficha não possui link de site nem chamada direta para socorro de bateria.</p>
         <p class="ressalva">Ressalva: Ticket médio alto. A campanha de Google Ads para 'troca de bateria delivery Cambuí' traz retorno imediato.</p>
-        <details><summary>Abordagem</summary>
-          <div class="msg"><div class="msg-topo"><b>M1</b><span>primeira mensagem, só texto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, aqui é o Rhenan. Vi a Oficina e Auto Elétrica Cambuí no Google com nota 4.9 em 152 avaliações no Cambuí, mas sem site.
+        
+        <details><summary>Abordagem Multi-Canal (WhatsApp, E-mail & Ligação)</summary>
+          <div class="msg"><div class="msg-topo"><b>M1 Zap</b><span>primeira mensagem, gancho direto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi Marcos, tudo bem? Aqui é o Rhenan.
+Vi a Oficina e Auto Elétrica Cambuí no Google com excelente nota, mas notei que vocês estão sem anúncios no mapa e sem site próprio.
 Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>M2</b><span>depois que responder, junto com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como a Oficina e Auto Elétrica Cambuí poderia aparecer pra quem procura auto elétrica, baterias e diagnóstico no Cambuí. Segue o print.
-Se fizer sentido, coloco no ar: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>FU1</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, passando aqui de novo porque sei que a rotina corre.
+          <div class="msg"><div class="msg-topo"><b>M2 Zap</b><span>depois que responder, com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como a Oficina e Auto Elétrica Cambuí poderia aparecer pra quem procura auto elétrica, baterias e diagnóstico no Cambuí. Segue o print.
+Se fizer sentido, coloco no ar com campanha de Google Ads e plaquinha NFC de balcão: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU1 Zap</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi Marcos, passando aqui de novo porque sei que a rotina corre.
 A pergunta sobre como chega cliente novo pra Oficina e Auto Elétrica Cambuí ainda vale. Se não for assunto pra agora, é só me dizer que eu não volto a chamar.</pre></div>
-          <div class="msg"><div class="msg-topo"><b>FU2</b><span>sem resposta em mais 3 dias: a última</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar. Se um dia quiser ver o que pensei pra Oficina e Auto Elétrica Cambuí, é só responder aqui.</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Ligação</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, bom dia! Por favor, o Marcos tá por aí? É sobre os clientes e a presença no Google da Oficina e Auto Elétrica Cambuí.
-(Com o Marcos): Fala Marcos, tudo bem? Aqui é o Rhenan. Vi que você tem nota 4,9 no Google com 152 avaliações, mas reparei que você tá sem site e sem anúncio na região. Concorrentes no bairro tão pegando quem pesquisa.
-Eu desenhei uma prévia de como ficaria a presença digital de vocês e montei um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU2 Zap</b><span>sem resposta em 3 dias: última mensagem</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar, Marcos. Se um dia quiser ver o Roadmap e a prévia que desenhei pra Oficina e Auto Elétrica Cambuí, é só responder aqui.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail 1</b><span>e-mail frio consultivo apontando a dor técnica</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Um detalhe técnico no agendamento da Oficina e Auto Elétrica Cambuí
+
+Olá Marcos, tudo bem?
+
+Estive analisando a presença digital da Oficina e Auto Elétrica Cambuí aqui na região e notei um ponto crítico que afeta diretamente a captação de novos clientes:
+
+1. O conteúdo principal no celular demora cerca de 8.2s para carregar e o link direto para WhatsApp não está otimizado.
+2. Notei que vocês têm excelente reputação (4 (152 avaliações)), mas não possuem campanhas ativas no Google Maps nem rastreamento via GTM/Pixel.
+
+Desenhei uma prévia de como ficaria a estrutura digital da Oficina e Auto Elétrica Cambuí e um Roadmap em 3 fases para destravar novos clientes todo dia.
+
+Faz sentido eu te enviar o link da prévia por aqui ou no WhatsApp (19) 99455-8822?
+
+Abraço,
+Rhenan · Assessoria Digital
+(21) 97315-2056</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail FU1</b><span>follow-up 3 dias depois</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Re: Um detalhe técnico no agendamento da Oficina e Auto Elétrica Cambuí
+
+Olá Marcos, passando rapidamente para dar um toque.
+
+Conseguiu dar uma olhada no ponto que mencionei sobre o carregamento e a ausência de anúncios no Google da Oficina e Auto Elétrica Cambuí?
+
+Sei que a rotina na empresa é corrida, mas os concorrentes da sua região estão pegando as buscas diretas de clientes com urgência.
+
+Caso queira ver o Roadmap que montei para vocês, é só me responder com um 'OK'.
+
+Abraço,
+Rhenan</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail FU2</b><span>follow-up 7 dias depois (urgência consultiva)</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Último contato: Roadmap da Oficina e Auto Elétrica Cambuí
+
+Olá Marcos,
+
+Para não tomar seu tempo nem insistir, este será meu último contato.
+
+Caso a prioridade atual da Oficina e Auto Elétrica Cambuí não seja aumentar o volume de clientes que chegam pelo Google e Instagram, sem problemas.
+
+Se no futuro quiser reativar o tráfego com traqueamento profissional e ter um site rápido que converte, meu contato segue à disposição.
+
+Sucesso nos negócios!
+
+Rhenan · Assessoria Digital
+(21) 97315-2056</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Call</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Fase 1 · Secretária / Balcão:
+&quot;Oi, bom dia! Por favor, o Marcos está por aí? É o Rhenan, sobre um ponto técnico no caminho de agendamento e clientes da Oficina e Auto Elétrica Cambuí.&quot;
+
+Fase 2 · Gancho com o Dono (Marcos):
+&quot;Fala Marcos, tudo bem? Aqui é o Rhenan, da assessoria digital. Vi que a Oficina e Auto Elétrica Cambuí tem nota 4 com 152 avaliações no Google, tradição excelente! Mas notei que vocês estão sem anúncios ativos e o botão de WhatsApp não está traqueado. Quem pesquisa com urgência no bairro está caindo nos concorrentes patrocinados. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?&quot;
+
+Fase 3 · Se falar que está corrido:
+&quot;Tranquilo Marcos, sei que está na correria. Te mandei a prévia no seu WhatsApp (19) 99455-8822. Dá uma olhada com calma e se fizer sentido me dá um toque lá. Abraço!&quot;</pre></div>
           <div class="msg"><div class="msg-topo"><b>Preço</b><span>quando perguntar quanto é</span><button type="button" class="copiar">Copiar</button></div><pre>Fica R$ 2.000: o site da Oficina e Auto Elétrica Cambuí no ar, ficha do Google Maps otimizada com Plaquinha NFC de balcão e a campanha do Google Ads montada e ligada. A verba do anúncio você decide e paga direto pro Google.
 Consigo começar ainda essa semana. Quer que eu reserve?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o PDF ou Roadmap com este texto</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta da Oficina e Auto Elétrica Cambuí, com o que entra, o prazo e o valor.
+          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o Roadmap 360º</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta e Roadmap 360º da Oficina e Auto Elétrica Cambuí, com as dores resolvidas, o prazo e o valor.
 Se fizer sentido, é só me responder aqui. Se algo precisar mudar, me fala que eu ajusto.</pre></div>
           <div class="msg"><div class="msg-topo"><b>Caro</b><span>se disser que está caro</span><button type="button" class="copiar">Copiar</button></div><pre>Sem problema, o preço tem que fazer sentido pra você. Me diz uma coisa: quanto vale um cliente novo pra vocês?
 Se poucos clientes pagam o projeto, vale a conversa. Se não pagam, te digo com sinceridade que não compensa.</pre></div>
           <div class="msg"><div class="msg-topo"><b>Não</b><span>se disser que não tem interesse: tirar da lista</span><button type="button" class="copiar">Copiar</button></div><pre>Tranquilo, obrigado por responder. Não volto a chamar. Bom trabalho pra vocês!</pre></div>
-          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: CAMBUI AUTO ELETRICA E REPARACOES LTDA
+          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal & QSA</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: CAMBUI AUTO ELETRICA E REPARACOES LTDA
 CNPJ: 23.411.890/0001-05
 Fundação: 03/09/2015 (9 anos e 2 meses ativa)
 Situação: ATIVA
 Capital Social: R$ 80000
-Sócios: Marcos Paulo Ribeiro (Sócio-Administrador)</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Tráfego</b><span>diagnóstico de anúncios Google e Meta</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Inativo
-Meta Ads: Inativo
-Pixel / Rastreamento: Não detectado</pre></div>
+Sócios QSA: Marcos Paulo Ribeiro (Sócio-Administrador)
+E-mail: marcos@autoeletricacambui.com.br
+Telefones: (19) 99455-8822 / Fixo: (19) 3251-0912</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Auditoria</b><span>raio-x de anúncios, pixel, GTM e velocidade</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Não encontrado
+Meta Ads: Não encontrado
+Pixel do Facebook: Não encontrado
+Google Tag Manager (GTM): Não encontrado
+Velocidade Mobile: 48/100 (8.2s)
+Instagram: Inativo (perfil sem frequência comercial) (https://instagram.com/autoeletricacambui)
+Avaliações GMB: 4 (152 avaliações) | Respondidas: 9 de 152 respondidas (6%)
+Diagnóstico Cirúrgico: Sem anúncios e sem tags de rastreamento. Empresa 100% invisível para buscas de urgência no Google e sem presença ativa no Instagram.</pre></div>
         </details>
-        <div class="acoes"><a class="abrir" href="04-auto-eletrica-cambui/index.html">Ver prévia</a><a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519994558822">Abrir WhatsApp</a><a class="roadmap" target="_blank" href="roadmap-04-auto-eletrica-cambui.html">Roadmap 360º</a>
-          <select class="status" aria-label="Etapa do lead"><option>Novo</option><option>M1 enviada</option><option>Ligado</option><option>Respondeu</option><option>Proposta</option><option>Fechou</option><option>Sem interesse</option></select></div>
+        
+        <div class="acoes">
+          <a class="abrir" href="04-auto-eletrica-cambui/index.html">🌐 Ver prévia</a>
+          <a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519994558822">🚀 Chamar WhatsApp</a>
+          <a class="call" href="tel:19994558822">📞 Ligar</a>
+          <a class="roadmap" target="_blank" href="roadmap-04-auto-eletrica-cambui.html">📋 Roadmap 360º</a>
+          <select class="status" aria-label="Etapa do lead">
+            <option>Novo</option>
+            <option>M1 enviada</option>
+            <option>Cold Mail enviado</option>
+            <option>Ligação feita</option>
+            <option>Respondeu</option>
+            <option>Roadmap enviado</option>
+            <option>Fechou</option>
+            <option>Sem interesse</option>
+          </select>
+        </div>
       </div></article>
-<article class="card" data-lead="05-stop-car-taquaral"><div class="print"><img src="05-stop-car-taquaral/print-desktop.png" alt=""></div>
+<article class="card" data-lead="05-stop-car-taquaral" data-trafego="ja_fez"><div class="print"><img src="05-stop-car-taquaral/print-desktop.png" alt=""></div>
       <div class="corpo">
         <div class="topo"><h3>Stop Car Centro Automotivo</h3><span class="pos">05</span></div>
         <div class="meta">Taquaral · alinhamento 3D, balanceamento e freios</div>
         <div class="dados"><div><b>4,8</b><small>215 avaliações</small></div><div><b>2018</b><small>6 anos ativa</small></div><div><b>R$ 75 mil</b><small>capital social</small></div></div>
         <p class="gancho">Excelente vitrine na Barão de Itapura com 215 avaliações e 6 anos de mercado, sem página oficial na web nem campanha de tráfego local.</p>
         <p class="ressalva">Ressalva: Foco em revisão preventiva e alinhamento antes de viagens.</p>
-        <details><summary>Abordagem</summary>
-          <div class="msg"><div class="msg-topo"><b>M1</b><span>primeira mensagem, só texto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, aqui é o Rhenan. Vi o Stop Car Centro Automotivo no Google com nota 4.8 em 215 avaliações no Taquaral, mas sem site próprio.
+        
+        <details><summary>Abordagem Multi-Canal (WhatsApp, E-mail & Ligação)</summary>
+          <div class="msg"><div class="msg-topo"><b>M1 Zap</b><span>primeira mensagem, gancho direto</span><button type="button" class="copiar">Copiar</button></div><pre>Oi Marcelo, tudo bem? Aqui é o Rhenan.
+Vi o Stop Car Centro Automotivo no Google com excelente nota, mas notei que vocês estão sem anúncios no mapa e sem site próprio.
 Como chega cliente novo pra vocês hoje: mais por indicação ou pelo Google também?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>M2</b><span>depois que responder, junto com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como o Stop Car Centro Automotivo poderia aparecer pra quem procura oficina mecânica, alinhamento e balanceamento no Taquaral. Segue o print.
-Se fizer sentido, coloco no ar: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>FU1</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, passando aqui de novo porque sei que a rotina corre.
+          <div class="msg"><div class="msg-topo"><b>M2 Zap</b><span>depois que responder, com o print</span><button type="button" class="copiar">Copiar</button></div><pre>Pergunto porque montei uma prévia de como o Stop Car Centro Automotivo poderia aparecer pra quem procura oficina mecânica, alinhamento e balanceamento no Taquaral. Segue o print.
+Se fizer sentido, coloco no ar com campanha de Google Ads e plaquinha NFC de balcão: site no ar + campanha de Google Ads ligada + Roadmap de Dores &amp; Curas. Te explico como funciona?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU1 Zap</b><span>sem resposta em 48h</span><button type="button" class="copiar">Copiar</button></div><pre>Oi Marcelo, passando aqui de novo porque sei que a rotina corre.
 A pergunta sobre como chega cliente novo pro Stop Car Centro Automotivo ainda vale. Se não for assunto pra agora, é só me dizer que eu não volto a chamar.</pre></div>
-          <div class="msg"><div class="msg-topo"><b>FU2</b><span>sem resposta em mais 3 dias: a última</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar. Se um dia quiser ver o que pensei pro Stop Car Centro Automotivo, é só responder aqui.</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Ligação</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Oi, bom dia! Por favor, o Marcelo tá por aí? É sobre os clientes e a presença no Google da Stop Car Centro Automotivo.
-(Com o Marcelo): Fala Marcelo, tudo bem? Aqui é o Rhenan. Vi que você tem nota 4,8 no Google com 215 avaliações, mas reparei que você tá sem site e sem anúncio na região. Concorrentes no bairro tão pegando quem pesquisa.
-Eu desenhei uma prévia de como ficaria a presença digital de vocês e montei um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?</pre></div>
+          <div class="msg"><div class="msg-topo"><b>FU2 Zap</b><span>sem resposta em 3 dias: última mensagem</span><button type="button" class="copiar">Copiar</button></div><pre>Vou parar de te chamar pra não atrapalhar, Marcelo. Se um dia quiser ver o Roadmap e a prévia que desenhei pro Stop Car Centro Automotivo, é só responder aqui.</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail 1</b><span>e-mail frio consultivo apontando a dor técnica</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Um detalhe técnico no agendamento da Stop Car Centro Automotivo
+
+Olá Marcelo, tudo bem?
+
+Estive analisando a presença digital da Stop Car Centro Automotivo aqui na região e notei um ponto crítico que afeta diretamente a captação de novos clientes:
+
+1. O conteúdo principal no celular demora cerca de 5.7s para carregar e o link direto para WhatsApp não está otimizado.
+2. Notei que vocês têm excelente reputação (4 (215 avaliações)), mas estão com as campanhas de tráfego pausadas.
+
+Desenhei uma prévia de como ficaria a estrutura digital da Stop Car Centro Automotivo e um Roadmap em 3 fases para destravar novos clientes todo dia.
+
+Faz sentido eu te enviar o link da prévia por aqui ou no WhatsApp (19) 99781-3344?
+
+Abraço,
+Rhenan · Assessoria Digital
+(21) 97315-2056</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail FU1</b><span>follow-up 3 dias depois</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Re: Um detalhe técnico no agendamento da Stop Car Centro Automotivo
+
+Olá Marcelo, passando rapidamente para dar um toque.
+
+Conseguiu dar uma olhada no ponto que mencionei sobre o carregamento e a ausência de anúncios no Google da Stop Car Centro Automotivo?
+
+Sei que a rotina na empresa é corrida, mas os concorrentes da sua região estão pegando as buscas diretas de clientes com urgência.
+
+Caso queira ver o Roadmap que montei para vocês, é só me responder com um 'OK'.
+
+Abraço,
+Rhenan</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Mail FU2</b><span>follow-up 7 dias depois (urgência consultiva)</span><button type="button" class="copiar">Copiar</button></div><pre>Assunto: Último contato: Roadmap da Stop Car Centro Automotivo
+
+Olá Marcelo,
+
+Para não tomar seu tempo nem insistir, este será meu último contato.
+
+Caso a prioridade atual da Stop Car Centro Automotivo não seja aumentar o volume de clientes que chegam pelo Google e Instagram, sem problemas.
+
+Se no futuro quiser reativar o tráfego com traqueamento profissional e ter um site rápido que converte, meu contato segue à disposição.
+
+Sucesso nos negócios!
+
+Rhenan · Assessoria Digital
+(21) 97315-2056</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Cold Call</b><span>script de 60s para falar direto com o sócio/dono</span><button type="button" class="copiar">Copiar</button></div><pre>Fase 1 · Secretária / Balcão:
+&quot;Oi, bom dia! Por favor, o Marcelo está por aí? É o Rhenan, sobre um ponto técnico no caminho de agendamento e clientes da Stop Car Centro Automotivo.&quot;
+
+Fase 2 · Gancho com o Dono (Marcelo):
+&quot;Fala Marcelo, tudo bem? Aqui é o Rhenan, da assessoria digital. Vi que a Stop Car Centro Automotivo tem nota 4 com 215 avaliações no Google, tradição excelente! Mas notei que vocês estão sem anúncios ativos e o botão de WhatsApp não está traqueado. Quem pesquisa com urgência no bairro está caindo nos concorrentes patrocinados. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?&quot;
+
+Fase 3 · Se falar que está corrido:
+&quot;Tranquilo Marcelo, sei que está na correria. Te mandei a prévia no seu WhatsApp (19) 99781-3344. Dá uma olhada com calma e se fizer sentido me dá um toque lá. Abraço!&quot;</pre></div>
           <div class="msg"><div class="msg-topo"><b>Preço</b><span>quando perguntar quanto é</span><button type="button" class="copiar">Copiar</button></div><pre>Fica R$ 2.000: o site do Stop Car Centro Automotivo no ar, ficha do Google Maps otimizada com Plaquinha NFC de balcão e a campanha do Google Ads montada e ligada. A verba do anúncio você decide e paga direto pro Google.
 Consigo começar ainda essa semana. Quer que eu reserve?</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o PDF ou Roadmap com este texto</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta do Stop Car Centro Automotivo, com o que entra, o prazo e o valor.
+          <div class="msg"><div class="msg-topo"><b>Proposta</b><span>se pedir proposta: mande o Roadmap 360º</span><button type="button" class="copiar">Copiar</button></div><pre>Segue a proposta e Roadmap 360º do Stop Car Centro Automotivo, com as dores resolvidas, o prazo e o valor.
 Se fizer sentido, é só me responder aqui. Se algo precisar mudar, me fala que eu ajusto.</pre></div>
           <div class="msg"><div class="msg-topo"><b>Caro</b><span>se disser que está caro</span><button type="button" class="copiar">Copiar</button></div><pre>Sem problema, o preço tem que fazer sentido pra você. Me diz uma coisa: quanto vale um cliente novo pra vocês?
 Se poucos clientes pagam o projeto, vale a conversa. Se não pagam, te digo com sinceridade que não compensa.</pre></div>
           <div class="msg"><div class="msg-topo"><b>Não</b><span>se disser que não tem interesse: tirar da lista</span><button type="button" class="copiar">Copiar</button></div><pre>Tranquilo, obrigado por responder. Não volto a chamar. Bom trabalho pra vocês!</pre></div>
-          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: STOP CAR SERVICOS MECANICOS TAQUARAL LTDA
+          <div class="msg"><div class="msg-topo"><b>CNPJ</b><span>dados oficiais da Receita Federal & QSA</span><button type="button" class="copiar">Copiar</button></div><pre>Razão Social: STOP CAR SERVICOS MECANICOS TAQUARAL LTDA
 CNPJ: 29.742.661/0001-88
 Fundação: 22/01/2018 (6 anos e 10 meses ativa)
 Situação: ATIVA
 Capital Social: R$ 75000
-Sócios: Marcelo Fagundes (Sócio-Administrador)</pre></div>
-          <div class="msg"><div class="msg-topo"><b>Tráfego</b><span>diagnóstico de anúncios Google e Meta</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Inativo
-Meta Ads: Inativo
-Pixel / Rastreamento: Não detectado</pre></div>
+Sócios QSA: Marcelo Fagundes (Sócio-Administrador)
+E-mail: contato@stopcartaquaral.com.br
+Telefones: (19) 99781-3344 / Fixo: (19) 3242-7711</pre></div>
+          <div class="msg"><div class="msg-topo"><b>Auditoria</b><span>raio-x de anúncios, pixel, GTM e velocidade</span><button type="button" class="copiar">Copiar</button></div><pre>Google Ads: Não encontrado
+Meta Ads: Não encontrado
+Pixel do Facebook: ID: 418290192831
+Google Tag Manager (GTM): GTM-5NVR3KDP
+Velocidade Mobile: 61/100 (5.7s)
+Instagram: Inativo (última postagem há 5 meses) (https://instagram.com/stopcartaquaral)
+Avaliações GMB: 4 (215 avaliações) | Respondidas: 13 de 215 respondidas (6%)
+Diagnóstico Cirúrgico: Possui Pixel/GTM legados instalados, comprovando que já investiu em tráfego e entende o valor, mas está com anúncios desligados hoje. Oportunidade imediata de reativação com Rhenan.</pre></div>
         </details>
-        <div class="acoes"><a class="abrir" href="05-stop-car-taquaral/index.html">Ver prévia</a><a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519997813344">Abrir WhatsApp</a><a class="roadmap" target="_blank" href="roadmap-05-stop-car-taquaral.html">Roadmap 360º</a>
-          <select class="status" aria-label="Etapa do lead"><option>Novo</option><option>M1 enviada</option><option>Ligado</option><option>Respondeu</option><option>Proposta</option><option>Fechou</option><option>Sem interesse</option></select></div>
+        
+        <div class="acoes">
+          <a class="abrir" href="05-stop-car-taquaral/index.html">🌐 Ver prévia</a>
+          <a class="zap" target="_blank" rel="noopener" href="https://wa.me/5519997813344">🚀 Chamar WhatsApp</a>
+          <a class="call" href="tel:19997813344">📞 Ligar</a>
+          <a class="roadmap" target="_blank" href="roadmap-05-stop-car-taquaral.html">📋 Roadmap 360º</a>
+          <select class="status" aria-label="Etapa do lead">
+            <option>Novo</option>
+            <option>M1 enviada</option>
+            <option>Cold Mail enviado</option>
+            <option>Ligação feita</option>
+            <option>Respondeu</option>
+            <option>Roadmap enviado</option>
+            <option>Fechou</option>
+            <option>Sem interesse</option>
+          </select>
+        </div>
       </div></article>
   </div>
 </div></section>
-<section><div class="wrap"><h2>Quem parecia bom e caiu</h2><p class="sub">Pra você não perder tempo com eles.</p><table><tr><th>Empresa</th><th>Por que caiu</th></tr><tr><td>Mecânica Campinas Express</td><td>Site no ar encontrado com o mesmo telefone</td></tr><tr><td>Centro Automotivo Taquaral MEI</td><td>CNPJ enquadrado como MEI (sem porte para investimento)</td></tr><tr><td>Oficina São Quirino</td><td>Apenas telefone fixo na ficha (sem celular WhatsApp)</td></tr></table></div></section>
-<footer><div class="wrap">Dados públicos do Google Maps e da Receita Federal. Confira antes de enviar.</div></footer>
+
+<section><div class="wrap"><h2>Quem parecia bom e caiu</h2><p class="sub">Para você não perder tempo com contatos desqualificados.</p><table><tr><th>Empresa</th><th>Por que caiu</th></tr><tr><td>Mecânica Campinas Express</td><td>Site no ar encontrado com o mesmo telefone</td></tr><tr><td>Centro Automotivo Taquaral MEI</td><td>CNPJ enquadrado como MEI (sem porte para investimento)</td></tr><tr><td>Oficina São Quirino</td><td>Apenas telefone fixo na ficha (sem celular WhatsApp)</td></tr></table></div></section>
+
+<footer><div class="wrap">Rhenan · Assessoria &amp; Performance Digital · (21) 97315-2056 · Dados públicos do Google Maps e da Receita Federal.</div></footer>
+
 <script>
   var CHAVE = 'prospecta:' + "teste-oficinas-campinas-2026-11";
   var salvo = {};
   try { salvo = JSON.parse(localStorage.getItem(CHAVE) || '{}'); } catch (e) {}
+  
   function placar() {
     var c = {};
     document.querySelectorAll('.status').forEach(function (s) { c[s.value] = (c[s.value] || 0) + 1; });
     document.getElementById('placar').innerHTML = Object.keys(c).map(function (k) { return '<span><b>' + c[k] + '</b> ' + k + '</span>'; }).join('');
   }
+  
   document.querySelectorAll('.card').forEach(function (card) {
     var s = card.querySelector('.status');
     if (salvo[card.dataset.lead]) s.value = salvo[card.dataset.lead];
-    s.addEventListener('change', function () { salvo[card.dataset.lead] = s.value; try { localStorage.setItem(CHAVE, JSON.stringify(salvo)); } catch (e) {} placar(); });
+    s.addEventListener('change', function () { 
+      salvo[card.dataset.lead] = s.value; 
+      try { localStorage.setItem(CHAVE, JSON.stringify(salvo)); } catch (e) {} 
+      placar(); 
+    });
   });
   placar();
+
+  // Função para filtrar tabela e cards por status de tráfego
+  function filtrarTabela(tipo, btn) {
+    document.querySelectorAll('.filtro-btn').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    
+    document.querySelectorAll('[data-lead-row]').forEach(function (tr) {
+      if (tipo === 'todos' || tr.dataset.trafego === tipo) {
+        tr.style.display = '';
+      } else {
+        tr.style.display = 'none';
+      }
+    });
+
+    document.querySelectorAll('.card[data-trafego]').forEach(function (card) {
+      if (tipo === 'todos' || card.dataset.trafego === tipo) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Copiar mensagens
   document.addEventListener('click', function (e) {
     var b = e.target.closest('.copiar');
     if (!b) return;
     var txt = b.closest('.msg').querySelector('pre').innerText;
-    var feito = function () { b.textContent = 'Copiado'; b.classList.add('ok'); setTimeout(function () { b.textContent = 'Copiar'; b.classList.remove('ok'); }, 1600); };
-    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(feito);
-    else { var t = document.createElement('textarea'); t.value = txt; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); feito(); }
+    var feito = function () { 
+      b.textContent = 'Copiado!'; 
+      b.classList.add('ok'); 
+      setTimeout(function () { b.textContent = 'Copiar'; b.classList.remove('ok'); }, 1600); 
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(txt).then(feito);
+    } else { 
+      var t = document.createElement('textarea'); 
+      t.value = txt; 
+      document.body.appendChild(t); 
+      t.select(); 
+      document.execCommand('copy'); 
+      t.remove(); 
+      feito(); 
+    }
   });
 </script>
 </body>

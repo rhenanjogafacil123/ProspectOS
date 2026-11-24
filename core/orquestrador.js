@@ -107,14 +107,19 @@ const configRodada = {
 
 gravarJSON(rodadaConfigJSON, configRodada);
 
-// 7. Geração dos Roadmaps de Implantação 360º
-rodarPasso('5. Geração dos Roadmaps de Implantação', path.join(__dirname, 'gera-roadmap.js'), [
+// 7. Enriquecimento de Inteligência Multi-Fonte Completo (Padrão Abacus AI)
+rodarPasso('5. Enriquecimento de Inteligência Multi-Fonte & Auditoria Digital', path.join(__dirname, 'enriquecedor.js'), [
+  rodadaConfigJSON
+]);
+
+// 8. Geração dos Roadmaps de Implantação 360º (Padrão 3 Páginas A4)
+rodarPasso('6. Geração dos Roadmaps de Implantação (HTML e PDF)', path.join(__dirname, 'gera-roadmap.js'), [
   rodadaConfigJSON,
   pastaRodada
 ]);
 
-// 8. Geração do Cockpit / Painel Interativo da Rodada
-rodarPasso('6. Montagem do Painel Interativo (WhatsApp + Ligação)', path.join(__dirname, 'monta-painel.js'), [
+// 9. Geração do Cockpit & Painel Interativo com Tabela de Auditoria e Cards
+rodarPasso('7. Montagem do Cockpit Executivo (Tabela Abacus + Cards Multi-Canal)', path.join(__dirname, 'monta-rodada.js'), [
   rodadaConfigJSON,
   pastaRodada
 ]);

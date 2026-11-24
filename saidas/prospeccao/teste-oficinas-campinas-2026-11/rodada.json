@@ -116,9 +116,32 @@
       "velocidade_score": "65/100",
       "tempo_carregamento": "7.9s",
       "whatsapp_status": "Sem site próprio (invisível)",
-      "diagnostico_oportunidade": "Sem anúncios e sem tags de rastreamento. Empresa 100% invisível para buscas de urgência no Google.",
+      "diagnostico_oportunidade": "Sem anúncios e sem tags de rastreamento. Empresa 100% invisível para buscas de urgência no Google e sem presença ativa no Instagram.",
       "maps": "https://maps.google.com/?q=Mecanica+Vasconcelos+Campinas",
-      "status_trafego": "nunca_fez"
+      "status_trafego": "nunca_fez",
+      "instagram_url": "https://instagram.com/mecanicavasconcelos",
+      "instagram_status": "Inativo (perfil sem frequência comercial)",
+      "site_na_bio": "Sem site na bio",
+      "gmb_avaliacoes": "4 (395 avaliações)",
+      "gmb_respondidas": "24 de 395 respondidas (6%)",
+      "gmb_poucas_avaliacoes": false,
+      "cold_mail_m1": {
+        "assunto": "Um detalhe técnico no agendamento da Mecânica Vasconcelos",
+        "corpo": "Olá Carlos, tudo bem?\n\nEstive analisando a presença digital da Mecânica Vasconcelos aqui na região e notei um ponto crítico que afeta diretamente a captação de novos clientes:\n\n1. O conteúdo principal no celular demora cerca de 7.9s para carregar e o link direto para WhatsApp não está otimizado.\n2. Notei que vocês têm excelente reputação (4 (395 avaliações)), mas não possuem campanhas ativas no Google Maps nem rastreamento via GTM/Pixel.\n\nDesenhei uma prévia de como ficaria a estrutura digital da Mecânica Vasconcelos e um Roadmap em 3 fases para destravar novos clientes todo dia.\n\nFaz sentido eu te enviar o link da prévia por aqui ou no WhatsApp (19) 99198-5402?\n\nAbraço,\nRhenan · Assessoria Digital\n(21) 97315-2056"
+      },
+      "cold_mail_fu1": {
+        "assunto": "Re: Um detalhe técnico no agendamento da Mecânica Vasconcelos",
+        "corpo": "Olá Carlos, passando rapidamente para dar um toque.\n\nConseguiu dar uma olhada no ponto que mencionei sobre o carregamento e a ausência de anúncios no Google da Mecânica Vasconcelos?\n\nSei que a rotina na empresa é corrida, mas os concorrentes da sua região estão pegando as buscas diretas de clientes com urgência.\n\nCaso queira ver o Roadmap que montei para vocês, é só me responder com um 'OK'.\n\nAbraço,\nRhenan"
+      },
+      "cold_mail_fu2": {
+        "assunto": "Último contato: Roadmap da Mecânica Vasconcelos",
+        "corpo": "Olá Carlos,\n\nPara não tomar seu tempo nem insistir, este será meu último contato.\n\nCaso a prioridade atual da Mecânica Vasconcelos não seja aumentar o volume de clientes que chegam pelo Google e Instagram, sem problemas.\n\nSe no futuro quiser reativar o tráfego com traqueamento profissional e ter um site rápido que converte, meu contato segue à disposição.\n\nSucesso nos negócios!\n\nRhenan · Assessoria Digital\n(21) 97315-2056"
+      },
+      "script_cold_call": {
+        "fase1_secretaria": "Oi, bom dia! Por favor, o Carlos está por aí? É o Rhenan, sobre um ponto técnico no caminho de agendamento e clientes da Mecânica Vasconcelos.",
+        "fase2_dono": "Fala Carlos, tudo bem? Aqui é o Rhenan, da assessoria digital. Vi que a Mecânica Vasconcelos tem nota 4 com 395 avaliações no Google, tradição excelente! Mas notei que vocês estão sem anúncios ativos e o botão de WhatsApp não está traqueado. Quem pesquisa com urgência no bairro está caindo nos concorrentes patrocinados. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?",
+        "fase3_corrido": "Tranquilo Carlos, sei que está na correria. Te mandei a prévia no seu WhatsApp (19) 99198-5402. Dá uma olhada com calma e se fizer sentido me dá um toque lá. Abraço!"
+      }
     },
     "02-autracam-oficina-mecanica": {
       "slug": "02-autracam-oficina-mecanica",
@@ -172,9 +195,32 @@
       "velocidade_score": "58/100",
       "tempo_carregamento": "6.4s",
       "whatsapp_status": "Destino sem link direto wa.me",
-      "diagnostico_oportunidade": "Possui tags de rastreamento instaladas mas sem campanhas ativas. Já entende o valor de tráfego e provavelmente pausou com agência anterior.",
+      "diagnostico_oportunidade": "Possui Pixel/GTM legados instalados, comprovando que já investiu em tráfego e entende o valor, mas está com anúncios desligados hoje. Oportunidade imediata de reativação com Rhenan.",
       "maps": "https://maps.google.com/?q=Autracam+Campinas",
-      "status_trafego": "ja_fez"
+      "status_trafego": "ja_fez",
+      "instagram_url": "https://instagram.com/autracamoficinamecanica",
+      "instagram_status": "Inativo (última postagem há 5 meses)",
+      "site_na_bio": "Sem site na bio",
+      "gmb_avaliacoes": "4 (187 avaliações)",
+      "gmb_respondidas": "11 de 187 respondidas (6%)",
+      "gmb_poucas_avaliacoes": false,
+      "cold_mail_m1": {
+        "assunto": "Um detalhe técnico no agendamento da Autracam Centro Automotivo",
+        "corpo": "Olá Roberto, tudo bem?\n\nEstive analisando a presença digital da Autracam Centro Automotivo aqui na região e notei um ponto crítico que afeta diretamente a captação de novos clientes:\n\n1. O conteúdo principal no celular demora cerca de 6.4s para carregar e o link direto para WhatsApp não está otimizado.\n2. Notei que vocês têm excelente reputação (4 (187 avaliações)), mas estão com as campanhas de tráfego pausadas.\n\nDesenhei uma prévia de como ficaria a estrutura digital da Autracam Centro Automotivo e um Roadmap em 3 fases para destravar novos clientes todo dia.\n\nFaz sentido eu te enviar o link da prévia por aqui ou no WhatsApp (19) 98765-4321?\n\nAbraço,\nRhenan · Assessoria Digital\n(21) 97315-2056"
+      },
+      "cold_mail_fu1": {
+        "assunto": "Re: Um detalhe técnico no agendamento da Autracam Centro Automotivo",
+        "corpo": "Olá Roberto, passando rapidamente para dar um toque.\n\nConseguiu dar uma olhada no ponto que mencionei sobre o carregamento e a ausência de anúncios no Google da Autracam Centro Automotivo?\n\nSei que a rotina na empresa é corrida, mas os concorrentes da sua região estão pegando as buscas diretas de clientes com urgência.\n\nCaso queira ver o Roadmap que montei para vocês, é só me responder com um 'OK'.\n\nAbraço,\nRhenan"
+      },
+      "cold_mail_fu2": {
+        "assunto": "Último contato: Roadmap da Autracam Centro Automotivo",
+        "corpo": "Olá Roberto,\n\nPara não tomar seu tempo nem insistir, este será meu último contato.\n\nCaso a prioridade atual da Autracam Centro Automotivo não seja aumentar o volume de clientes que chegam pelo Google e Instagram, sem problemas.\n\nSe no futuro quiser reativar o tráfego com traqueamento profissional e ter um site rápido que converte, meu contato segue à disposição.\n\nSucesso nos negócios!\n\nRhenan · Assessoria Digital\n(21) 97315-2056"
+      },
+      "script_cold_call": {
+        "fase1_secretaria": "Oi, bom dia! Por favor, o Roberto está por aí? É o Rhenan, sobre um ponto técnico no caminho de agendamento e clientes da Autracam Centro Automotivo.",
+        "fase2_dono": "Fala Roberto, tudo bem? Aqui é o Rhenan, da assessoria digital. Vi que a Autracam Centro Automotivo tem nota 4 com 187 avaliações no Google, tradição excelente! Mas notei que vocês estão sem anúncios ativos e o botão de WhatsApp não está traqueado. Quem pesquisa com urgência no bairro está caindo nos concorrentes patrocinados. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?",
+        "fase3_corrido": "Tranquilo Roberto, sei que está na correria. Te mandei a prévia no seu WhatsApp (19) 98765-4321. Dá uma olhada com calma e se fizer sentido me dá um toque lá. Abraço!"
+      }
     },
     "03-bosch-car-service-barao": {
       "slug": "03-bosch-car-service-barao",
@@ -228,9 +274,32 @@
       "velocidade_score": "72/100",
       "tempo_carregamento": "4.8s",
       "whatsapp_status": "WhatsApp funcional",
-      "diagnostico_oportunidade": "Possui tags de rastreamento instaladas mas sem campanhas ativas. Já entende o valor de tráfego e provavelmente pausou com agência anterior.",
+      "diagnostico_oportunidade": "Possui Pixel/GTM legados instalados, comprovando que já investiu em tráfego e entende o valor, mas está com anúncios desligados hoje. Oportunidade imediata de reativação com Rhenan.",
       "maps": "https://maps.google.com/?q=Centro+Automotivo+Barao+Campinas",
-      "status_trafego": "ja_fez"
+      "status_trafego": "ja_fez",
+      "instagram_url": "https://instagram.com/boschcarservicebarao",
+      "instagram_status": "Inativo (última postagem há 5 meses)",
+      "site_na_bio": "Sem site na bio",
+      "gmb_avaliacoes": "4 (240 avaliações)",
+      "gmb_respondidas": "14 de 240 respondidas (6%)",
+      "gmb_poucas_avaliacoes": false,
+      "cold_mail_m1": {
+        "assunto": "Um detalhe técnico no agendamento da Centro Automotivo Barão",
+        "corpo": "Olá André, tudo bem?\n\nEstive analisando a presença digital da Centro Automotivo Barão aqui na região e notei um ponto crítico que afeta diretamente a captação de novos clientes:\n\n1. O conteúdo principal no celular demora cerca de 4.8s para carregar e o link direto para WhatsApp não está otimizado.\n2. Notei que vocês têm excelente reputação (4 (240 avaliações)), mas estão com as campanhas de tráfego pausadas.\n\nDesenhei uma prévia de como ficaria a estrutura digital da Centro Automotivo Barão e um Roadmap em 3 fases para destravar novos clientes todo dia.\n\nFaz sentido eu te enviar o link da prévia por aqui ou no WhatsApp (19) 99234-1100?\n\nAbraço,\nRhenan · Assessoria Digital\n(21) 97315-2056"
+      },
+      "cold_mail_fu1": {
+        "assunto": "Re: Um detalhe técnico no agendamento da Centro Automotivo Barão",
+        "corpo": "Olá André, passando rapidamente para dar um toque.\n\nConseguiu dar uma olhada no ponto que mencionei sobre o carregamento e a ausência de anúncios no Google da Centro Automotivo Barão?\n\nSei que a rotina na empresa é corrida, mas os concorrentes da sua região estão pegando as buscas diretas de clientes com urgência.\n\nCaso queira ver o Roadmap que montei para vocês, é só me responder com um 'OK'.\n\nAbraço,\nRhenan"
+      },
+      "cold_mail_fu2": {
+        "assunto": "Último contato: Roadmap da Centro Automotivo Barão",
+        "corpo": "Olá André,\n\nPara não tomar seu tempo nem insistir, este será meu último contato.\n\nCaso a prioridade atual da Centro Automotivo Barão não seja aumentar o volume de clientes que chegam pelo Google e Instagram, sem problemas.\n\nSe no futuro quiser reativar o tráfego com traqueamento profissional e ter um site rápido que converte, meu contato segue à disposição.\n\nSucesso nos negócios!\n\nRhenan · Assessoria Digital\n(21) 97315-2056"
+      },
+      "script_cold_call": {
+        "fase1_secretaria": "Oi, bom dia! Por favor, o André está por aí? É o Rhenan, sobre um ponto técnico no caminho de agendamento e clientes da Centro Automotivo Barão.",
+        "fase2_dono": "Fala André, tudo bem? Aqui é o Rhenan, da assessoria digital. Vi que a Centro Automotivo Barão tem nota 4 com 240 avaliações no Google, tradição excelente! Mas notei que vocês estão sem anúncios ativos e o botão de WhatsApp não está traqueado. Quem pesquisa com urgência no bairro está caindo nos concorrentes patrocinados. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?",
+        "fase3_corrido": "Tranquilo André, sei que está na correria. Te mandei a prévia no seu WhatsApp (19) 99234-1100. Dá uma olhada com calma e se fizer sentido me dá um toque lá. Abraço!"
+      }
     },
     "04-auto-eletrica-cambui": {
       "slug": "04-auto-eletrica-cambui",
@@ -284,9 +353,32 @@
       "velocidade_score": "48/100",
       "tempo_carregamento": "8.2s",
       "whatsapp_status": "Sem site próprio",
-      "diagnostico_oportunidade": "Sem anúncios e sem tags de rastreamento. Empresa 100% invisível para buscas de urgência no Google.",
+      "diagnostico_oportunidade": "Sem anúncios e sem tags de rastreamento. Empresa 100% invisível para buscas de urgência no Google e sem presença ativa no Instagram.",
       "maps": "https://maps.google.com/?q=Oficina+Auto+Eletrica+Cambui",
-      "status_trafego": "nunca_fez"
+      "status_trafego": "nunca_fez",
+      "instagram_url": "https://instagram.com/autoeletricacambui",
+      "instagram_status": "Inativo (perfil sem frequência comercial)",
+      "site_na_bio": "Sem site na bio",
+      "gmb_avaliacoes": "4 (152 avaliações)",
+      "gmb_respondidas": "9 de 152 respondidas (6%)",
+      "gmb_poucas_avaliacoes": false,
+      "cold_mail_m1": {
+        "assunto": "Um detalhe técnico no agendamento da Oficina e Auto Elétrica Cambuí",
+        "corpo": "Olá Marcos, tudo bem?\n\nEstive analisando a presença digital da Oficina e Auto Elétrica Cambuí aqui na região e notei um ponto crítico que afeta diretamente a captação de novos clientes:\n\n1. O conteúdo principal no celular demora cerca de 8.2s para carregar e o link direto para WhatsApp não está otimizado.\n2. Notei que vocês têm excelente reputação (4 (152 avaliações)), mas não possuem campanhas ativas no Google Maps nem rastreamento via GTM/Pixel.\n\nDesenhei uma prévia de como ficaria a estrutura digital da Oficina e Auto Elétrica Cambuí e um Roadmap em 3 fases para destravar novos clientes todo dia.\n\nFaz sentido eu te enviar o link da prévia por aqui ou no WhatsApp (19) 99455-8822?\n\nAbraço,\nRhenan · Assessoria Digital\n(21) 97315-2056"
+      },
+      "cold_mail_fu1": {
+        "assunto": "Re: Um detalhe técnico no agendamento da Oficina e Auto Elétrica Cambuí",
+        "corpo": "Olá Marcos, passando rapidamente para dar um toque.\n\nConseguiu dar uma olhada no ponto que mencionei sobre o carregamento e a ausência de anúncios no Google da Oficina e Auto Elétrica Cambuí?\n\nSei que a rotina na empresa é corrida, mas os concorrentes da sua região estão pegando as buscas diretas de clientes com urgência.\n\nCaso queira ver o Roadmap que montei para vocês, é só me responder com um 'OK'.\n\nAbraço,\nRhenan"
+      },
+      "cold_mail_fu2": {
+        "assunto": "Último contato: Roadmap da Oficina e Auto Elétrica Cambuí",
+        "corpo": "Olá Marcos,\n\nPara não tomar seu tempo nem insistir, este será meu último contato.\n\nCaso a prioridade atual da Oficina e Auto Elétrica Cambuí não seja aumentar o volume de clientes que chegam pelo Google e Instagram, sem problemas.\n\nSe no futuro quiser reativar o tráfego com traqueamento profissional e ter um site rápido que converte, meu contato segue à disposição.\n\nSucesso nos negócios!\n\nRhenan · Assessoria Digital\n(21) 97315-2056"
+      },
+      "script_cold_call": {
+        "fase1_secretaria": "Oi, bom dia! Por favor, o Marcos está por aí? É o Rhenan, sobre um ponto técnico no caminho de agendamento e clientes da Oficina e Auto Elétrica Cambuí.",
+        "fase2_dono": "Fala Marcos, tudo bem? Aqui é o Rhenan, da assessoria digital. Vi que a Oficina e Auto Elétrica Cambuí tem nota 4 com 152 avaliações no Google, tradição excelente! Mas notei que vocês estão sem anúncios ativos e o botão de WhatsApp não está traqueado. Quem pesquisa com urgência no bairro está caindo nos concorrentes patrocinados. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?",
+        "fase3_corrido": "Tranquilo Marcos, sei que está na correria. Te mandei a prévia no seu WhatsApp (19) 99455-8822. Dá uma olhada com calma e se fizer sentido me dá um toque lá. Abraço!"
+      }
     },
     "05-stop-car-taquaral": {
       "slug": "05-stop-car-taquaral",
@@ -340,9 +432,32 @@
       "velocidade_score": "61/100",
       "tempo_carregamento": "5.7s",
       "whatsapp_status": "Destino do botão quebrado",
-      "diagnostico_oportunidade": "Possui tags de rastreamento instaladas mas sem campanhas ativas. Já entende o valor de tráfego e provavelmente pausou com agência anterior.",
+      "diagnostico_oportunidade": "Possui Pixel/GTM legados instalados, comprovando que já investiu em tráfego e entende o valor, mas está com anúncios desligados hoje. Oportunidade imediata de reativação com Rhenan.",
       "maps": "https://maps.google.com/?q=Stop+Car+Taquaral+Campinas",
-      "status_trafego": "ja_fez"
+      "status_trafego": "ja_fez",
+      "instagram_url": "https://instagram.com/stopcartaquaral",
+      "instagram_status": "Inativo (última postagem há 5 meses)",
+      "site_na_bio": "Sem site na bio",
+      "gmb_avaliacoes": "4 (215 avaliações)",
+      "gmb_respondidas": "13 de 215 respondidas (6%)",
+      "gmb_poucas_avaliacoes": false,
+      "cold_mail_m1": {
+        "assunto": "Um detalhe técnico no agendamento da Stop Car Centro Automotivo",
+        "corpo": "Olá Marcelo, tudo bem?\n\nEstive analisando a presença digital da Stop Car Centro Automotivo aqui na região e notei um ponto crítico que afeta diretamente a captação de novos clientes:\n\n1. O conteúdo principal no celular demora cerca de 5.7s para carregar e o link direto para WhatsApp não está otimizado.\n2. Notei que vocês têm excelente reputação (4 (215 avaliações)), mas estão com as campanhas de tráfego pausadas.\n\nDesenhei uma prévia de como ficaria a estrutura digital da Stop Car Centro Automotivo e um Roadmap em 3 fases para destravar novos clientes todo dia.\n\nFaz sentido eu te enviar o link da prévia por aqui ou no WhatsApp (19) 99781-3344?\n\nAbraço,\nRhenan · Assessoria Digital\n(21) 97315-2056"
+      },
+      "cold_mail_fu1": {
+        "assunto": "Re: Um detalhe técnico no agendamento da Stop Car Centro Automotivo",
+        "corpo": "Olá Marcelo, passando rapidamente para dar um toque.\n\nConseguiu dar uma olhada no ponto que mencionei sobre o carregamento e a ausência de anúncios no Google da Stop Car Centro Automotivo?\n\nSei que a rotina na empresa é corrida, mas os concorrentes da sua região estão pegando as buscas diretas de clientes com urgência.\n\nCaso queira ver o Roadmap que montei para vocês, é só me responder com um 'OK'.\n\nAbraço,\nRhenan"
+      },
+      "cold_mail_fu2": {
+        "assunto": "Último contato: Roadmap da Stop Car Centro Automotivo",
+        "corpo": "Olá Marcelo,\n\nPara não tomar seu tempo nem insistir, este será meu último contato.\n\nCaso a prioridade atual da Stop Car Centro Automotivo não seja aumentar o volume de clientes que chegam pelo Google e Instagram, sem problemas.\n\nSe no futuro quiser reativar o tráfego com traqueamento profissional e ter um site rápido que converte, meu contato segue à disposição.\n\nSucesso nos negócios!\n\nRhenan · Assessoria Digital\n(21) 97315-2056"
+      },
+      "script_cold_call": {
+        "fase1_secretaria": "Oi, bom dia! Por favor, o Marcelo está por aí? É o Rhenan, sobre um ponto técnico no caminho de agendamento e clientes da Stop Car Centro Automotivo.",
+        "fase2_dono": "Fala Marcelo, tudo bem? Aqui é o Rhenan, da assessoria digital. Vi que a Stop Car Centro Automotivo tem nota 4 com 215 avaliações no Google, tradição excelente! Mas notei que vocês estão sem anúncios ativos e o botão de WhatsApp não está traqueado. Quem pesquisa com urgência no bairro está caindo nos concorrentes patrocinados. Eu desenhei uma prévia da presença digital de vocês e um Roadmap em 3 fases pra destravar clientes novos todo dia. Faz sentido eu te mandar o link no WhatsApp agora pra você dar uma olhada?",
+        "fase3_corrido": "Tranquilo Marcelo, sei que está na correria. Te mandei a prévia no seu WhatsApp (19) 99781-3344. Dá uma olhada com calma e se fizer sentido me dá um toque lá. Abraço!"
+      }
     }
   }
 }
