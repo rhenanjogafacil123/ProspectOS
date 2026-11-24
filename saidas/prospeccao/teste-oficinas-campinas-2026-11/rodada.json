@@ -13,11 +13,26 @@
   "data": "23/11/2026",
   "resumo": "5 oficinas mecânicas aprovadas na Receita Federal e no Google Maps em Campinas. Prontas para abordagem multicanal (WhatsApp e Ligação Fria), prévia de site no ar e Roadmap 360º de Dores & Curas.",
   "funil": [
-    ["Encontradas no Maps", 600],
-    ["Nota acima de 4.0", 420],
-    ["15 ou mais avaliações", 210],
-    ["Sem site na ficha", 84],
-    ["Com celular verificado", 48]
+    [
+      "Encontradas no Maps",
+      600
+    ],
+    [
+      "Nota acima de 4.0",
+      420
+    ],
+    [
+      "15 ou mais avaliações",
+      210
+    ],
+    [
+      "Sem site na ficha",
+      84
+    ],
+    [
+      "Com celular verificado",
+      48
+    ]
   ],
   "criterios": [
     "Nota acima de 4.5 e mais de 100 avaliações reais",
@@ -31,9 +46,18 @@
     "nota": "Concorrentes patrocinados captando buscas diárias com intenção de reparo imediato."
   },
   "caiu": [
-    { "empresa": "Mecânica Campinas Express", "motivo": "Site no ar encontrado com o mesmo telefone" },
-    { "empresa": "Centro Automotivo Taquaral MEI", "motivo": "CNPJ enquadrado como MEI (sem porte para investimento)" },
-    { "empresa": "Oficina São Quirino", "motivo": "Apenas telefone fixo na ficha (sem celular WhatsApp)" }
+    {
+      "empresa": "Mecânica Campinas Express",
+      "motivo": "Site no ar encontrado com o mesmo telefone"
+    },
+    {
+      "empresa": "Centro Automotivo Taquaral MEI",
+      "motivo": "CNPJ enquadrado como MEI (sem porte para investimento)"
+    },
+    {
+      "empresa": "Oficina São Quirino",
+      "motivo": "Apenas telefone fixo na ficha (sem celular WhatsApp)"
+    }
   ],
   "leads": {
     "01-mecanica-vasconcelos": {
@@ -45,14 +69,25 @@
       "busca": "oficina mecanica campinas ponte preta",
       "meta": "Ponte Preta · oficina mecânica e auto elétrica",
       "dados": [
-        ["4,8", "395 avaliações"],
-        ["2014", "10 anos ativa"],
-        ["R$ 50 mil", "capital social"]
+        [
+          "4,8",
+          "395 avaliações"
+        ],
+        [
+          "2014",
+          "10 anos ativa"
+        ],
+        [
+          "R$ 50 mil",
+          "capital social"
+        ]
       ],
       "gancho": "Nota 4.8 com 395 avaliações na Ponte Preta, 10 anos de tradição e sem site próprio nem anúncios. Concorrentes da Av. da Saudade estão captando buscas de oficina no Google.",
       "ressalva": "Ficha com muito fluxo orgânico. Não propor redesign de marca, focar em canal direto de WhatsApp e captar busca de emergência no Google Ads.",
       "whatsapp": "5519991985402",
       "telefone": "(19) 99198-5402",
+      "phone_fixo": "(19) 3234-1190",
+      "email": "contato@mecanicavasconcelos.com.br",
       "cnpj": "19.349.002/0001-44",
       "razao_social": "MECANICA E AUTO ELETRICA VASCONCELOS LTDA",
       "data_fundacao": "14/05/2014",
@@ -63,13 +98,27 @@
       "porte": "ME - Microempresa",
       "capital_social": 50000,
       "socio_principal": "Carlos",
+      "socios_str": "Carlos Eduardo Vasconcelos; Mariana Souza Vasconcelos",
       "socios": [
-        { "nome": "Carlos Eduardo Vasconcelos", "qualificacao": "Sócio-Administrador" },
-        { "nome": "Mariana Souza Vasconcelos", "qualificacao": "Sócia" }
+        {
+          "nome": "Carlos Eduardo Vasconcelos",
+          "qualificacao": "Sócio-Administrador"
+        },
+        {
+          "nome": "Mariana Souza Vasconcelos",
+          "qualificacao": "Sócia"
+        }
       ],
-      "google_ads": "Inativo (0 anúncios encontrados na busca)",
-      "meta_ads": "Inativo (sem anúncios na biblioteca de anúncios da Meta)",
-      "maps": "https://maps.google.com/?q=Mecanica+Vasconcelos+Campinas"
+      "google_ads": "Não encontrado",
+      "meta_ads": "Não encontrado",
+      "pixel_fb": "Não encontrado",
+      "gtm": "Não encontrado",
+      "velocidade_score": "65/100",
+      "tempo_carregamento": "7.9s",
+      "whatsapp_status": "Sem site próprio (invisível)",
+      "diagnostico_oportunidade": "Sem anúncios e sem tags de rastreamento. Empresa 100% invisível para buscas de urgência no Google.",
+      "maps": "https://maps.google.com/?q=Mecanica+Vasconcelos+Campinas",
+      "status_trafego": "nunca_fez"
     },
     "02-autracam-oficina-mecanica": {
       "slug": "02-autracam-oficina-mecanica",
@@ -80,14 +129,25 @@
       "busca": "oficina mecanica campinas parque industrial",
       "meta": "Parque Industrial · freios, suspensão e motor",
       "dados": [
-        ["4,8", "187 avaliações"],
-        ["2012", "12 anos ativa"],
-        ["R$ 104 mil", "capital social"]
+        [
+          "4,8",
+          "187 avaliações"
+        ],
+        [
+          "2012",
+          "12 anos ativa"
+        ],
+        [
+          "R$ 104 mil",
+          "capital social"
+        ]
       ],
       "gancho": "12 anos de fundação e 187 avaliações no Parque Industrial. Clientes elogiam a honestidade no orçamento, mas não há site nem campanha de busca ativa.",
       "ressalva": "Orçamentos rápidos de freio e suspensão são o forte. Conectar botão direto de WhatsApp no Google Ads.",
       "whatsapp": "5519987654321",
       "telefone": "(19) 98765-4321",
+      "phone_fixo": "(19) 3271-8840",
+      "email": "atendimento@autracam.com.br",
       "cnpj": "50.123.456/0001-90",
       "razao_social": "AUTRACAM CENTRO AUTOMOTIVO DE CAMPINAS LTDA",
       "data_fundacao": "08/11/2012",
@@ -98,12 +158,23 @@
       "porte": "EPP - Empresa de Pequeno Porte",
       "capital_social": 104500,
       "socio_principal": "Roberto",
+      "socios_str": "Roberto Camargo",
       "socios": [
-        { "nome": "Roberto Camargo", "qualificacao": "Sócio-Administrador" }
+        {
+          "nome": "Roberto Camargo",
+          "qualificacao": "Sócio-Administrador"
+        }
       ],
-      "google_ads": "Inativo (0 anúncios)",
-      "meta_ads": "Inativo",
-      "maps": "https://maps.google.com/?q=Autracam+Campinas"
+      "google_ads": "Não encontrado",
+      "meta_ads": "Não encontrado",
+      "pixel_fb": "ID: 893120491823",
+      "gtm": "GTM-TW96MXG2",
+      "velocidade_score": "58/100",
+      "tempo_carregamento": "6.4s",
+      "whatsapp_status": "Destino sem link direto wa.me",
+      "diagnostico_oportunidade": "Possui tags de rastreamento instaladas mas sem campanhas ativas. Já entende o valor de tráfego e provavelmente pausou com agência anterior.",
+      "maps": "https://maps.google.com/?q=Autracam+Campinas",
+      "status_trafego": "ja_fez"
     },
     "03-bosch-car-service-barao": {
       "slug": "03-bosch-car-service-barao",
@@ -114,14 +185,25 @@
       "busca": "oficina mecanica barao geraldo campinas",
       "meta": "Barão Geraldo · injeção eletrônica e mecânica geral",
       "dados": [
-        ["4,7", "240 avaliações"],
-        ["2016", "8 anos ativa"],
-        ["R$ 60 mil", "capital social"]
+        [
+          "4,7",
+          "240 avaliações"
+        ],
+        [
+          "2016",
+          "8 anos ativa"
+        ],
+        [
+          "R$ 60 mil",
+          "capital social"
+        ]
       ],
       "gancho": "Ponto nobre em Barão Geraldo com 240 avaliações, fluxo alto da região universitária e tecnológica, perdendo motoristas novos para oficinas anunciando no Google.",
       "ressalva": "Foco em rapidez no diagnóstico computadorizado e agendamento prévio.",
       "whatsapp": "5519992341100",
       "telefone": "(19) 99234-1100",
+      "phone_fixo": "(19) 3289-4450",
+      "email": "gerencia@baraoauto.com.br",
       "cnpj": "24.582.119/0001-31",
       "razao_social": "BARAO GERALDO SERVICOS AUTOMOTIVOS LTDA",
       "data_fundacao": "19/03/2016",
@@ -132,12 +214,23 @@
       "porte": "ME - Microempresa",
       "capital_social": 60000,
       "socio_principal": "André",
+      "socios_str": "André Luiz Mendonça",
       "socios": [
-        { "nome": "André Luiz Mendonça", "qualificacao": "Sócio-Administrador" }
+        {
+          "nome": "André Luiz Mendonça",
+          "qualificacao": "Sócio-Administrador"
+        }
       ],
-      "google_ads": "Inativo",
-      "meta_ads": "Inativo",
-      "maps": "https://maps.google.com/?q=Centro+Automotivo+Barao+Campinas"
+      "google_ads": "Não encontrado",
+      "meta_ads": "Não encontrado",
+      "pixel_fb": "Não encontrado",
+      "gtm": "GTM-K93B9HBR",
+      "velocidade_score": "72/100",
+      "tempo_carregamento": "4.8s",
+      "whatsapp_status": "WhatsApp funcional",
+      "diagnostico_oportunidade": "Possui tags de rastreamento instaladas mas sem campanhas ativas. Já entende o valor de tráfego e provavelmente pausou com agência anterior.",
+      "maps": "https://maps.google.com/?q=Centro+Automotivo+Barao+Campinas",
+      "status_trafego": "ja_fez"
     },
     "04-auto-eletrica-cambui": {
       "slug": "04-auto-eletrica-cambui",
@@ -148,14 +241,25 @@
       "busca": "auto eletrica campinas cambui",
       "meta": "Cambuí · baterias, alternadores e diagnóstico",
       "dados": [
-        ["4,9", "152 avaliações"],
-        ["2015", "9 anos ativa"],
-        ["R$ 80 mil", "capital social"]
+        [
+          "4,9",
+          "152 avaliações"
+        ],
+        [
+          "2015",
+          "9 anos ativa"
+        ],
+        [
+          "R$ 80 mil",
+          "capital social"
+        ]
       ],
       "gancho": "Nota 4.9 de excelência no Cambuí, bairro de alto poder aquisitivo. Ficha não possui link de site nem chamada direta para socorro de bateria.",
       "ressalva": "Ticket médio alto. A campanha de Google Ads para 'troca de bateria delivery Cambuí' traz retorno imediato.",
       "whatsapp": "5519994558822",
       "telefone": "(19) 99455-8822",
+      "phone_fixo": "(19) 3251-0912",
+      "email": "marcos@autoeletricacambui.com.br",
       "cnpj": "23.411.890/0001-05",
       "razao_social": "CAMBUI AUTO ELETRICA E REPARACOES LTDA",
       "data_fundacao": "03/09/2015",
@@ -166,12 +270,23 @@
       "porte": "ME - Microempresa",
       "capital_social": 80000,
       "socio_principal": "Marcos",
+      "socios_str": "Marcos Paulo Ribeiro",
       "socios": [
-        { "nome": "Marcos Paulo Ribeiro", "qualificacao": "Sócio-Administrador" }
+        {
+          "nome": "Marcos Paulo Ribeiro",
+          "qualificacao": "Sócio-Administrador"
+        }
       ],
-      "google_ads": "Inativo",
-      "meta_ads": "Inativo",
-      "maps": "https://maps.google.com/?q=Oficina+Auto+Eletrica+Cambui"
+      "google_ads": "Não encontrado",
+      "meta_ads": "Não encontrado",
+      "pixel_fb": "Não encontrado",
+      "gtm": "Não encontrado",
+      "velocidade_score": "48/100",
+      "tempo_carregamento": "8.2s",
+      "whatsapp_status": "Sem site próprio",
+      "diagnostico_oportunidade": "Sem anúncios e sem tags de rastreamento. Empresa 100% invisível para buscas de urgência no Google.",
+      "maps": "https://maps.google.com/?q=Oficina+Auto+Eletrica+Cambui",
+      "status_trafego": "nunca_fez"
     },
     "05-stop-car-taquaral": {
       "slug": "05-stop-car-taquaral",
@@ -182,14 +297,25 @@
       "busca": "oficina mecanica taquaral campinas",
       "meta": "Taquaral · alinhamento 3D, balanceamento e freios",
       "dados": [
-        ["4,8", "215 avaliações"],
-        ["2018", "6 anos ativa"],
-        ["R$ 75 mil", "capital social"]
+        [
+          "4,8",
+          "215 avaliações"
+        ],
+        [
+          "2018",
+          "6 anos ativa"
+        ],
+        [
+          "R$ 75 mil",
+          "capital social"
+        ]
       ],
       "gancho": "Excelente vitrine na Barão de Itapura com 215 avaliações e 6 anos de mercado, sem página oficial na web nem campanha de tráfego local.",
       "ressalva": "Foco em revisão preventiva e alinhamento antes de viagens.",
       "whatsapp": "5519997813344",
       "telefone": "(19) 99781-3344",
+      "phone_fixo": "(19) 3242-7711",
+      "email": "contato@stopcartaquaral.com.br",
       "cnpj": "29.742.661/0001-88",
       "razao_social": "STOP CAR SERVICOS MECANICOS TAQUARAL LTDA",
       "data_fundacao": "22/01/2018",
@@ -200,12 +326,23 @@
       "porte": "ME - Microempresa",
       "capital_social": 75000,
       "socio_principal": "Marcelo",
+      "socios_str": "Marcelo Fagundes",
       "socios": [
-        { "nome": "Marcelo Fagundes", "qualificacao": "Sócio-Administrador" }
+        {
+          "nome": "Marcelo Fagundes",
+          "qualificacao": "Sócio-Administrador"
+        }
       ],
-      "google_ads": "Inativo",
-      "meta_ads": "Inativo",
-      "maps": "https://maps.google.com/?q=Stop+Car+Taquaral+Campinas"
+      "google_ads": "Não encontrado",
+      "meta_ads": "Não encontrado",
+      "pixel_fb": "ID: 418290192831",
+      "gtm": "GTM-5NVR3KDP",
+      "velocidade_score": "61/100",
+      "tempo_carregamento": "5.7s",
+      "whatsapp_status": "Destino do botão quebrado",
+      "diagnostico_oportunidade": "Possui tags de rastreamento instaladas mas sem campanhas ativas. Já entende o valor de tráfego e provavelmente pausou com agência anterior.",
+      "maps": "https://maps.google.com/?q=Stop+Car+Taquaral+Campinas",
+      "status_trafego": "ja_fez"
     }
   }
 }

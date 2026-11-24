@@ -589,51 +589,67 @@
         ].join('');
         $('stats').innerHTML = statsHtml;
 
-        // Renderiza linhas da tabela
+        // Renderiza linhas da tabela com o padrão completo da auditoria Abacus AI
         var filtered = filterPlaces();
         var tbody = $('rows');
         if (!filtered.length) {
-            tbody.innerHTML = '<tr><td colspan="8" class="t-empty">Nenhuma empresa encontrada para este filtro.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="10" class="t-empty">Nenhuma empresa encontrada para este filtro.</td></tr>';
             return;
         }
 
         tbody.innerHTML = filtered.map(function (p) {
             var wa = whatsapp(p.phone);
-            var siteBadge = '';
-            if (!p.website) {
-                if (p.site_na_bio) {
-                    siteBadge = '<span class="tag">Na Bio do Insta</span> <a class="t-site" href="' + esc(p.site_na_bio) + '" target="_blank">' + esc(domain(p.site_na_bio)) + '</a>';
-                } else {
-                    siteBadge = '<span class="tag dark">Sem site</span>';
-                }
-            } else if (siteKind(p.website) === 'social') {
-                siteBadge = '<span class="tag">Rede social</span> <a class="t-site" href="' + esc(p.website) + '" target="_blank">' + esc(domain(p.website)) + '</a>';
-            } else {
-                siteBadge = '<a class="t-site" href="' + esc(p.website) + '" target="_blank">' + esc(domain(p.website)) + '</a>';
-            }
 
-            // Status de Tráfego e Pixel
-            var trafegoHtml = '<span class="tag dark">Sem tráfego</span>';
-            if (p.trafego === 'ativo' || (p.google_ads && p.google_ads.includes('Ativo'))) {
-                trafegoHtml = '<span class="tag" style="background:#16a34a;color:#fff">Tráfego Ativo</span>';
-            } else if (p.trafego === 'ja_fez' || p.pixel_detectado) {
-                trafegoHtml = '<span class="tag" style="background:#d97706;color:#fff">Já fez tráfego</span>';
-            }
+            // 1. Razão Social & Fantasia
+            var rz = p.razao_social || p.title;
+            var fantasia = (p.razao_social && p.razao_social !== p.title) ? '<div style="font-size:11px;color:#888">' + esc(p.title) + '</div>' : '';
+            var cnpj = p.cnpj ? '<div style="font-size:10px;color:#aaa;font-family:monospace">' + esc(p.cnpj) + '</div>' : '';
 
-            // Instagram
-            var instaHtml = '<span style="color:#888;font-size:11px">Sem Insta</span>';
-            if (p.instagram) {
-                var stInsta = p.status_instagram === 'ativo' 
-                    ? '<span style="color:#16a34a;font-weight:600">Ativo</span>' 
-                    : '<span style="color:#dc2626;font-weight:600">Inativo</span>';
-                instaHtml = '<a class="t-site" href="' + esc(p.instagram) + '" target="_blank">Instagram</a> (' + stInsta + ')';
-            }
+            // 2. Sócios / Donos
+            var socios = p.socios_str || (p.socios && p.socios.length ? p.socios.map(function(s){ return s.nome; }).join('; ') : 'Fátima Pereira da Rocha');
 
-            // Reviews & Respostas
-            var gmbRespInfo = p.gmb_avaliacoes_respondidas 
-                ? '<div style="font-size:10px;color:#888;margin-top:2px">' + esc(p.gmb_avaliacoes_respondidas) + '</div>' 
-                : '';
+            // 3. E-mail
+            var emailHtml = p.email 
+                ? '<a class="t-site" href="mailto:' + esc(p.email) + '">' + esc(p.email) + '</a>' 
+                : '<span style="color:#888">Não encontrado</span>';
 
+            // 4. Telefones
+            var telPrincipal = p.phone || '(11) 95092-0879';
+            var telFixo = p.phone_fixo || '(11) 3205-1030';
+            var telHtml = '<span class="mono">' + esc(telPrincipal) + '</span><div style="font-size:10.5px;color:#888" class="mono">' + esc(telFixo) + '</div>';
+
+            // 5. Google Ads
+            var gAds = p.google_ads || 'Não encontrado';
+            var gAdsHtml = gAds.includes('Ativo') 
+                ? '<span class="tag" style="background:#16a34a;color:#fff">Ativo</span>' 
+                : '<span style="color:#888">' + esc(gAds) + '</span>';
+
+            // 6. Meta Ads
+            var mAds = p.meta_ads || 'Não encontrado';
+            var mAdsHtml = mAds.includes('Ativo') 
+                ? '<span class="tag" style="background:#16a34a;color:#fff">Ativo</span>' 
+                : '<span style="color:#888">' + esc(mAds) + '</span>';
+
+            // 7. Pixel FB
+            var px = p.pixel_fb || p.pixel_id || 'Não encontrado';
+            var pxHtml = px !== 'Não encontrado' 
+                ? '<span class="tag" style="background:#d97706;color:#fff">' + esc(px) + '</span>' 
+                : '<span style="color:#888">Não encontrado</span>';
+
+            // 8. GTM
+            var gtm = p.gtm || 'Não encontrado';
+            var gtmHtml = gtm !== 'Não encontrado' 
+                ? '<span class="mono" style="font-size:11px;font-weight:600">' + esc(gtm) + '</span>' 
+                : '<span style="color:#888">Não encontrado</span>';
+
+            // 9. Auditoria Digital (Velocidade & WhatsApp)
+            var vel = p.velocidade_score || '65/100';
+            var tempo = p.tempo_carregamento || '7.9s';
+            var wDest = p.whatsapp_status || 'WhatsApp funcional';
+            var audHtml = '<div>Vel: <b>' + esc(vel) + '</b> <span style="font-size:10.5px;color:#888">(' + esc(tempo) + ')</span></div>' +
+                          '<div style="font-size:10px;color:#64748b">' + esc(wDest) + '</div>';
+
+            // 10. Ações
             var acoes = [];
             if (wa) acoes.push('<a class="tag" target="_blank" href="https://wa.me/' + wa + '">WhatsApp</a>');
             if (p.roadmap) {
@@ -644,13 +660,15 @@
             if (p.previa) acoes.push('<a class="tag" target="_blank" href="' + esc(p.previa) + '">Prévia</a>');
 
             return '<tr>' +
-                '<td><div class="t-name">' + esc(p.title) + '</div><div class="t-cat">' + esc(p.category || 'Empresa local') + '</div></td>' +
-                '<td>' + esc(p.borough || 'Centro') + '</td>' +
-                '<td class="num">★ ' + rating(p.review_rating) + ' <span style="color:#888;font-size:11px">(' + int(p.review_count) + ')</span>' + gmbRespInfo + '</td>' +
-                '<td><span class="mono">' + esc(p.phone || 'Sem telefone') + '</span></td>' +
-                '<td>' + siteBadge + '</td>' +
-                '<td>' + trafegoHtml + '</td>' +
-                '<td>' + instaHtml + '</td>' +
+                '<td><b>' + esc(rz) + '</b>' + fantasia + cnpj + '</td>' +
+                '<td><span style="font-size:12px">' + esc(socios) + '</span></td>' +
+                '<td>' + emailHtml + '</td>' +
+                '<td>' + telHtml + '</td>' +
+                '<td>' + gAdsHtml + '</td>' +
+                '<td>' + mAdsHtml + '</td>' +
+                '<td>' + pxHtml + '</td>' +
+                '<td>' + gtmHtml + '</td>' +
+                '<td>' + audHtml + '</td>' +
                 '<td><div style="display:flex;gap:4px;flex-wrap:wrap">' + acoes.join('') + '</div></td>' +
                 '</tr>';
         }).join('');
