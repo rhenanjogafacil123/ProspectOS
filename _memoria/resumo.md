@@ -37,3 +37,10 @@ Este é o sistema operacional de prospecção ativa B2B, inteligência comercial
 - **Cidade:** Campinas / SP
 - **Total de Leads Aprovados:** 5 empresas (Mecânica Vasconcelos, Autracam, Bosch Barão, Auto Elétrica Cambuí, Stop Car Taquaral)
 - **Status dos Materiais:** Prévias de site geradas, abordagens prontas, Roadmaps HTML e PDFs nativos de 3 páginas gerados e hospedados na Vercel (`https://prospect-os-fawn.vercel.app`).
+
+---
+
+## 5. Cockpit & Tabela de Auditoria Digital (Padrão Abacus AI + Execução Direta)
+- **Tabela Consolidada:** Razão Social, QSA, E-mails, Telefones, Google/Meta Ads, Pixel, GTM, Velocidade Mobile, Instagram e Avaliações GMB com exportação imediata em MD e CSV.
+- **Abordagem Multi-Canal Integrada:** Cada lead conta com M1/M2 de WhatsApp, Cadência de Cold Mail em 3 etapas (Cold Mail 1, FU1, FU2), Script de Cold Call em 3 fases com o sócio/dono, Ficha CNPJ e Diagnóstico Técnico.
+- **Diferencial Competitivo:** Execução em disparo único (zero comandos extras ou perguntas intermediárias).

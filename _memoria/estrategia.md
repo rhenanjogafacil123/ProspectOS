@@ -26,9 +26,17 @@
 5. **Varredura CNPJ na Receita Federal:**
    - Cruzar razão social e nome fantasia para obter data de abertura exata, tempo de mercado, sócios administradores e capital social.
 
+2. **O Diagnóstico Cirúrgico da Ferida (Os 3 Cenários de Ouro Comercial):**
+   - **Cenário A (Já Fez Tráfego / Pausado):** Tem Pixel e GTM instalados no código, mas anúncios desligados na Meta Ad Library e Google Ads.
+     *Diagnóstico:* Já entende o valor do tráfego, provavelmente demitiu a agência anterior por falta de retorno em vendas reais/mensuração. Oportunidade imediata de reativação com o case de R$ 300 gerando 230 contatos.
+   - **Cenário B (Anuncia sem Medir / Rasgando Dinheiro):** Roda Google Ads ou Meta Ads, mas não tem GTM nem Pixel instalados.
+     *Diagnóstico:* Está rasgando orçamento às cegas sem saber quais palavras ou anúncios geram ligações e vendas de verdade.
+   - **Cenário C (100% Invisível):** Sem site, sem anúncio, sem pixel, site lento (> 7.9s) ou quebrado.
+     *Diagnóstico:* Invisível na hora da urgência e da dor do cliente. Todo motorista com pane cai direto no concorrente que tem botão LIGAR patrocinado.
+
 ---
 
-## 2. O Funil de Qualificação
+## 2. O Funil de Qualificação & Automação Zero Perguntas Extras
 Toda lista de prospecção deve passar por este funil de 4 filtros:
 1. **Filtro Maps:** Nota acima de 4.0, celular verificado na ficha, sem site próprio oficial.
 2. **Filtro CNPJ (Receita Federal):** Situação ATIVA, mais de 3 anos de fundação, excluindo MEI (foco em ME e EPP com faturamento real).
@@ -67,3 +75,22 @@ Toda lista de prospecção deve passar por este funil de 4 filtros:
   > "Sem problema, o valor tem que fazer sentido pra você. Me diz uma coisa: quanto vale um único cliente novo de freio, suspensão ou motor pra vocês? Se 1 ou 2 serviços no mês pagam o projeto inteiro e o resto é lucro, faz sentido a conversa. Se não pagam, te digo com sinceridade que não compensa."
 - **"Não tenho tempo agora:"**
   > "É exatamente por isso que eu faço tudo. Você não precisa parar a sua oficina. Eu cuido do site, da ficha do Google, da plaquinha de balcão e dos anúncios. Você só precisa atender o telefone quando tocar."
+
+---
+
+## 5. A Cadência de Cold Mail Consultivo (E-mail Corporativo & Sócios)
+- **Cold Mail 1 (Dor Técnica & Oportunidade Cirúrgica):**
+  > Assunto: `Detalhe técnico no agendamento / presença da {empresa}`
+  > Corpo direto apontando o problema técnico real auditado (lentidão > 7.9s, ausência de botão WhatsApp funcional, sem GTM ou sem anúncios em horário de pico).
+- **Cold Mail FU1 (Follow-up 3 dias depois):**
+  > Assunto: `Re: Detalhe técnico no agendamento da {empresa}`
+  > Breve checagem com o decisor para confirmar se conseguiu abrir o Roadmap de 3 páginas.
+- **Cold Mail FU2 (Follow-up 7 dias depois — Urgência Consultiva & Término Elegante):**
+  > Assunto: `Último contato: Roadmap da {empresa}`
+  > Encerramento cordial avisando que o raio de exclusividade no bairro ficará disponível para concorrentes se não houver retorno.
+
+---
+
+## 6. O Diferencial ProspectOS vs Abacus AI (Zero Perguntas Extras)
+- No fluxo do Abacus AI, o usuário precisava mandar 4 a 5 comandos consecutivos para extrair CNPJ, depois PageSpeed, depois Instagram, depois Scripts.
+- No ProspectOS, **a inteligência é 100% nativa e de disparo único**: o scraper e o enriquecedor cruzam Receita Federal, PageSpeed, Meta Ads, GTM, Pixel, Instagram e avaliações do GMB gerando o Cockpit, a Tabela Consolidada (MD/CSV) e os Roadmaps de 3 páginas em um único ciclo.
